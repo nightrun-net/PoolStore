@@ -1604,8 +1604,12 @@ html[dir="rtl"] .rating span{
     font-size:12px;
   }
 
-  .cart-btn > span:not(.cart-count){
+  .cart-btn > .cart-label{
     display:none;
+  }
+
+  .cart-btn.modern-cart > .cart-icon-wrap{
+    display:grid !important;
   }
 
   /* HERO */
@@ -3051,6 +3055,36 @@ img{
   .category-btn{font-size:11px}
 }
 
+
+
+/* =====================================================
+   MOBILE SHOP ICON — SAME AS PROFILE
+===================================================== */
+
+.mobile-header-menu a[data-mobile-section="shop"] i{
+  color:#c5893d !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  filter:none !important;
+}
+
+.mobile-header-menu a[data-mobile-section="shop"]:hover i,
+.mobile-header-menu a[data-mobile-section="shop"].active i{
+  color:#ffe6b8 !important;
+}
+
+@media(max-width:1000px){
+  .mobile-header-menu a[data-mobile-section="shop"] i{
+    color:#c5893d !important;
+    opacity:1 !important;
+  }
+
+  .mobile-header-menu a[data-mobile-section="shop"]:hover i,
+  .mobile-header-menu a[data-mobile-section="shop"].active i{
+    color:#ffe6b8 !important;
+  }
+}
+
 </style>
 </head>
 
@@ -3168,6 +3202,7 @@ img{
     <div class="hero-copy">
 
       <h1>
+        <span data-i18n="poolWord">Pool.</span>
         <span data-i18n="heroTitle">Play better with premium pool gear.</span>
       </h1>
 
