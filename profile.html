@@ -1,0 +1,3155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+>
+
+<title>LUX LINE | Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --brown:#35100f;
+  --brown2:#4c1916;
+  --brown3:#6d382d;
+
+  --cream:#e8dfd1;
+  --cream2:#f4eee5;
+
+  --card:rgba(249,245,238,.82);
+
+  --text:#291a17;
+  --muted:#7c6d64;
+
+  --line:rgba(62,38,30,.10);
+
+  --green:#55734e;
+  --red:#a8433d;
+  --gold:#b18445;
+
+  --shadow:0 24px 70px rgba(47,30,23,.14);
+}
+
+html{
+  scroll-behavior:smooth;
+  touch-action:manipulation;
+}
+
+html,
+body,
+body *{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+input,
+textarea,
+select,
+option{
+  -webkit-user-select:text;
+  user-select:text;
+}
+
+[hidden],
+.is-hidden{
+  display:none!important;
+}
+
+body{
+  min-height:100vh;
+
+  font-family:"DM Sans",Arial,sans-serif;
+  color:var(--text);
+
+  background:
+    radial-gradient(circle at 10% 10%,rgba(238,203,148,.50),transparent 27%),
+    radial-gradient(circle at 90% 10%,rgba(81,63,52,.24),transparent 30%),
+    linear-gradient(135deg,#aaa08e,#d7cbbb 48%,#958879);
+
+  padding:28px;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  display:block;
+  width:100%;
+  -webkit-user-drag:none;
+  user-drag:none;
+  pointer-events:none;
+}
+
+.shell{
+  width:min(1260px,100%);
+  min-height:calc(100vh - 56px);
+
+  margin:auto;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:34px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(238,231,220,.96),
+      rgba(219,208,191,.94)
+    );
+
+  box-shadow:0 38px 110px rgba(46,31,24,.28);
+}
+
+.container{
+  width:min(1110px,calc(100% - 52px));
+  margin:auto;
+}
+
+/* HEADER */
+.header-wrap{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  padding:14px 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(232,223,210,.96),
+      rgba(232,223,210,.72),
+      transparent
+    );
+
+  backdrop-filter:blur(16px);
+}
+
+.header{
+  min-height:72px;
+
+  padding:9px 11px 9px 12px;
+
+  border:1px solid rgba(255,255,255,.56);
+  border-radius:22px;
+
+  background:rgba(244,238,228,.78);
+  backdrop-filter:blur(22px);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  box-shadow:0 12px 35px rgba(53,35,27,.09);
+
+  position:relative;
+  overflow:hidden;
+}
+
+.header::after{
+  content:"";
+
+  position:absolute;
+  top:-45%;
+  left:-18%;
+
+  width:90px;
+  height:190%;
+
+  transform:rotate(18deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.52),
+      transparent
+    );
+
+  animation:headerShine 7s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  position:relative;
+  z-index:2;
+}
+
+.brand-logo{
+  width:52px;
+  height:52px;
+
+  padding:3px;
+
+  overflow:hidden;
+
+  border-radius:16px;
+
+  background:#fff;
+
+  box-shadow:0 8px 22px rgba(53,16,15,.12);
+}
+
+.brand-logo img{
+  height:100%;
+  object-fit:cover;
+  border-radius:13px;
+}
+
+.brand strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:18px;
+  letter-spacing:2.8px;
+}
+
+.brand small{
+  display:block;
+
+  margin-top:3px;
+
+  color:#8a786d;
+
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  position:relative;
+  z-index:2;
+}
+
+.language-select,
+.header-link{
+  min-height:50px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.52);
+  color:var(--brown);
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.language-select{
+  min-width:118px;
+  padding:0 14px;
+  outline:0;
+  font-size:13px;
+}
+
+.header-link{
+  padding:0 14px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  transition:.2s;
+}
+
+.header-link i{
+  color:var(--gold);
+}
+
+.header-link:hover{
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+/* HERO PROFILE */
+.profile-hero{
+  padding:48px 0 26px;
+}
+
+.profile-cover{
+  min-height:280px;
+
+  padding:32px;
+
+  border:1px solid rgba(255,255,255,.47);
+  border-radius:30px;
+
+  background:
+    radial-gradient(circle at 80% 15%,rgba(255,255,255,.26),transparent 28%),
+    linear-gradient(135deg,rgba(69,25,21,.98),rgba(98,53,41,.90));
+
+  color:#fff;
+
+  box-shadow:0 24px 60px rgba(53,16,15,.18);
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.profile-cover::before{
+  content:"";
+
+  position:absolute;
+  width:280px;
+  height:280px;
+
+  right:-60px;
+  top:-80px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.10);
+
+  box-shadow:
+    0 0 0 28px rgba(255,255,255,.035),
+    0 0 0 56px rgba(255,255,255,.018);
+}
+
+.profile-main{
+  display:flex;
+  align-items:center;
+  gap:20px;
+
+  position:relative;
+  z-index:2;
+}
+
+.avatar{
+  width:104px;
+  height:104px;
+  flex:0 0 104px;
+
+  border:4px solid rgba(255,255,255,.23);
+  border-radius:30px;
+
+  background:rgba(255,255,255,.10);
+
+  display:grid;
+  place-items:center;
+
+  box-shadow:0 18px 38px rgba(0,0,0,.20);
+}
+
+.avatar span{
+  font-family:"Manrope",sans-serif;
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:-2px;
+}
+
+.profile-copy small{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#e4c79c;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+
+.profile-copy h1{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(32px,5vw,52px);
+  line-height:1.05;
+}
+
+.profile-copy p{
+  margin-top:8px;
+
+  color:rgba(255,255,255,.72);
+
+  font-size:13px;
+}
+
+.edit-profile-btn{
+  min-height:48px;
+
+  padding:0 18px;
+
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.10);
+  color:#fff;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  font-size:12px;
+  font-weight:900;
+
+  position:relative;
+  z-index:2;
+
+  transition:.2s;
+}
+
+.edit-profile-btn:hover{
+  background:rgba(255,255,255,.18);
+  transform:translateY(-2px);
+}
+
+/* STATS */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+
+  margin-top:14px;
+}
+
+.stat-card{
+  padding:18px;
+
+  border:1px solid rgba(255,255,255,.46);
+  border-radius:20px;
+
+  background:rgba(249,245,238,.68);
+
+  box-shadow:0 14px 32px rgba(52,34,26,.06);
+
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.stat-icon{
+  width:46px;
+  height:46px;
+  flex:0 0 46px;
+
+  border-radius:14px;
+
+  background:rgba(53,16,15,.08);
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:15px;
+}
+
+.stat-card strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:21px;
+}
+
+.stat-card span{
+  display:block;
+
+  margin-top:2px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  font-weight:800;
+}
+
+/* CONTENT GRID */
+.content-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+
+  padding:28px 0 70px;
+}
+
+.panel{
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:25px;
+
+  background:rgba(248,243,235,.70);
+
+  box-shadow:0 18px 46px rgba(52,34,26,.07);
+}
+
+.panel-head{
+  padding:20px 22px;
+
+  border-bottom:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.panel-head h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:20px;
+}
+
+.panel-head span{
+  color:#8d7d73;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.info-list{
+  padding:8px 22px 20px;
+}
+
+.info-row{
+  min-height:68px;
+
+  border-bottom:1px solid var(--line);
+
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:12px;
+
+  align-items:center;
+}
+
+.info-row:last-child{
+  border-bottom:0;
+}
+
+.info-icon{
+  width:38px;
+  height:38px;
+
+  border-radius:12px;
+
+  background:rgba(53,16,15,.07);
+  color:var(--gold);
+
+  display:grid;
+  place-items:center;
+
+  font-size:13px;
+}
+
+.info-row small{
+  display:block;
+
+  margin-bottom:2px;
+
+  color:#8b7a70;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+
+.info-row strong{
+  display:block;
+
+  color:var(--text);
+
+  font-size:13px;
+  font-weight:800;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* COMPLETED ORDERS BUTTON */
+.completed-orders-card{
+  width:100%;
+  min-height:128px;
+
+  padding:20px 22px;
+
+  border:1px solid rgba(255,255,255,.52);
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249,245,238,.82),
+      rgba(238,228,213,.76)
+    );
+
+  color:inherit;
+  text-align:inherit;
+
+  box-shadow:0 18px 46px rgba(52,34,26,.07);
+
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  gap:16px;
+
+  align-items:center;
+
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background .22s ease;
+}
+
+.completed-orders-card:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(53,16,15,.16);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.90),
+      rgba(242,233,220,.88)
+    );
+
+  box-shadow:0 24px 55px rgba(52,34,26,.11);
+}
+
+.completed-orders-icon{
+  width:58px;
+  height:58px;
+
+  border-radius:18px;
+
+  background:var(--brown);
+  color:#f0d0a0;
+
+  display:grid;
+  place-items:center;
+
+  font-size:20px;
+
+  box-shadow:0 12px 26px rgba(53,16,15,.15);
+}
+
+.completed-orders-copy{
+  min-width:0;
+}
+
+.completed-orders-copy small{
+  display:block;
+
+  margin-bottom:5px;
+
+  color:#917e72;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.completed-orders-copy strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:20px;
+  font-weight:800;
+}
+
+.completed-orders-copy span{
+  display:block;
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+}
+
+.completed-orders-end{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  color:var(--gold);
+}
+
+.completed-orders-count{
+  min-width:38px;
+  height:38px;
+
+  padding:0 10px;
+
+  border-radius:999px;
+
+  background:rgba(53,16,15,.08);
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.completed-orders-end > i{
+  font-size:12px;
+}
+
+/* COMPLETED ORDERS MODAL */
+.completed-list-modal{
+  width:min(760px,100%);
+}
+
+.completed-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.completed-order-row{
+  width:100%;
+
+  padding:15px;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  background:rgba(255,255,255,.46);
+  color:inherit;
+  text-align:inherit;
+
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:13px;
+
+  align-items:center;
+
+  transition:.2s ease;
+}
+
+.completed-order-row:hover{
+  transform:translateY(-2px);
+
+  background:rgba(255,255,255,.72);
+
+  box-shadow:0 10px 24px rgba(52,34,26,.07);
+}
+
+.completed-order-main{
+  min-width:0;
+}
+
+.completed-order-id{
+  margin-bottom:5px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:14px;
+  font-weight:800;
+}
+
+.completed-order-meta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+
+  color:#84756c;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.completed-order-total{
+  color:var(--brown);
+
+  font-size:15px;
+  font-weight:900;
+}
+
+.completed-order-arrow{
+  width:36px;
+  height:36px;
+
+  border-radius:11px;
+
+  background:rgba(53,16,15,.07);
+  color:var(--gold);
+
+  display:grid;
+  place-items:center;
+
+  font-size:11px;
+}
+
+.completed-empty{
+  min-height:250px;
+
+  padding:35px 20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:var(--muted);
+}
+
+.completed-empty i{
+  width:68px;
+  height:68px;
+
+  margin-bottom:14px;
+
+  border-radius:21px;
+
+  background:rgba(53,16,15,.08);
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:23px;
+}
+
+.completed-empty strong{
+  color:var(--brown);
+
+  font-size:16px;
+}
+
+.completed-empty span{
+  max-width:390px;
+
+  margin-top:6px;
+
+  font-size:10px;
+  line-height:1.6;
+}
+
+@media(max-width:650px){
+  .completed-orders-card{
+    min-height:112px;
+
+    padding:16px;
+
+    grid-template-columns:48px minmax(0,1fr) auto;
+    gap:12px;
+
+    border-radius:20px;
+  }
+
+  .completed-orders-icon{
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    font-size:17px;
+  }
+
+  .completed-orders-copy strong{
+    font-size:17px;
+  }
+
+  .completed-orders-copy span{
+    font-size:9px;
+  }
+
+  .completed-orders-count{
+    min-width:33px;
+    height:33px;
+
+    font-size:10px;
+  }
+
+  .completed-orders-end > i{
+    display:none;
+  }
+
+  .completed-order-row{
+    grid-template-columns:1fr auto;
+  }
+
+  .completed-order-arrow{
+    display:none;
+  }
+}
+
+/* ORDER DETAILS MODAL */
+
+.order-modal-card{
+  width:min(720px,100%);
+}
+
+.order-modal-summary{
+  margin-bottom:16px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.order-summary-box{
+  padding:13px;
+
+  border:1px solid var(--line);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.44);
+}
+
+.order-summary-box small{
+  display:block;
+
+  margin-bottom:4px;
+
+  color:#8a796f;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+
+.order-summary-box strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-size:13px;
+  font-weight:900;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.order-customer-card{
+  margin-bottom:16px;
+  padding:15px;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  background:rgba(255,255,255,.38);
+}
+
+.order-section-title{
+  margin-bottom:11px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:15px;
+  font-weight:800;
+}
+
+.order-customer-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.customer-detail{
+  min-width:0;
+}
+
+.customer-detail small{
+  display:block;
+
+  margin-bottom:3px;
+
+  color:#89786e;
+
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.customer-detail strong{
+  display:block;
+
+  color:var(--text);
+
+  font-size:12px;
+  font-weight:800;
+
+  overflow-wrap:anywhere;
+}
+
+.order-items{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.order-item-row{
+  padding:11px;
+
+  border:1px solid var(--line);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.43);
+
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  gap:11px;
+
+  align-items:center;
+}
+
+.order-item-image{
+  width:58px;
+  height:58px;
+
+  overflow:hidden;
+
+  border-radius:12px;
+
+  background:#d8cec0;
+}
+
+.order-item-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.order-item-name{
+  color:var(--brown);
+
+  font-size:12px;
+  font-weight:900;
+  line-height:1.4;
+}
+
+.order-item-meta{
+  margin-top:4px;
+
+  color:#817269;
+
+  font-size:9px;
+  font-weight:700;
+}
+
+.order-item-total{
+  color:var(--brown);
+
+  font-size:13px;
+  font-weight:900;
+
+  text-align:end;
+}
+
+.order-grand-total{
+  margin-top:14px;
+  padding-top:15px;
+
+  border-top:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  color:var(--brown);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.order-grand-total strong{
+  font-family:"Manrope",sans-serif;
+  font-size:22px;
+}
+
+@media(max-width:650px){
+  .order-modal-summary{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .order-summary-box:last-child{
+    grid-column:1/-1;
+  }
+
+  .order-customer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .order-item-row{
+    grid-template-columns:50px minmax(0,1fr);
+  }
+
+  .order-item-image{
+    width:50px;
+    height:50px;
+  }
+
+  .order-item-total{
+    grid-column:1/-1;
+
+    padding-top:8px;
+    border-top:1px solid var(--line);
+  }
+}
+
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:300;
+
+  padding:18px;
+
+  display:grid;
+  place-items:center;
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transition:.25s;
+}
+
+.modal.show{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+
+  background:rgba(39,24,18,.58);
+  backdrop-filter:blur(12px);
+}
+
+.modal-card{
+  width:min(620px,100%);
+  max-height:92dvh;
+
+  overflow:auto;
+
+  position:relative;
+  z-index:2;
+
+  padding:24px;
+
+  border:1px solid rgba(255,255,255,.46);
+  border-radius:28px;
+
+  background:#ebe2d4;
+
+  box-shadow:0 34px 100px rgba(31,18,13,.32);
+
+  transform:translateY(18px) scale(.98);
+
+  transition:.25s;
+}
+
+.modal.show .modal-card{
+  transform:none;
+}
+
+.modal-head{
+  margin-bottom:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.modal-head small{
+  display:block;
+
+  margin-bottom:3px;
+
+  color:#8e7a6d;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+}
+
+.modal-head h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:24px;
+}
+
+.close-btn{
+  width:42px;
+  height:42px;
+
+  border:0;
+  border-radius:13px;
+
+  background:rgba(255,255,255,.52);
+  color:var(--brown);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  color:#5f5048;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.control{
+  width:100%;
+  min-height:48px;
+
+  padding:0 13px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.56);
+  color:var(--text);
+
+  outline:0;
+
+  font-size:13px;
+}
+
+textarea.control{
+  min-height:92px;
+  padding-top:12px;
+  resize:vertical;
+}
+
+.control:focus{
+  border-color:rgba(53,16,15,.42);
+
+  box-shadow:0 0 0 4px rgba(53,16,15,.06);
+}
+
+.save-profile-btn{
+  width:100%;
+  min-height:52px;
+
+  margin-top:15px;
+
+  border:0;
+  border-radius:16px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:13px;
+  font-weight:900;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  transition:.2s;
+}
+
+.save-profile-btn:hover{
+  background:var(--brown2);
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  top:22px;
+  left:50%;
+  z-index:500;
+
+  max-width:calc(100% - 28px);
+
+  padding:12px 16px;
+
+  border-radius:14px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+
+  box-shadow:0 14px 35px rgba(53,16,15,.25);
+
+  transform:translate(-50%,-18px);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.25s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+
+  opacity:1;
+  visibility:visible;
+}
+
+/* RTL */
+html[dir="rtl"] body{
+  direction:rtl;
+}
+
+html[dir="rtl"] .header-link i{
+  transform:rotate(180deg);
+}
+
+/* ANIMATIONS */
+@keyframes headerShine{
+  0%,74%,100%{
+    left:-18%;
+    opacity:0;
+  }
+
+  80%{
+    opacity:.75;
+  }
+
+  93%{
+    left:112%;
+    opacity:0;
+  }
+}
+
+/* TABLET */
+@media(max-width:900px){
+
+  body{
+    padding:14px;
+  }
+
+  .shell{
+    min-height:calc(100vh - 28px);
+    border-radius:26px;
+  }
+
+  .container{
+    width:min(100% - 30px,1110px);
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* MOBILE */
+@media(max-width:650px){
+
+  body{
+    padding:0;
+    background:#b9ae9a;
+  }
+
+  .shell{
+    min-height:100vh;
+
+    border:0;
+    border-radius:0;
+  }
+
+  .container{
+    width:calc(100% - 24px);
+  }
+
+  .header-wrap{
+    padding:8px 0;
+  }
+
+  .header{
+    min-height:62px;
+
+    padding:7px;
+
+    border-radius:18px;
+  }
+
+  .brand-logo{
+    width:44px;
+    height:44px;
+
+    border-radius:13px;
+  }
+
+  .brand strong{
+    font-size:14px;
+    letter-spacing:2px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .language-select{
+    width:92px;
+    min-height:46px;
+
+    padding:0 10px;
+    font-size:10px;
+    font-weight:900;
+  }
+
+  .header-link{
+    width:40px;
+    min-height:40px;
+
+    padding:0;
+
+    font-size:0;
+  }
+
+  .header-link i{
+    font-size:12px;
+  }
+
+  .profile-hero{
+    padding:28px 0 20px;
+  }
+
+  .profile-cover{
+    min-height:300px;
+
+    padding:23px;
+
+    border-radius:24px;
+
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+  }
+
+  .profile-main{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .avatar{
+    width:86px;
+    height:86px;
+    flex-basis:86px;
+
+    border-radius:25px;
+  }
+
+  .avatar span{
+    font-size:28px;
+  }
+
+  .profile-copy h1{
+    font-size:34px;
+  }
+
+  .edit-profile-btn{
+    width:100%;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
+
+  .stat-card{
+    padding:13px;
+    gap:10px;
+  }
+
+  .stat-icon{
+    width:39px;
+    height:39px;
+    flex-basis:39px;
+  }
+
+  .stat-card strong{
+    font-size:18px;
+  }
+
+  .content-grid{
+    padding-top:18px;
+    gap:14px;
+  }
+
+  .panel{
+    border-radius:21px;
+  }
+
+  .panel-head{
+    padding:17px;
+  }
+
+  .panel-head h2{
+    font-size:18px;
+  }
+
+  .info-list{
+    padding:5px 17px 15px;
+  }
+
+  .order-total{
+    font-size:15px;
+  }
+
+  .modal-card{
+    padding:18px;
+    border-radius:21px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:380px){
+
+  .brand strong{
+    font-size:12px;
+  }
+
+  .language-select{
+    width:82px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+
+    <div class="container">
+
+      <header class="header">
+
+        <a class="brand" href="index.html">
+
+          <span class="brand-logo">
+            <img
+              src="lux_line_billiards_emblem.png"
+              alt="LUX LINE"
+              onerror="this.src='https://placehold.co/120x120/35100F/FFFFFF?text=LL'"
+            >
+          </span>
+
+          <span>
+            <strong>LUX LINE</strong>
+            <small>PREMIUM BILLIARDS</small>
+          </span>
+
+        </a>
+
+        <div class="header-actions">
+
+          <select
+            class="language-select"
+            id="languageSelect"
+            aria-label="Language"
+          >
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="badini">Badinî</option>
+            <option value="sorani">سۆرانی</option>
+          </select>
+
+          <a
+            href="index.html"
+            class="header-link"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+            <span data-local="backHome">
+              Home
+            </span>
+          </a>
+
+        </div>
+
+      </header>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <section class="profile-hero">
+
+      <div class="profile-cover">
+
+        <div class="profile-main">
+
+          <div class="avatar">
+            <span id="avatarLetters">
+              LL
+            </span>
+          </div>
+
+          <div class="profile-copy">
+
+            <small data-local="customerProfile">
+              CUSTOMER PROFILE
+            </small>
+
+            <h1 id="profileName">
+              Guest Customer
+            </h1>
+
+            <p id="profileSubtitle">
+              Add your information to personalize your LUX LINE experience.
+            </p>
+
+          </div>
+
+        </div>
+
+        <button
+          class="edit-profile-btn"
+          id="editProfileBtn"
+          type="button"
+        >
+          <i class="fa-solid fa-pen"></i>
+
+          <span data-local="editProfile">
+            Edit Profile
+          </span>
+        </button>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+
+          <div>
+            <strong id="ordersCount">
+              0
+            </strong>
+
+            <span data-local="orders">
+              Orders
+            </span>
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+
+          <div>
+            <strong id="cartCount">
+              0
+            </strong>
+
+            <span data-local="cartItems">
+              Cart Items
+            </span>
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+
+          <div>
+            <strong id="favoritesCount">
+              0
+            </strong>
+
+            <span data-local="favorites">
+              Favorites
+            </span>
+          </div>
+
+        </div>
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+
+          <div>
+            <strong id="spentTotal">
+              $0
+            </strong>
+
+            <span data-local="totalSpent">
+              Total Spent
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="content-grid">
+
+
+      <button
+        class="completed-orders-card"
+        id="completedOrdersBtn"
+        type="button"
+      >
+
+        <div class="completed-orders-icon">
+          <i class="fa-solid fa-box-archive"></i>
+        </div>
+
+        <div class="completed-orders-copy">
+
+          <small data-local="orderHistory">
+            ORDER HISTORY
+          </small>
+
+          <strong data-local="completedOrders">
+            Completed Orders
+          </strong>
+
+          <span data-local="completedOrdersSub">
+            View all of your completed LUX LINE orders.
+          </span>
+
+        </div>
+
+        <div class="completed-orders-end">
+
+          <span
+            class="completed-orders-count"
+            id="completedOrdersCount"
+          >
+            0
+          </span>
+
+          <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+      </button>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+
+<!-- COMPLETED ORDERS MODAL -->
+<div
+  class="modal"
+  id="completedOrdersModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal-backdrop"
+    data-close-completed-orders
+  ></div>
+
+  <div class="modal-card completed-list-modal">
+
+    <div class="modal-head">
+
+      <div>
+        <small>LUX LINE</small>
+
+        <h2 data-local="completedOrders">
+          Completed Orders
+        </h2>
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeCompletedOrdersModal"
+        type="button"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div
+      class="completed-list"
+      id="completedOrdersList"
+    ></div>
+
+  </div>
+
+</div>
+
+<!-- ORDER DETAILS MODAL -->
+<div
+  class="modal"
+  id="orderModal"
+  aria-hidden="true"
+>
+  <div
+    class="modal-backdrop"
+    data-close-order
+  ></div>
+
+  <div class="modal-card order-modal-card">
+
+    <div class="modal-head">
+      <div>
+        <small data-local="orderHistory">ORDER HISTORY</small>
+        <h2 data-local="orderDetails">Order Details</h2>
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeOrderModal"
+        type="button"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div id="orderModalContent"></div>
+
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div
+  class="modal"
+  id="profileModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal-backdrop"
+    data-close-profile
+  ></div>
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <div>
+        <small>LUX LINE</small>
+
+        <h2 data-local="editProfile">
+          Edit Profile
+        </h2>
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeProfileModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <form id="profileForm">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label data-local="fullName">
+            Full Name
+          </label>
+
+          <input
+            class="control"
+            id="profileFullName"
+            data-local-placeholder="fullNamePh"
+            placeholder="Enter your full name"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label data-local="phone">
+            Phone
+          </label>
+
+          <input
+            class="control"
+            id="profilePhone"
+            type="tel"
+            data-local-placeholder="phonePh"
+            placeholder="0750 000 0000"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label data-local="email">
+            Email
+          </label>
+
+          <input
+            class="control"
+            id="profileEmail"
+            type="email"
+            data-local-placeholder="emailPh"
+            placeholder="name@example.com"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label data-local="city">
+            City
+          </label>
+
+          <select
+            class="control"
+            id="profileCity"
+          >
+            <option value="" data-local="selectCity">
+              Select city
+            </option>
+
+            <option value="Duhok">
+              Duhok
+            </option>
+
+            <option value="Erbil">
+              Erbil
+            </option>
+
+            <option value="Sulaymaniyah">
+              Sulaymaniyah
+            </option>
+
+            <option value="Zakho">
+              Zakho
+            </option>
+          </select>
+
+        </div>
+
+        <div class="form-group full">
+
+          <label data-local="address">
+            Address
+          </label>
+
+          <textarea
+            class="control"
+            id="profileAddress"
+            data-local-placeholder="addressPh"
+            placeholder="Enter your delivery address"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <button
+        class="save-profile-btn"
+        type="submit"
+      >
+        <i class="fa-solid fa-floppy-disk"></i>
+
+        <span data-local="saveProfile">
+          Save Profile
+        </span>
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script src="translation.js"></script>
+
+<script>
+const $=id=>document.getElementById(id);
+
+
+const productCatalog=[
+  {
+    id:1,
+    nameKey:"product1",
+    price:1950,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75pfj4ov00MrgKH_DWVb10L26cmgRg1YmoVXJ1rTZBw&s=10"
+  },
+  {
+    id:2,
+    nameKey:"product2",
+    price:1250,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eVp7l13CR1UL8fVHglUC1oIpxmwTuHtBBeCZ8oAtTQ&s=10"
+  },
+  {
+    id:3,
+    nameKey:"product3",
+    price:180,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgamjqh5WR-kiDKXntIStABWz4xd_RPtBThB7lrEMdw&s=10"
+  },
+  {
+    id:4,
+    nameKey:"product4",
+    price:95,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpwBcOGq01d4wLjysgkBCmtw9Oef1IPtdJPYboNvyxQ&s"
+  },
+  {
+    id:5,
+    nameKey:"product5",
+    price:35,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMUWD6EX49gpZfJ9P1ber0SYYdoiXGLqqq39YJSfdcSQ&s"
+  },
+  {
+    id:6,
+    nameKey:"product6",
+    price:260,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeEN7f-007rn_XzrVIZlgV41I5cYh5hH9rWxRgJcwU9Q&s"
+  },
+  {
+    id:7,
+    nameKey:"product7",
+    price:80,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRbleOw_pwy_WUFVFpN_aAsa2ejWP1HP9Td_fwIf8xGQ&s=10"
+  },
+  {
+    id:8,
+    nameKey:"product8",
+    price:120,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhmxLUIeDveWApFi4CIK7JdIMcBHDMbsdE-vvxm6gtA&s"
+  }
+];
+
+function tr(key){
+  if(typeof getTranslation==="function"){
+    return getTranslation(key);
+  }
+  return key;
+}
+
+
+const labels={
+
+  en:{
+    completedOrders:"Completed Orders",
+    completedOrdersSub:"View all of your completed LUX LINE orders.",
+    orderHistory:"ORDER HISTORY",
+    orderDetails:"Order Details",
+    orderNumber:"Order Number",
+    orderDate:"Order Date",
+    orderStatus:"Status",
+    completed:"Completed",
+    customerInfo:"Customer Information",
+    products:"Products",
+    quantity:"Quantity",
+    unitPrice:"Unit Price",
+    orderTotal:"Order Total",
+    noCustomer:"Not provided",
+    backHome:"Home",
+    customerProfile:"CUSTOMER PROFILE",
+    guest:"Guest Customer",
+    guestSub:"Add your information to personalize your LUX LINE experience.",
+    editProfile:"Edit Profile",
+    orders:"Orders",
+    cartItems:"Cart Items",
+    favorites:"Favorites",
+    totalSpent:"Total Spent",
+    personalInfo:"Personal Information",
+    savedOnDevice:"Saved on this device",
+    fullName:"Full Name",
+    phone:"Phone",
+    email:"Email",
+    city:"City",
+    address:"Address",
+    notSet:"Not set",
+    quickActions:"Quick Actions",
+    shop:"Shop",
+    shopSub:"Browse all products",
+    cart:"Cart",
+    cartSub:"Review your selected items",
+    favoritesSub:"View saved products",
+    editSub:"Update your information",
+    noOrders:"No orders yet",
+    noOrdersSub:"Your completed orders will appear here.",
+    orderItems:"items",
+    saveProfile:"Save Profile",
+    saved:"Profile saved",
+    fullNamePh:"Enter your full name",
+    phonePh:"0750 000 0000",
+    emailPh:"name@example.com",
+    selectCity:"Select city",
+    addressPh:"Enter your delivery address"
+  },
+
+  ar:{
+    completedOrders:"الطلبات المكتملة",
+    completedOrdersSub:"اعرض جميع طلبات LUX LINE المكتملة.",
+    orderHistory:"سجل الطلب",
+    orderDetails:"تفاصيل الطلب",
+    orderNumber:"رقم الطلب",
+    orderDate:"تاريخ الطلب",
+    orderStatus:"الحالة",
+    completed:"مكتمل",
+    customerInfo:"معلومات العميل",
+    products:"المنتجات",
+    quantity:"الكمية",
+    unitPrice:"سعر الوحدة",
+    orderTotal:"إجمالي الطلب",
+    noCustomer:"غير متوفر",
+    backHome:"الرئيسية",
+    customerProfile:"الملف الشخصي",
+    guest:"عميل",
+    guestSub:"أضف معلوماتك لتخصيص تجربة LUX LINE.",
+    editProfile:"تعديل الملف",
+    orders:"الطلبات",
+    cartItems:"عناصر السلة",
+    favorites:"المفضلة",
+    totalSpent:"إجمالي المشتريات",
+    personalInfo:"المعلومات الشخصية",
+    savedOnDevice:"محفوظ على هذا الجهاز",
+    fullName:"الاسم الكامل",
+    phone:"الهاتف",
+    email:"البريد الإلكتروني",
+    city:"المدينة",
+    address:"العنوان",
+    notSet:"غير محدد",
+    quickActions:"إجراءات سريعة",
+    shop:"المتجر",
+    shopSub:"تصفح جميع المنتجات",
+    cart:"السلة",
+    cartSub:"راجع المنتجات المختارة",
+    favoritesSub:"عرض المنتجات المحفوظة",
+    editSub:"تحديث معلوماتك",
+    noOrders:"لا توجد طلبات",
+    noOrdersSub:"ستظهر طلباتك المكتملة هنا.",
+    orderItems:"عناصر",
+    saveProfile:"حفظ الملف",
+    saved:"تم حفظ الملف",
+    fullNamePh:"أدخل اسمك الكامل",
+    phonePh:"0750 000 0000",
+    emailPh:"name@example.com",
+    selectCity:"اختر المدينة",
+    addressPh:"أدخل عنوان التوصيل"
+  },
+
+  badini:{
+    completedOrders:"داواکاریێن تەمامبووی",
+    completedOrdersSub:"هەمی داواکاریێن تە یێن تەمامبووی یێن LUX LINE ببینە.",
+    orderHistory:"مێژوویا داواکاریێ",
+    orderDetails:"وردەکاریێن داواکاریێ",
+    orderNumber:"ژمارا داواکاریێ",
+    orderDate:"ڕێکەفتا داواکاریێ",
+    orderStatus:"بارودۆخ",
+    completed:"تەمامبووی",
+    customerInfo:"زانیاریێن کڕیاری",
+    products:"بەرهەم",
+    quantity:"ژمارە",
+    unitPrice:"بهایێ دانەیێ",
+    orderTotal:"کۆی داواکاریێ",
+    noCustomer:"نەهاتیە دانان",
+    backHome:"سەرەکی",
+    customerProfile:"پڕۆفایلا کڕیاری",
+    guest:"کڕیار",
+    guestSub:"زانیاریێن خو زێدە بکە بۆ ئەزموونەکا باشتر یا LUX LINE.",
+    editProfile:"دەستکاریکرنا پڕۆفایلێ",
+    orders:"داواکاری",
+    cartItems:"بەرهەمێن سەبەتێ",
+    favorites:"دڵخواز",
+    totalSpent:"کۆی کڕینان",
+    personalInfo:"زانیاریێن کەسی",
+    savedOnDevice:"ل سەر ڤی ئامێری پاراستیە",
+    fullName:"ناڤێ تەمام",
+    phone:"تەلەفۆن",
+    email:"ئیمەیل",
+    city:"باژێر",
+    address:"ناڤونیشان",
+    notSet:"نەهاتیە دانان",
+    quickActions:"کارێن بلەز",
+    shop:"فرۆشگەهـ",
+    shopSub:"هەمی بەرهەمان ببینە",
+    cart:"سەبەتە",
+    cartSub:"بەرهەمێن هەلبژارتی ببینە",
+    favoritesSub:"بەرهەمێن دڵخواز ببینە",
+    editSub:"زانیاریێن خو نوێ بکە",
+    noOrders:"هێشتا داواکاری نینە",
+    noOrdersSub:"داواکاریێن تە ل ڤێرێ دێ دەرکەڤن.",
+    orderItems:"بەرهەم",
+    saveProfile:"پڕۆفایلێ خەزن بکە",
+    saved:"پڕۆفایل هات خەزنکرن",
+    fullNamePh:"ناڤێ خو بنڤیسە",
+    phonePh:"0750 000 0000",
+    emailPh:"name@example.com",
+    selectCity:"باژێر هەلبژێرە",
+    addressPh:"ناڤونیشانا خو بنڤیسە"
+  },
+
+  sorani:{
+    completedOrders:"داواکارییە تەواوبووەکان",
+    completedOrdersSub:"هەموو داواکارییە تەواوبووەکانی LUX LINE ببینە.",
+    orderHistory:"مێژووی داواکاری",
+    orderDetails:"وردەکارییەکانی داواکاری",
+    orderNumber:"ژمارەی داواکاری",
+    orderDate:"بەرواری داواکاری",
+    orderStatus:"دۆخ",
+    completed:"تەواوبوو",
+    customerInfo:"زانیارییەکانی کڕیار",
+    products:"بەرهەمەکان",
+    quantity:"ژمارە",
+    unitPrice:"نرخی دانە",
+    orderTotal:"کۆی داواکاری",
+    noCustomer:"دانەنراوە",
+    backHome:"سەرەکی",
+    customerProfile:"پڕۆفایلی کڕیار",
+    guest:"کڕیار",
+    guestSub:"زانیارییەکانت زیاد بکە بۆ ئەزموونێکی باشتر لە LUX LINE.",
+    editProfile:"دەستکاریکردنی پڕۆفایل",
+    orders:"داواکارییەکان",
+    cartItems:"بەرهەمەکانی سەبەتە",
+    favorites:"دڵخوازەکان",
+    totalSpent:"کۆی کڕینەکان",
+    personalInfo:"زانیارییە کەسییەکان",
+    savedOnDevice:"لەسەر ئەم ئامێرە هەڵگیراوە",
+    fullName:"ناوی تەواو",
+    phone:"تەلەفۆن",
+    email:"ئیمەیڵ",
+    city:"شار",
+    address:"ناونیشان",
+    notSet:"دانەنراوە",
+    quickActions:"کردارە خێراکان",
+    shop:"فرۆشگا",
+    shopSub:"هەموو بەرهەمەکان ببینە",
+    cart:"سەبەتە",
+    cartSub:"بەرهەمە هەڵبژێردراوەکان ببینە",
+    favoritesSub:"بەرهەمە دڵخوازەکان ببینە",
+    editSub:"زانیارییەکانت نوێ بکەوە",
+    noOrders:"هێشتا داواکاری نییە",
+    noOrdersSub:"داواکارییە تەواوبووەکانت لێرە دەردەکەون.",
+    orderItems:"بەرهەم",
+    saveProfile:"پڕۆفایل هەڵگرە",
+    saved:"پڕۆفایل هەڵگیرا",
+    fullNamePh:"ناوی تەواوت بنووسە",
+    phonePh:"0750 000 0000",
+    emailPh:"name@example.com",
+    selectCity:"شار هەڵبژێرە",
+    addressPh:"ناونیشانت بنووسە"
+  }
+
+};
+
+function lang(){
+  return window.currentLanguage
+    ||localStorage.getItem("pool_language")
+    ||"en";
+}
+
+function l(key){
+  return labels[lang()]?.[key]
+    ||labels.en[key]
+    ||key;
+}
+
+function money(value){
+  return `$${Number(value||0).toLocaleString()}`;
+}
+
+function getProfile(){
+  return JSON.parse(
+    localStorage.getItem("luxline_profile")
+  )||{
+    fullName:"",
+    phone:"",
+    email:"",
+    city:"",
+    address:""
+  };
+}
+
+function getCart(){
+  return JSON.parse(
+    localStorage.getItem("pool_cart")
+  )||[];
+}
+
+function getOrders(){
+  return JSON.parse(
+    localStorage.getItem("pool_orders")
+  )||[];
+}
+
+function getFavorites(){
+
+  const raw=
+    JSON.parse(
+      localStorage.getItem("pool_favorites")
+    )||[];
+
+  if(Array.isArray(raw)){
+    return raw;
+  }
+
+  return [];
+}
+
+function initials(name){
+
+  const clean=(name||"").trim();
+
+  if(!clean){
+    return "LL";
+  }
+
+  return clean
+    .split(/\s+/)
+    .slice(0,2)
+    .map(part=>part.charAt(0).toUpperCase())
+    .join("");
+}
+
+function renderLabels(){
+
+  document
+    .querySelectorAll("[data-local]")
+    .forEach(element=>{
+
+      element.textContent=
+        l(element.dataset.local);
+
+    });
+
+  document
+    .querySelectorAll("[data-local-placeholder]")
+    .forEach(element=>{
+
+      element.placeholder=
+        l(element.dataset.localPlaceholder);
+
+    });
+
+  document.documentElement.dir=
+    ["ar","badini","sorani"].includes(lang())
+      ?"rtl"
+      :"ltr";
+
+  $("languageSelect").value=
+    lang();
+}
+
+function renderProfile(){
+
+  const profile=getProfile();
+  const cart=getCart();
+  const orders=getOrders();
+  const favorites=getFavorites();
+
+  const hasName=
+    Boolean(profile.fullName?.trim());
+
+  const displayName=
+    hasName
+      ?profile.fullName.trim()
+      :l("guest");
+
+  $("profileName").textContent=
+    displayName;
+
+  $("profileSubtitle").textContent=
+    hasName
+      ?[
+          profile.city,
+          profile.phone
+        ]
+        .filter(Boolean)
+        .join(" · ")
+        ||l("guestSub")
+      :l("guestSub");
+
+  $("avatarLetters").textContent=
+    initials(profile.fullName);
+
+  $("displayName").textContent=
+    profile.fullName||l("notSet");
+
+  $("displayPhone").textContent=
+    profile.phone||l("notSet");
+
+  $("displayEmail").textContent=
+    profile.email||l("notSet");
+
+  $("displayCity").textContent=
+    profile.city||l("notSet");
+
+  $("displayAddress").textContent=
+    profile.address||l("notSet");
+
+  $("ordersCount").textContent=
+    orders.length;
+
+  $("cartCount").textContent=
+    cart.reduce(
+      (sum,item)=>sum+(item.quantity||0),
+      0
+    );
+
+  $("favoritesCount").textContent=
+    favorites.length;
+
+  const totalSpent=
+    orders.reduce(
+      (sum,order)=>sum+Number(order.total||0),
+      0
+    );
+
+  $("spentTotal").textContent=
+    money(totalSpent);
+
+  $("completedOrdersCount").textContent=
+    orders.length;
+}
+
+function renderCompletedOrders(){
+
+  const orders=getOrders();
+
+  $("completedOrdersCount").textContent=
+    orders.length;
+
+  if(!orders.length){
+
+    $("completedOrdersList").innerHTML=`
+      <div class="completed-empty">
+
+        <i class="fa-solid fa-box-open"></i>
+
+        <strong>
+          ${l("noOrders")}
+        </strong>
+
+        <span>
+          ${l("noOrdersSub")}
+        </span>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  $("completedOrdersList").innerHTML=
+    [...orders]
+    .reverse()
+    .map(order=>{
+
+      const itemCount=
+        Array.isArray(order.items)
+          ?order.items.reduce(
+              (sum,item)=>sum+Number(item.quantity||0),
+              0
+            )
+          :0;
+
+      const date=
+        order.createdAt
+          ?new Date(order.createdAt).toLocaleDateString()
+          :"";
+
+      const safeId=
+        String(order.id||"")
+        .replace(/'/g,"\\'");
+
+      return`
+        <button
+          class="completed-order-row"
+          type="button"
+          onclick="openOrderFromCompleted('${safeId}')"
+        >
+
+          <div class="completed-order-main">
+
+            <div class="completed-order-id">
+              ${order.id||"ORDER"}
+            </div>
+
+            <div class="completed-order-meta">
+
+              <span>
+                <i class="fa-regular fa-calendar"></i>
+                ${date}
+              </span>
+
+              <span>
+                <i class="fa-solid fa-box"></i>
+                ${itemCount} ${l("orderItems")}
+              </span>
+
+              <span>
+                <i class="fa-solid fa-circle-check"></i>
+                ${l("completed")}
+              </span>
+
+            </div>
+
+          </div>
+
+          <strong class="completed-order-total">
+            ${money(order.total)}
+          </strong>
+
+          <span class="completed-order-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </span>
+
+        </button>
+      `;
+
+    }).join("");
+}
+
+function openCompletedOrders(){
+
+  renderCompletedOrders();
+
+  $("completedOrdersModal").classList.add(
+    "show"
+  );
+
+  $("completedOrdersModal").setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow=
+    "hidden";
+}
+
+function closeCompletedOrders(){
+
+  $("completedOrdersModal").classList.remove(
+    "show"
+  );
+
+  $("completedOrdersModal").setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow=
+    "";
+}
+
+function openOrderFromCompleted(orderId){
+
+  closeCompletedOrders();
+
+  openOrderModal(
+    orderId
+  );
+}
+
+
+function openOrderModal(orderId){
+
+  const orders=getOrders();
+
+  const order=orders.find(
+    item=>String(item.id)===String(orderId)
+  );
+
+  if(!order)return;
+
+  const customer=
+    order.customer||{};
+
+  const date=
+    order.createdAt
+      ?new Date(order.createdAt).toLocaleString()
+      :"—";
+
+  const items=
+    Array.isArray(order.items)
+      ?order.items
+      :[];
+
+  const itemsHtml=
+    items.length
+      ?items.map(item=>{
+
+          const product=
+            productCatalog.find(
+              product=>product.id===Number(item.id)
+            );
+
+          const quantity=
+            Number(item.quantity||1);
+
+          const unitPrice=
+            Number(
+              item.price
+              ??product?.price
+              ??0
+            );
+
+          const lineTotal=
+            unitPrice*quantity;
+
+          const productName=
+            product
+              ?tr(product.nameKey)
+              :`Product #${item.id}`;
+
+          const image=
+            product?.image
+            ||"https://placehold.co/120x120/E9E0D2/35100F?text=Item";
+
+          return`
+            <div class="order-item-row">
+
+              <div class="order-item-image">
+                <img
+                  src="${image}"
+                  alt="${productName}"
+                  draggable="false"
+                >
+              </div>
+
+              <div>
+
+                <div class="order-item-name">
+                  ${productName}
+                </div>
+
+                <div class="order-item-meta">
+                  ${l("quantity")}: ${quantity}
+                  ·
+                  ${l("unitPrice")}: ${money(unitPrice)}
+                </div>
+
+              </div>
+
+              <div class="order-item-total">
+                ${money(lineTotal)}
+              </div>
+
+            </div>
+          `;
+
+        }).join("")
+      :`
+        <div class="empty-orders">
+          <i class="fa-solid fa-box-open"></i>
+          <strong>${l("noOrders")}</strong>
+        </div>
+      `;
+
+  $("orderModalContent").innerHTML=`
+    <div class="order-modal-summary">
+
+      <div class="order-summary-box">
+        <small>${l("orderNumber")}</small>
+        <strong>${order.id||"ORDER"}</strong>
+      </div>
+
+      <div class="order-summary-box">
+        <small>${l("orderDate")}</small>
+        <strong>${date}</strong>
+      </div>
+
+      <div class="order-summary-box">
+        <small>${l("orderStatus")}</small>
+        <strong>${l("completed")}</strong>
+      </div>
+
+    </div>
+
+    <section class="order-customer-card">
+
+      <h3 class="order-section-title">
+        ${l("customerInfo")}
+      </h3>
+
+      <div class="order-customer-grid">
+
+        <div class="customer-detail">
+          <small>${l("fullName")}</small>
+          <strong>${customer.name||l("noCustomer")}</strong>
+        </div>
+
+        <div class="customer-detail">
+          <small>${l("phone")}</small>
+          <strong>${customer.phone||l("noCustomer")}</strong>
+        </div>
+
+        <div class="customer-detail">
+          <small>${l("city")}</small>
+          <strong>${customer.city||l("noCustomer")}</strong>
+        </div>
+
+        <div class="customer-detail">
+          <small>${l("address")}</small>
+          <strong>${customer.address||l("noCustomer")}</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="order-section-title">
+        ${l("products")}
+      </h3>
+
+      <div class="order-items">
+        ${itemsHtml}
+      </div>
+
+      <div class="order-grand-total">
+        <span>${l("orderTotal")}</span>
+        <strong>${money(order.total)}</strong>
+      </div>
+
+    </section>
+  `;
+
+  $("orderModal").classList.add("show");
+
+  $("orderModal").setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow=
+    "hidden";
+}
+
+function closeOrderModal(){
+
+  $("orderModal").classList.remove(
+    "show"
+  );
+
+  $("orderModal").setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow=
+    "";
+}
+
+
+function fillProfileForm(){
+
+  const profile=getProfile();
+
+  $("profileFullName").value=
+    profile.fullName||"";
+
+  $("profilePhone").value=
+    profile.phone||"";
+
+  $("profileEmail").value=
+    profile.email||"";
+
+  $("profileCity").value=
+    profile.city||"";
+
+  $("profileAddress").value=
+    profile.address||"";
+}
+
+function openProfileModal(){
+
+  fillProfileForm();
+
+  $("profileModal").classList.add(
+    "show"
+  );
+
+  $("profileModal").setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow=
+    "hidden";
+}
+
+function closeProfileModal(){
+
+  $("profileModal").classList.remove(
+    "show"
+  );
+
+  $("profileModal").setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow=
+    "";
+}
+
+let toastTimer;
+
+function toast(message){
+
+  $("toast").textContent=
+    message;
+
+  $("toast").classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    toastTimer
+  );
+
+  toastTimer=setTimeout(()=>{
+
+    $("toast").classList.remove(
+      "show"
+    );
+
+  },2200);
+}
+
+$("editProfileBtn").onclick=
+  openProfileModal;
+
+$("completedOrdersBtn").onclick=
+  openCompletedOrders;
+
+$("closeCompletedOrdersModal").onclick=
+  closeCompletedOrders;
+
+document
+  .querySelectorAll("[data-close-completed-orders]")
+  .forEach(element=>{
+
+    element.onclick=
+      closeCompletedOrders;
+
+  });
+
+
+$("closeProfileModal").onclick=
+  closeProfileModal;
+
+document
+  .querySelectorAll("[data-close-profile]")
+  .forEach(element=>{
+
+    element.onclick=
+      closeProfileModal;
+
+  });
+
+$("closeOrderModal").onclick=
+  closeOrderModal;
+
+document
+  .querySelectorAll("[data-close-order]")
+  .forEach(element=>{
+
+    element.onclick=
+      closeOrderModal;
+
+  });
+
+$("profileForm").onsubmit=
+  event=>{
+
+    event.preventDefault();
+
+    const profile={
+      fullName:$("profileFullName").value.trim(),
+      phone:$("profilePhone").value.trim(),
+      email:$("profileEmail").value.trim(),
+      city:$("profileCity").value,
+      address:$("profileAddress").value.trim()
+    };
+
+    localStorage.setItem(
+      "luxline_profile",
+      JSON.stringify(profile)
+    );
+
+    closeProfileModal();
+
+    renderProfile();
+
+    toast(
+      l("saved")
+    );
+  };
+
+$("languageSelect").onchange=
+  event=>{
+
+    if(typeof setLanguage==="function"){
+
+      setLanguage(
+        event.target.value
+      );
+
+    }else{
+
+      localStorage.setItem(
+        "pool_language",
+        event.target.value
+      );
+
+      window.currentLanguage=
+        event.target.value;
+    }
+
+    renderLabels();
+    renderProfile();
+  };
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeProfileModal();
+      closeCompletedOrders();
+      closeOrderModal();
+    }
+
+  }
+);
+
+/* =========================================================
+   PAGE PROTECTION
+========================================================= */
+
+document.addEventListener(
+  "contextmenu",
+  event=>event.preventDefault()
+);
+
+document.addEventListener(
+  "dragstart",
+  event=>event.preventDefault()
+);
+
+document.addEventListener(
+  "wheel",
+  event=>{
+
+    if(event.ctrlKey || event.metaKey){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    const tag=
+      document.activeElement?.tagName;
+
+    const formActive=
+      ["INPUT","TEXTAREA","SELECT"].includes(tag);
+
+    const zoomKey=
+      ["+","-","=","0"].includes(event.key);
+
+    if(
+      (event.ctrlKey || event.metaKey)
+      && zoomKey
+    ){
+      event.preventDefault();
+    }
+
+    if(
+      !formActive
+      &&
+      (event.ctrlKey || event.metaKey)
+      &&
+      ["a","c","x"].includes(
+        event.key.toLowerCase()
+      )
+    ){
+      event.preventDefault();
+    }
+
+  }
+);
+
+document.addEventListener(
+  "touchmove",
+  event=>{
+
+    if(event.touches.length>1){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+[
+  "gesturestart",
+  "gesturechange",
+  "gestureend"
+].forEach(eventName=>{
+
+  document.addEventListener(
+    eventName,
+    event=>event.preventDefault()
+  );
+
+});
+
+let lastTouchEnd=0;
+
+document.addEventListener(
+  "touchend",
+  event=>{
+
+    const now=Date.now();
+
+    if(now-lastTouchEnd<=300){
+      event.preventDefault();
+    }
+
+    lastTouchEnd=now;
+
+  },
+  {passive:false}
+);
+
+/* =========================================================
+   START
+========================================================= */
+
+if(typeof initializeLanguage==="function"){
+  initializeLanguage();
+}
+
+renderLabels();
+renderProfile();
+</script>
+
+</body>
+</html>

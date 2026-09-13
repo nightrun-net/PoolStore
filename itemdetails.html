@@ -1,0 +1,2607 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<!-- Page zoom protection -->
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+>
+
+<title>Item Details | LUX LINE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<style>
+/* =========================================================
+   RESET + PROTECTION
+========================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#b5aa98;
+  --page:#e8e0d3;
+  --page-2:#d9cdbb;
+  --card:#f6f1e8;
+  --card-soft:rgba(250,246,239,.76);
+
+  --brown:#35100f;
+  --brown-2:#4c1815;
+  --brown-3:#6c352a;
+
+  --gold:#b18343;
+  --gold-soft:#dbc196;
+
+  --text:#271816;
+  --muted:#71645d;
+  --line:rgba(61,36,29,.12);
+
+  --green:#56794d;
+  --danger:#b94343;
+
+  --shadow:0 28px 80px rgba(43,27,20,.16);
+  --shadow-soft:0 18px 48px rgba(43,27,20,.09);
+}
+
+html{
+  scroll-behavior:smooth;
+  touch-action:manipulation;
+}
+
+/* Block text selection on the whole page */
+html,
+body,
+body *{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+/* Keep actual form controls usable */
+input,
+textarea,
+select,
+option{
+  -webkit-user-select:text;
+  user-select:text;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+
+  font-family:"DM Sans",Arial,sans-serif;
+  color:var(--text);
+
+  background:
+    radial-gradient(circle at 8% 12%,rgba(247,221,179,.72),transparent 28%),
+    radial-gradient(circle at 90% 8%,rgba(93,81,67,.48),transparent 30%),
+    radial-gradient(circle at 16% 90%,rgba(179,113,79,.25),transparent 25%),
+    linear-gradient(135deg,#a79d8d,#d3c7b4 48%,#8b8073);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+
+  background:rgba(255,255,255,.045);
+  backdrop-filter:blur(30px);
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button,
+a{
+  -webkit-touch-callout:none;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  display:block;
+  width:100%;
+
+  -webkit-user-drag:none;
+  user-drag:none;
+
+  pointer-events:none;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page{
+  width:min(1390px,calc(100% - 52px));
+  min-height:calc(100vh - 90px);
+
+  margin:45px auto;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:38px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(239,233,222,.98),
+      rgba(211,201,184,.97)
+    );
+
+  box-shadow:0 42px 130px rgba(45,31,24,.30);
+
+  position:relative;
+}
+
+.page::before{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+
+  right:-190px;
+  top:20px;
+
+  border-radius:50%;
+  background:rgba(255,255,255,.24);
+  filter:blur(90px);
+
+  pointer-events:none;
+}
+
+.container{
+  width:min(1180px,calc(100% - 56px));
+  margin:auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header{
+  position:relative;
+  z-index:50;
+  padding:22px 0 12px;
+}
+
+.header-shell{
+  min-height:78px;
+
+  padding:10px 12px;
+
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:24px;
+
+  background:rgba(246,239,229,.69);
+  backdrop-filter:blur(22px);
+
+  box-shadow:
+    0 18px 50px rgba(55,34,25,.10),
+    inset 0 1px rgba(255,255,255,.72);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  position:relative;
+  overflow:hidden;
+
+  animation:headerIn .65s cubic-bezier(.22,1,.36,1) both;
+}
+
+.header-shell::after{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:170%;
+  top:-35%;
+  left:-18%;
+
+  transform:rotate(18deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.48),
+      transparent
+    );
+
+  animation:headerShine 7s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  min-width:0;
+
+  position:relative;
+  z-index:2;
+}
+
+.brand-logo{
+  width:54px;
+  height:54px;
+  flex:0 0 54px;
+
+  padding:4px;
+
+  border:1px solid rgba(53,16,15,.13);
+  border-radius:17px;
+
+  background:#f4ede2;
+  box-shadow:0 8px 22px rgba(53,16,15,.10);
+
+  overflow:hidden;
+}
+
+.brand-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:13px;
+}
+
+.brand-copy{
+  min-width:0;
+}
+
+.brand-copy strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:3px;
+  line-height:1.1;
+}
+
+.brand-copy small{
+  display:block;
+
+  margin-top:5px;
+
+  color:#796b62;
+
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  position:relative;
+  z-index:2;
+}
+
+.back-btn,
+.language-wrap,
+.cart-link{
+  height:46px;
+  border-radius:15px;
+}
+
+.back-btn{
+  padding:0 15px;
+
+  border:1px solid rgba(53,16,15,.10);
+  background:rgba(255,255,255,.45);
+  color:var(--brown);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  font-size:12px;
+  font-weight:900;
+
+  transition:.2s ease;
+}
+
+.back-btn:hover{
+  background:#fff;
+  transform:translateY(-2px);
+}
+
+.language-wrap{
+  padding:0 10px;
+
+  border:1px solid rgba(53,16,15,.10);
+  background:rgba(255,255,255,.45);
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.language-wrap i{
+  color:var(--gold);
+  font-size:12px;
+}
+
+.language-select{
+  height:100%;
+  max-width:116px;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+  color:var(--brown);
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.cart-link{
+  min-width:112px;
+  padding:0 14px;
+
+  position:relative;
+
+  background:var(--brown);
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  font-size:12px;
+  font-weight:900;
+
+  box-shadow:0 12px 24px rgba(53,16,15,.16);
+
+  transition:.2s ease;
+}
+
+.cart-link:hover{
+  background:var(--brown-2);
+  transform:translateY(-2px);
+}
+
+.cart-link i{
+  color:#f2d5a8;
+}
+
+.cart-count{
+  position:absolute;
+  top:-7px;
+  right:-7px;
+
+  min-width:21px;
+  height:21px;
+  padding:0 5px;
+
+  border:2px solid #e8ddcd;
+  border-radius:999px;
+
+  background:#fff;
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:9px;
+  font-weight:900;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.topline{
+  padding:15px 0 19px;
+}
+
+.breadcrumb{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+
+  color:#7a6d65;
+
+  font-size:13px;
+  font-weight:800;
+}
+
+.breadcrumb a{
+  transition:.2s;
+}
+
+.breadcrumb a:hover{
+  color:var(--brown);
+}
+
+.breadcrumb i{
+  color:#9b8b80;
+  font-size:8px;
+}
+
+/* =========================================================
+   PRODUCT LAYOUT
+========================================================= */
+
+.details{
+  padding:10px 0 76px;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.16fr) minmax(385px,.84fr);
+  gap:30px;
+
+  align-items:start;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-card{
+  padding:14px;
+
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:30px;
+
+  background:rgba(250,246,239,.70);
+
+  box-shadow:var(--shadow-soft);
+}
+
+.main-image-wrap{
+  aspect-ratio:4/3;
+
+  position:relative;
+  overflow:hidden;
+
+  border-radius:23px;
+  background:#d8cfc1;
+}
+
+.main-image-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  transition:opacity .2s ease;
+}
+
+.main-image-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(36,20,16,.16),
+      transparent 38%
+    );
+
+  pointer-events:none;
+}
+
+.image-badge{
+  position:absolute;
+  top:15px;
+  left:15px;
+  z-index:3;
+
+  padding:9px 13px;
+
+  border:1px solid rgba(255,255,255,.40);
+  border-radius:999px;
+
+  background:rgba(247,241,232,.90);
+  backdrop-filter:blur(12px);
+
+  color:var(--brown);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+
+.image-count{
+  position:absolute;
+  right:15px;
+  bottom:15px;
+  z-index:3;
+
+  padding:9px 12px;
+
+  border-radius:999px;
+
+  background:rgba(35,22,17,.78);
+  color:#fff;
+
+  font-size:10px;
+  font-weight:900;
+
+  backdrop-filter:blur(10px);
+}
+
+.gallery-arrow{
+  position:absolute;
+  top:50%;
+  z-index:4;
+
+  width:46px;
+  height:46px;
+
+  border:0;
+  border-radius:50%;
+
+  background:rgba(250,246,239,.92);
+  color:var(--brown);
+
+  box-shadow:0 10px 24px rgba(39,24,18,.17);
+
+  transform:translateY(-50%);
+
+  transition:.2s ease;
+}
+
+.gallery-arrow:hover{
+  background:#fff;
+  transform:translateY(-50%) scale(1.06);
+}
+
+.prev-arrow{
+  left:16px;
+}
+
+.next-arrow{
+  right:16px;
+}
+
+.thumbs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+
+  margin-top:11px;
+}
+
+.thumb{
+  aspect-ratio:4/3;
+
+  overflow:hidden;
+
+  padding:0;
+
+  border:2px solid transparent;
+  border-radius:14px;
+
+  background:#d8cec0;
+
+  transition:.2s ease;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.thumb:hover{
+  transform:translateY(-2px);
+}
+
+.thumb.active{
+  border-color:var(--brown);
+
+  box-shadow:
+    0 0 0 3px rgba(53,16,15,.08),
+    0 8px 20px rgba(53,16,15,.10);
+}
+
+.gallery-meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+
+  margin-top:12px;
+}
+
+.gallery-meta-item{
+  min-height:78px;
+
+  padding:14px;
+
+  border:1px solid rgba(61,36,29,.08);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.40);
+
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.gallery-meta-item i{
+  color:var(--gold);
+  font-size:15px;
+}
+
+.gallery-meta-item strong{
+  display:block;
+
+  color:var(--brown);
+  font-size:12px;
+}
+
+.gallery-meta-item span{
+  display:block;
+  margin-top:3px;
+
+  color:#7f7168;
+
+  font-size:10px;
+  line-height:1.4;
+}
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.info-card{
+  position:sticky;
+  top:22px;
+
+  padding:31px;
+
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:30px;
+
+  background:rgba(249,245,237,.86);
+  backdrop-filter:blur(18px);
+
+  box-shadow:0 24px 60px rgba(58,39,30,.11);
+}
+
+.info-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  margin-bottom:18px;
+}
+
+.category{
+  display:inline-flex;
+  align-items:center;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  background:rgba(53,16,15,.08);
+  color:var(--brown);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+
+.stock-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  color:#466a3e;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.stock-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#5d8d52;
+
+  box-shadow:0 0 0 4px rgba(93,141,82,.13);
+}
+
+.info-card h1{
+  margin-bottom:13px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(37px,4vw,57px);
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-2px;
+}
+
+.rating-row{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  margin-bottom:19px;
+}
+
+.stars{
+  color:var(--gold);
+
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+.rating-number{
+  color:#6d6059;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.price-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:15px;
+
+  margin-bottom:22px;
+}
+
+.price{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:38px;
+  font-weight:900;
+}
+
+.price-note{
+  padding-bottom:6px;
+
+  color:#7c6f66;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.description{
+  margin-bottom:23px;
+
+  color:#665a53;
+
+  font-size:15px;
+  line-height:1.85;
+}
+
+.quick-specs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+
+  margin-bottom:24px;
+}
+
+.quick-spec{
+  padding:14px;
+
+  border:1px solid rgba(61,36,29,.08);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.43);
+}
+
+.quick-spec i{
+  margin-right:7px;
+  color:var(--gold);
+}
+
+.quick-spec strong{
+  color:var(--brown);
+  font-size:11px;
+}
+
+.quick-spec span{
+  display:block;
+
+  margin-top:5px;
+  padding-left:23px;
+
+  color:#7d7068;
+
+  font-size:10px;
+  line-height:1.4;
+}
+
+.purchase-box{
+  padding:18px;
+
+  border:1px solid rgba(61,36,29,.09);
+  border-radius:21px;
+
+  background:rgba(255,255,255,.35);
+}
+
+.purchase-label{
+  display:block;
+
+  margin-bottom:10px;
+
+  color:#6f625a;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.9px;
+  text-transform:uppercase;
+}
+
+.purchase-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.qty-box{
+  height:56px;
+
+  padding:0 8px;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  background:rgba(255,255,255,.66);
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.qty-box button{
+  width:36px;
+  height:36px;
+
+  border:0;
+  border-radius:11px;
+
+  background:#eee5d8;
+  color:var(--brown);
+
+  font-size:17px;
+  font-weight:900;
+
+  transition:.2s ease;
+}
+
+.qty-box button:hover{
+  background:#e2d6c5;
+}
+
+.qty-box strong{
+  min-width:25px;
+
+  text-align:center;
+
+  font-size:16px;
+}
+
+.add-main{
+  flex:1;
+  min-height:56px;
+
+  padding:0 24px;
+
+  border:0;
+  border-radius:17px;
+
+  background:var(--brown);
+  color:#fff;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  font-size:13px;
+  font-weight:900;
+
+  box-shadow:0 14px 28px rgba(53,16,15,.18);
+
+  transition:.2s ease;
+}
+
+.add-main:hover{
+  background:var(--brown-2);
+  transform:translateY(-2px);
+}
+
+.add-main i{
+  color:#f0d2a4;
+}
+
+.safe-note{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  margin-top:13px;
+
+  color:#766960;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.safe-note i{
+  color:var(--gold);
+}
+
+/* =========================================================
+   LOWER INFO
+========================================================= */
+
+.extra{
+  padding:0 0 82px;
+}
+
+.extra-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.extra-card{
+  padding:23px;
+
+  border:1px solid rgba(255,255,255,.50);
+  border-radius:22px;
+
+  background:rgba(249,245,237,.68);
+
+  box-shadow:0 14px 34px rgba(61,39,30,.06);
+}
+
+.extra-icon{
+  width:46px;
+  height:46px;
+
+  margin-bottom:15px;
+
+  border-radius:14px;
+
+  background:var(--brown);
+  color:#f4d4a5;
+
+  display:grid;
+  place-items:center;
+
+  font-size:15px;
+}
+
+.extra-card h3{
+  margin-bottom:7px;
+
+  color:var(--brown);
+
+  font-size:17px;
+}
+
+.extra-card p{
+  color:#6d6059;
+
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* =========================================================
+   NOT FOUND
+========================================================= */
+
+.not-found{
+  min-height:520px;
+
+  padding:100px 20px;
+
+  text-align:center;
+}
+
+.not-found i{
+  margin-bottom:20px;
+
+  color:var(--brown);
+
+  font-size:46px;
+}
+
+.not-found h2{
+  margin-bottom:10px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:36px;
+}
+
+.not-found p{
+  margin-bottom:25px;
+
+  color:var(--muted);
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+  position:fixed;
+  top:90px;
+  left:50%;
+  z-index:500;
+
+  max-width:calc(100% - 30px);
+
+  padding:14px 18px;
+
+  border-radius:16px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:13px;
+  font-weight:900;
+
+  box-shadow:0 15px 40px rgba(55,18,16,.25);
+
+  transform:translate(-50%,-20px);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.25s;
+}
+
+.toast i{
+  margin-right:7px;
+  color:#f0d2a4;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+
+  transform:translate(-50%,0);
+}
+
+/* =========================================================
+   RTL
+========================================================= */
+
+html[dir="rtl"] body{
+  direction:rtl;
+}
+
+html[dir="rtl"] .cart-count{
+  right:auto;
+  left:-7px;
+}
+
+html[dir="rtl"] .quick-spec i{
+  margin-right:0;
+  margin-left:7px;
+}
+
+html[dir="rtl"] .quick-spec span{
+  padding-left:0;
+  padding-right:23px;
+}
+
+html[dir="rtl"] .prev-arrow{
+  left:auto;
+  right:16px;
+}
+
+html[dir="rtl"] .next-arrow{
+  right:auto;
+  left:16px;
+}
+
+html[dir="rtl"] .image-badge{
+  left:auto;
+  right:15px;
+}
+
+html[dir="rtl"] .image-count{
+  right:auto;
+  left:15px;
+}
+
+html[dir="rtl"] .toast i{
+  margin-right:0;
+  margin-left:7px;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes headerIn{
+  from{
+    opacity:0;
+    transform:translateY(-14px);
+    filter:blur(6px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+    filter:blur(0);
+  }
+}
+
+@keyframes headerShine{
+  0%,74%,100%{
+    left:-18%;
+    opacity:0;
+  }
+  80%{
+    opacity:.75;
+  }
+  93%{
+    left:110%;
+    opacity:0;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:980px){
+
+  .details-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .info-card{
+    position:relative;
+    top:auto;
+  }
+
+  .extra-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .extra-card:last-child{
+    grid-column:1/-1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+  body{
+    background:#b9ae9c;
+  }
+
+  .page{
+    width:100%;
+    min-height:100vh;
+
+    margin:0;
+
+    border:0;
+    border-radius:0;
+  }
+
+  .container{
+    width:calc(100% - 24px);
+  }
+
+  .site-header{
+    padding:10px 0 5px;
+  }
+
+  .header-shell{
+    min-height:64px;
+
+    padding:7px 8px;
+
+    border-radius:18px;
+
+    gap:7px;
+  }
+
+  .brand{
+    gap:8px;
+  }
+
+  .brand-logo{
+    width:43px;
+    height:43px;
+    flex-basis:43px;
+
+    border-radius:13px;
+  }
+
+  .brand-logo img{
+    border-radius:10px;
+  }
+
+  .brand-copy strong{
+    font-size:14px;
+    letter-spacing:2px;
+  }
+
+  .brand-copy small{
+    display:none;
+  }
+
+  .header-actions{
+    gap:6px;
+  }
+
+  .back-btn{
+    width:40px;
+    height:40px;
+
+    padding:0;
+
+    border-radius:12px;
+  }
+
+  .back-btn span{
+    display:none;
+  }
+
+  .language-wrap{
+    height:40px;
+
+    padding:0 6px;
+
+    border-radius:12px;
+  }
+
+  .language-wrap i{
+    display:none;
+  }
+
+  .language-select{
+    width:74px;
+    max-width:74px;
+
+    font-size:9px;
+  }
+
+  .cart-link{
+    width:40px;
+    min-width:40px;
+    height:40px;
+
+    padding:0;
+
+    border-radius:12px;
+
+    font-size:0;
+  }
+
+  .cart-link i{
+    font-size:13px;
+  }
+
+  .topline{
+    padding:8px 0 13px;
+  }
+
+  .breadcrumb{
+    font-size:10px;
+  }
+
+  .details{
+    padding:7px 0 52px;
+  }
+
+  .gallery-card{
+    padding:9px;
+    border-radius:22px;
+  }
+
+  .main-image-wrap{
+    aspect-ratio:1/1;
+    border-radius:17px;
+  }
+
+  .gallery-arrow{
+    width:38px;
+    height:38px;
+  }
+
+  .prev-arrow{
+    left:10px;
+  }
+
+  .next-arrow{
+    right:10px;
+  }
+
+  html[dir="rtl"] .prev-arrow{
+    right:10px;
+  }
+
+  html[dir="rtl"] .next-arrow{
+    left:10px;
+  }
+
+  .thumbs{
+    display:flex;
+    gap:8px;
+
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+
+  .thumbs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .thumb{
+    flex:0 0 84px;
+
+    border-radius:11px;
+  }
+
+  .gallery-meta{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .gallery-meta-item:last-child{
+    grid-column:1/-1;
+  }
+
+  .gallery-meta-item{
+    min-height:68px;
+    padding:11px;
+  }
+
+  .gallery-meta-item strong{
+    font-size:11px;
+  }
+
+  .gallery-meta-item span{
+    font-size:9px;
+  }
+
+  .info-card{
+    padding:22px;
+
+    border-radius:23px;
+  }
+
+  .info-card h1{
+    font-size:35px;
+    letter-spacing:-1.5px;
+  }
+
+  .price{
+    font-size:32px;
+  }
+
+  .description{
+    font-size:14px;
+    line-height:1.75;
+  }
+
+  .quick-specs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .quick-spec{
+    padding:11px;
+  }
+
+  .quick-spec strong{
+    font-size:10px;
+  }
+
+  .purchase-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .qty-box{
+    justify-content:space-between;
+  }
+
+  .add-main{
+    width:100%;
+  }
+
+  .extra{
+    padding-bottom:55px;
+  }
+
+  .extra-grid{
+    grid-template-columns:1fr;
+  }
+
+  .extra-card:last-child{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:390px){
+
+  .brand-copy strong{
+    font-size:13px;
+    letter-spacing:1.6px;
+  }
+
+  .language-select{
+    width:62px;
+    max-width:62px;
+
+    font-size:8px;
+  }
+
+  .info-card h1{
+    font-size:31px;
+  }
+
+  .quick-specs{
+    grid-template-columns:1fr;
+  }
+
+  .gallery-meta{
+    grid-template-columns:1fr;
+  }
+
+  .gallery-meta-item:last-child{
+    grid-column:auto;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastText"></span>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+
+      <div class="header-shell">
+
+        <a href="index.html" class="brand" aria-label="LUX LINE home">
+
+          <span class="brand-logo">
+            <img
+              src="lux_line_billiards_emblem.png"
+              alt="LUX LINE logo"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<strong style=&quot;display:grid;place-items:center;width:100%;height:100%;color:#35100f;font-family:Manrope,sans-serif;font-size:13px;letter-spacing:-1px&quot;>LL</strong>'"
+            >
+          </span>
+
+          <span class="brand-copy">
+            <strong>LUX LINE</strong>
+            <small>PREMIUM BILLIARDS</small>
+          </span>
+
+        </a>
+
+        <div class="header-actions">
+
+          <a href="index.html#shop" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span id="backText">Back</span>
+          </a>
+
+          <div class="language-wrap">
+            <i class="fa-solid fa-globe"></i>
+
+            <select
+              class="language-select"
+              id="languageSelect"
+              aria-label="Language"
+            >
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+              <option value="badini">Badinî</option>
+              <option value="sorani">سۆرانی</option>
+            </select>
+          </div>
+
+          <a
+            href="cart.html"
+            class="cart-link"
+            id="cartButton"
+            aria-label="Open cart"
+          >
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cartWord">Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="container topline">
+    <div class="breadcrumb" id="breadcrumb"></div>
+  </div>
+
+  <!-- CONTENT -->
+  <main id="detailsRoot"></main>
+
+</div>
+
+<script src="translation.js"></script>
+
+<script>
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+const products=[
+  {
+    id:1,
+    category:"tables",
+    nameKey:"product1",
+    price:1950,
+    rating:4.9,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75pfj4ov00MrgKH_DWVb10L26cmgRg1YmoVXJ1rTZBw&s=10",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:2,
+    category:"tables",
+    nameKey:"product2",
+    price:1250,
+    rating:4.8,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eVp7l13CR1UL8fVHglUC1oIpxmwTuHtBBeCZ8oAtTQ&s=10",
+      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:3,
+    category:"cues",
+    nameKey:"product3",
+    price:180,
+    rating:4.9,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgamjqh5WR-kiDKXntIStABWz4xd_RPtBThB7lrEMdw&s=10",
+      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:4,
+    category:"balls",
+    nameKey:"product4",
+    price:95,
+    rating:4.8,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpwBcOGq01d4wLjysgkBCmtw9Oef1IPtdJPYboNvyxQ&s",
+      "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:5,
+    category:"accessories",
+    nameKey:"product5",
+    price:35,
+    rating:4.7,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMUWD6EX49gpZfJ9P1ber0SYYdoiXGLqqq39YJSfdcSQ&s",
+      "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:6,
+    category:"cues",
+    nameKey:"product6",
+    price:260,
+    rating:5,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeEN7f-007rn_XzrVIZlgV41I5cYh5hH9rWxRgJcwU9Q&s",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:7,
+    category:"accessories",
+    nameKey:"product7",
+    price:80,
+    rating:4.6,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRbleOw_pwy_WUFVFpN_aAsa2ejWP1HP9Td_fwIf8xGQ&s=10",
+      "https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
+    ]
+  },
+  {
+    id:8,
+    category:"accessories",
+    nameKey:"product8",
+    price:120,
+    rating:4.9,
+    images:[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhmxLUIeDveWApFi4CIK7JdIMcBHDMbsdE-vvxm6gtA&s",
+      "https://images.unsplash.com/photo-1607627000458-210e8d2bdb1d?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
+      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88"
+    ]
+  }
+];
+
+/* =========================================================
+   LOCAL TEXT
+========================================================= */
+
+const localText={
+  en:{
+    back:"Back",
+    cart:"Cart",
+    viewing:"Item Details",
+
+    description:
+      "Designed for players who value quality, durability and a refined playing experience. This product combines professional performance with a premium finish, making it a strong choice for home game rooms and serious players.",
+
+    quality:"Premium Quality",
+    qualitySub:"Selected materials and a durable finish",
+
+    delivery:"Fast Delivery",
+    deliverySub:"Secure delivery to your door",
+
+    support:"Customer Support",
+    supportSub:"Help before and after your order",
+
+    quantity:"Quantity",
+    add:"Add to Cart",
+    added:"Product added to cart",
+
+    stock:"In Stock",
+    stockSub:"Ready to order",
+
+    rating:"Customer Rating",
+    category:"Category",
+
+    notFound:"Product Not Found",
+    notFoundSub:"The item you are looking for does not exist.",
+
+    gallery:"Product Gallery",
+    photos:"Photos",
+
+    secure:"Secure Cart",
+    secureSub:"Your cart is saved safely",
+
+    premium:"Premium Selection",
+    premiumSub:"Chosen for quality",
+
+    galleryCount:"Product images"
+  },
+
+  ar:{
+    back:"رجوع",
+    cart:"السلة",
+    viewing:"تفاصيل المنتج",
+
+    description:
+      "مصمم للاعبين الذين يهتمون بالجودة والمتانة وتجربة لعب راقية. يجمع هذا المنتج بين الأداء الاحترافي والتشطيب الفاخر، وهو مناسب لغرف الألعاب المنزلية واللاعبين الجادين.",
+
+    quality:"جودة عالية",
+    qualitySub:"مواد مختارة وتشطيب متين",
+
+    delivery:"توصيل سريع",
+    deliverySub:"توصيل آمن حتى باب منزلك",
+
+    support:"دعم العملاء",
+    supportSub:"مساعدة قبل الطلب وبعده",
+
+    quantity:"الكمية",
+    add:"أضف إلى السلة",
+    added:"تمت إضافة المنتج إلى السلة",
+
+    stock:"متوفر",
+    stockSub:"جاهز للطلب",
+
+    rating:"تقييم العملاء",
+    category:"الفئة",
+
+    notFound:"المنتج غير موجود",
+    notFoundSub:"المنتج الذي تبحث عنه غير موجود.",
+
+    gallery:"صور المنتج",
+    photos:"صور",
+
+    secure:"سلة آمنة",
+    secureSub:"يتم حفظ سلتك بأمان",
+
+    premium:"اختيار مميز",
+    premiumSub:"مختار بعناية للجودة",
+
+    galleryCount:"صور المنتج"
+  },
+
+  badini:{
+    back:"زڤرین",
+    cart:"سەبەتە",
+    viewing:"زانیاریێن بەرهەمی",
+
+    description:
+      "ڤی بەرهەمی بۆ یاریزانێن کوالیتی، بەردەوامی و ئەزموونەکا باش یا یاریێ دڤێن هاتیە دروستکرن. کارکردنا پروفیشناڵ و دیزاینەکا لوکس پێکڤە ددەت.",
+
+    quality:"کوالیتییا بەرز",
+    qualitySub:"مەتریالێن هەلبژارتی و دروستکرنا بەردەوام",
+
+    delivery:"گەهاندنا بلەز",
+    deliverySub:"گەهاندنا پاراستی بۆ ماڵا تە",
+
+    support:"پشتەڤانی",
+    supportSub:"هاریکاری بەری و پشتی داواکاریێ",
+
+    quantity:"ژمارە",
+    add:"زێدە بکە بۆ سەبەتێ",
+    added:"بەرهەم هاتە زێدەکرن بۆ سەبەتێ",
+
+    stock:"بەردەستە",
+    stockSub:"ئامادەیە بۆ داواکاریێ",
+
+    rating:"هەلسەنگاندنا کڕیاران",
+    category:"کەتەگۆری",
+
+    notFound:"بەرهەم نەهاتە دیتن",
+    notFoundSub:"ئەو بەرهەمێ تو لێ دگەڕهی نەهاتە دیتن.",
+
+    gallery:"وێنێن بەرهەمی",
+    photos:"وێنە",
+
+    secure:"سەبەتەیا پاراستی",
+    secureSub:"سەبەتەیا تە ب پاراستن دهێتە خەزنکرن",
+
+    premium:"هەلبژارتنا تایبەت",
+    premiumSub:"بۆ کوالیتیێ هاتیە هەلبژارتن",
+
+    galleryCount:"وێنێن بەرهەمی"
+  },
+
+  sorani:{
+    back:"گەڕانەوە",
+    cart:"سەبەتە",
+    viewing:"وردەکاری بەرهەم",
+
+    description:
+      "ئەم بەرهەمە بۆ یاریزانانی خوازیاری کوالیتی، بەردەوامی و ئەزموونی یاریی باش دروست کراوە. کارایی پیشەیی و دیزاینێکی لوکس پێکەوە کۆدەکاتەوە.",
+
+    quality:"کوالیتی بەرز",
+    qualitySub:"ماتریاڵی هەڵبژێردراو و دروستکردنی بەردەوام",
+
+    delivery:"گەیاندنی خێرا",
+    deliverySub:"گەیاندنی پارێزراو بۆ ماڵەکەت",
+
+    support:"پشتیوانی",
+    supportSub:"یارمەتی پێش و دوای داواکاری",
+
+    quantity:"ژمارە",
+    add:"زیادکردن بۆ سەبەتە",
+    added:"بەرهەم زیادکرا بۆ سەبەتە",
+
+    stock:"بەردەستە",
+    stockSub:"ئامادەیە بۆ داواکاری",
+
+    rating:"هەڵسەنگاندنی کڕیاران",
+    category:"پۆل",
+
+    notFound:"بەرهەم نەدۆزرایەوە",
+    notFoundSub:"ئەو بەرهەمەی بەدوایدا دەگەڕێیت بوونی نییە.",
+
+    gallery:"وێنەکانی بەرهەم",
+    photos:"وێنە",
+
+    secure:"سەبەتەی پارێزراو",
+    secureSub:"سەبەتەکەت بە پارێزراوی هەڵدەگیرێت",
+
+    premium:"هەڵبژاردەی تایبەت",
+    premiumSub:"بۆ کوالیتی هەڵبژێردراوە",
+
+    galleryCount:"وێنەکانی بەرهەم"
+  }
+};
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+const money=value=>`$${Number(value).toLocaleString()}`;
+
+const lang=()=>{
+  return typeof currentLanguage!=="undefined"
+    ? currentLanguage
+    : (localStorage.getItem("pool_language")||"en");
+};
+
+const tx=key=>{
+  return localText[lang()]?.[key]
+    || localText.en[key]
+    || key;
+};
+
+const t=key=>{
+  if(typeof getTranslation==="function"){
+    return getTranslation(key);
+  }
+
+  if(typeof translations!=="undefined"){
+    return translations[lang()]?.[key]
+      || translations.en?.[key]
+      || key;
+  }
+
+  return key;
+};
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const productId=Number(
+  new URLSearchParams(location.search).get("id")
+);
+
+const product=products.find(
+  item=>item.id===productId
+);
+
+let quantity=1;
+let activeImageIndex=0;
+
+let cart=JSON.parse(
+  localStorage.getItem("pool_cart")
+)||[];
+
+/* =========================================================
+   STATIC TEXT
+========================================================= */
+
+function renderStaticText(){
+  $("backText").textContent=tx("back");
+  $("cartWord").textContent=tx("cart");
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+function renderBreadcrumb(){
+
+  const productName=product
+    ? t(product.nameKey)
+    : tx("viewing");
+
+  $("breadcrumb").innerHTML=`
+    <a href="index.html">${t("navHome")}</a>
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+    <a href="index.html#shop">${t("navShop")}</a>
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+    <span>${productName}</span>
+  `;
+}
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+function renderDetails(){
+
+  renderStaticText();
+  renderBreadcrumb();
+
+  document.title=product
+    ? `${t(product.nameKey)} | LUX LINE`
+    : `${tx("notFound")} | LUX LINE`;
+
+  if(!product){
+
+    $("detailsRoot").innerHTML=`
+      <section class="not-found">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <h2>${tx("notFound")}</h2>
+
+        <p>${tx("notFoundSub")}</p>
+
+        <a
+          class="add-main"
+          href="index.html#shop"
+          style="max-width:220px;margin:auto;"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+          ${tx("back")}
+        </a>
+
+      </section>
+    `;
+
+    return;
+  }
+
+  $("detailsRoot").innerHTML=`
+    <section class="details">
+
+      <div class="container details-grid">
+
+        <!-- GALLERY -->
+        <div class="gallery-card">
+
+          <div class="main-image-wrap">
+
+            <img
+              id="mainProductImage"
+              src="${product.images[activeImageIndex]}"
+              alt="${t(product.nameKey)}"
+              draggable="false"
+            >
+
+            <div class="image-badge">
+              ${tx("gallery")}
+            </div>
+
+            <div class="image-count">
+              <span id="imageCounter">${activeImageIndex+1}</span>
+              /
+              ${product.images.length}
+            </div>
+
+            <button
+              class="gallery-arrow prev-arrow"
+              type="button"
+              onclick="changeGallery(-1)"
+              aria-label="Previous image"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button
+              class="gallery-arrow next-arrow"
+              type="button"
+              onclick="changeGallery(1)"
+              aria-label="Next image"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+          </div>
+
+          <div class="thumbs">
+
+            ${product.images.map((image,index)=>`
+              <button
+                class="thumb ${index===activeImageIndex?"active":""}"
+                type="button"
+                onclick="setGalleryImage(${index})"
+                aria-label="Product image ${index+1}"
+              >
+                <img
+                  src="${image}"
+                  alt="${t(product.nameKey)} ${index+1}"
+                  draggable="false"
+                >
+              </button>
+            `).join("")}
+
+          </div>
+
+          <div class="gallery-meta">
+
+            <div class="gallery-meta-item">
+              <i class="fa-regular fa-images"></i>
+
+              <div>
+                <strong>
+                  ${product.images.length} ${tx("photos")}
+                </strong>
+
+                <span>
+                  ${tx("galleryCount")}
+                </span>
+              </div>
+            </div>
+
+            <div class="gallery-meta-item">
+              <i class="fa-solid fa-award"></i>
+
+              <div>
+                <strong>${tx("premium")}</strong>
+                <span>${tx("premiumSub")}</span>
+              </div>
+            </div>
+
+            <div class="gallery-meta-item">
+              <i class="fa-solid fa-shield-halved"></i>
+
+              <div>
+                <strong>${tx("secure")}</strong>
+                <span>${tx("secureSub")}</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- INFO -->
+        <aside class="info-card">
+
+          <div class="info-top">
+
+            <span class="category">
+              ${t(product.category)}
+            </span>
+
+            <span class="stock-pill">
+              <span class="stock-dot"></span>
+              ${tx("stock")}
+            </span>
+
+          </div>
+
+          <h1>
+            ${t(product.nameKey)}
+          </h1>
+
+          <div class="rating-row">
+
+            <span class="stars">
+              ★★★★★
+            </span>
+
+            <span class="rating-number">
+              ${product.rating} / 5
+            </span>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price">
+              ${money(product.price)}
+            </div>
+
+            <div class="price-note">
+              ${tx("stockSub")}
+            </div>
+
+          </div>
+
+          <p class="description">
+            ${tx("description")}
+          </p>
+
+          <div class="quick-specs">
+
+            <div class="quick-spec">
+
+              <div>
+                <i class="fa-solid fa-layer-group"></i>
+                <strong>${tx("category")}</strong>
+              </div>
+
+              <span>
+                ${t(product.category)}
+              </span>
+
+            </div>
+
+            <div class="quick-spec">
+
+              <div>
+                <i class="fa-solid fa-star"></i>
+                <strong>${tx("rating")}</strong>
+              </div>
+
+              <span>
+                ${product.rating} / 5
+              </span>
+
+            </div>
+
+            <div class="quick-spec">
+
+              <div>
+                <i class="fa-solid fa-award"></i>
+                <strong>${tx("quality")}</strong>
+              </div>
+
+              <span>
+                ${tx("qualitySub")}
+              </span>
+
+            </div>
+
+            <div class="quick-spec">
+
+              <div>
+                <i class="fa-solid fa-box"></i>
+                <strong>${tx("stock")}</strong>
+              </div>
+
+              <span>
+                ${tx("stockSub")}
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="purchase-box">
+
+            <span class="purchase-label">
+              ${tx("quantity")}
+            </span>
+
+            <div class="purchase-row">
+
+              <div class="qty-box">
+
+                <button
+                  type="button"
+                  onclick="changeProductQty(-1)"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+
+                <strong id="productQty">
+                  ${quantity}
+                </strong>
+
+                <button
+                  type="button"
+                  onclick="changeProductQty(1)"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+
+              </div>
+
+              <button
+                class="add-main"
+                type="button"
+                onclick="addSelectedToCart()"
+              >
+                <i class="fa-solid fa-bag-shopping"></i>
+                ${tx("add")}
+              </button>
+
+            </div>
+
+            <div class="safe-note">
+              <i class="fa-solid fa-lock"></i>
+              ${tx("secureSub")}
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+    <section class="extra">
+
+      <div class="container extra-grid">
+
+        <article class="extra-card">
+
+          <div class="extra-icon">
+            <i class="fa-solid fa-award"></i>
+          </div>
+
+          <h3>${tx("quality")}</h3>
+
+          <p>${tx("qualitySub")}</p>
+
+        </article>
+
+        <article class="extra-card">
+
+          <div class="extra-icon">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+
+          <h3>${tx("delivery")}</h3>
+
+          <p>${tx("deliverySub")}</p>
+
+        </article>
+
+        <article class="extra-card">
+
+          <div class="extra-icon">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+
+          <h3>${tx("support")}</h3>
+
+          <p>${tx("supportSub")}</p>
+
+        </article>
+
+      </div>
+
+    </section>
+  `;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function setGalleryImage(index){
+
+  if(!product)return;
+
+  activeImageIndex=index;
+
+  const main=$("mainProductImage");
+
+  if(main){
+
+    main.style.opacity=".35";
+
+    setTimeout(()=>{
+
+      main.src=product.images[activeImageIndex];
+      main.style.opacity="1";
+
+    },90);
+  }
+
+  const counter=$("imageCounter");
+
+  if(counter){
+    counter.textContent=activeImageIndex+1;
+  }
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach((thumb,index)=>{
+
+      thumb.classList.toggle(
+        "active",
+        index===activeImageIndex
+      );
+
+    });
+}
+
+function changeGallery(step){
+
+  if(!product)return;
+
+  activeImageIndex=
+    (
+      activeImageIndex
+      +step
+      +product.images.length
+    )
+    %product.images.length;
+
+  setGalleryImage(activeImageIndex);
+}
+
+/* =========================================================
+   PRODUCT QUANTITY
+========================================================= */
+
+function changeProductQty(change){
+
+  quantity=Math.max(
+    1,
+    quantity+change
+  );
+
+  const quantityElement=$("productQty");
+
+  if(quantityElement){
+    quantityElement.textContent=quantity;
+  }
+}
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addSelectedToCart(){
+
+  if(!product)return;
+
+  const existingItem=cart.find(
+    item=>item.id===product.id
+  );
+
+  if(existingItem){
+    existingItem.quantity+=quantity;
+  }else{
+    cart.push({
+      id:product.id,
+      quantity
+    });
+  }
+
+  saveCart();
+
+  showToast(
+    tx("added")
+  );
+}
+
+function saveCart(){
+
+  localStorage.setItem(
+    "pool_cart",
+    JSON.stringify(cart)
+  );
+
+  updateCartCount();
+}
+
+function updateCartCount(){
+
+  const totalItems=cart.reduce(
+    (sum,item)=>sum+item.quantity,
+    0
+  );
+
+  $("cartCount").textContent=totalItems;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  $("toastText").textContent=message;
+
+  $("toast").classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+
+    $("toast").classList.remove("show");
+
+  },2200);
+}
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+$("languageSelect").addEventListener(
+  "change",
+  event=>{
+
+    if(typeof setLanguage==="function"){
+      setLanguage(event.target.value);
+    }
+  }
+);
+
+window.refreshDynamicContent=()=>{
+
+  if(typeof currentLanguage!=="undefined"){
+    $("languageSelect").value=currentLanguage;
+  }
+
+  renderDetails();
+  updateCartCount();
+};
+
+/* =========================================================
+   PAGE PROTECTION
+========================================================= */
+
+/* Prevent context menu */
+document.addEventListener(
+  "contextmenu",
+  event=>event.preventDefault()
+);
+
+/* Prevent drag */
+document.addEventListener(
+  "dragstart",
+  event=>event.preventDefault()
+);
+
+/* Prevent browser zoom from Ctrl/Cmd + wheel */
+document.addEventListener(
+  "wheel",
+  event=>{
+
+    if(event.ctrlKey || event.metaKey){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+/* Prevent Ctrl/Cmd +, -, 0 */
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    const zoomKey=
+      event.key==="+" ||
+      event.key==="-" ||
+      event.key==="=" ||
+      event.key==="0";
+
+    if(
+      (event.ctrlKey || event.metaKey)
+      && zoomKey
+    ){
+      event.preventDefault();
+    }
+
+    /* Prevent select-all/copy on page */
+    if(
+      (event.ctrlKey || event.metaKey)
+      && ["a","c","x"].includes(
+        event.key.toLowerCase()
+      )
+      && !["INPUT","TEXTAREA","SELECT"].includes(
+        document.activeElement?.tagName
+      )
+    ){
+      event.preventDefault();
+    }
+  }
+);
+
+document.addEventListener(
+  "touchmove",
+  event=>{
+
+    if(event.touches.length>1){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+
+["gesturestart","gesturechange","gestureend"]
+.forEach(eventName=>{
+
+  document.addEventListener(
+    eventName,
+    event=>event.preventDefault()
+  );
+
+});
+
+/* Prevent double-tap zoom */
+let lastTouchEnd=0;
+
+document.addEventListener(
+  "touchend",
+  event=>{
+
+    const now=Date.now();
+
+    if(now-lastTouchEnd<=300){
+      event.preventDefault();
+    }
+
+    lastTouchEnd=now;
+  },
+  {passive:false}
+);
+
+
+if(typeof initializeLanguage==="function"){
+  initializeLanguage();
+}else{
+  renderDetails();
+  updateCartCount();
+}
+</script>
+
+</body>
+</html>

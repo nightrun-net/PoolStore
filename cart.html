@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<!-- PAGE PROTECTION: disable browser zoom -->
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+>
+
+<title>LUX LINE | Cart</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<style>
+/* =========================================================
+   RESET + PROTECTION
+========================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --brown:#35100f;
+  --brown2:#4c1916;
+  --cream:#e8dfd1;
+  --cream2:#f4eee5;
+  --card:rgba(249,245,238,.82);
+  --text:#291a17;
+  --muted:#7c6d64;
+  --line:rgba(62,38,30,.10);
+  --green:#55734e;
+  --red:#a8433d;
+  --gold:#b18445;
+  --shadow:0 24px 70px rgba(47,30,23,.14);
+}
+
+html{
+  scroll-behavior:smooth;
+  touch-action:manipulation;
+}
+
+/* Disable text selection */
+html,
+body,
+body *{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+/* Keep form fields usable */
+input,
+textarea,
+select,
+option{
+  -webkit-user-select:text;
+  user-select:text;
+}
+
+[hidden],
+.is-hidden{
+  display:none!important;
+}
+
+body{
+  min-height:100vh;
+
+  font-family:"DM Sans",Arial,sans-serif;
+  color:var(--text);
+
+  background:
+    radial-gradient(circle at 10% 10%,rgba(238,203,148,.50),transparent 27%),
+    radial-gradient(circle at 90% 10%,rgba(81,63,52,.24),transparent 30%),
+    linear-gradient(135deg,#aaa08e,#d7cbbb 48%,#958879);
+
+  padding:28px;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  display:block;
+  width:100%;
+
+  -webkit-user-drag:none;
+  user-drag:none;
+
+  pointer-events:none;
+}
+
+/* =========================================================
+   SHELL
+========================================================= */
+
+.shell{
+  width:min(1260px,100%);
+  min-height:calc(100vh - 56px);
+
+  margin:auto;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:34px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(238,231,220,.96),
+      rgba(219,208,191,.94)
+    );
+
+  box-shadow:0 38px 110px rgba(46,31,24,.28);
+}
+
+.container{
+  width:min(1110px,calc(100% - 52px));
+  margin:auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header-wrap{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  padding:14px 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(232,223,210,.96),
+      rgba(232,223,210,.72),
+      transparent
+    );
+
+  backdrop-filter:blur(16px);
+}
+
+.header{
+  min-height:72px;
+
+  padding:9px 11px 9px 12px;
+
+  border:1px solid rgba(255,255,255,.56);
+  border-radius:22px;
+
+  background:rgba(244,238,228,.78);
+  backdrop-filter:blur(22px);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  box-shadow:0 12px 35px rgba(53,35,27,.09);
+
+  position:relative;
+  overflow:hidden;
+}
+
+.header::after{
+  content:"";
+
+  position:absolute;
+  top:-45%;
+  left:-18%;
+
+  width:90px;
+  height:190%;
+
+  transform:rotate(18deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.52),
+      transparent
+    );
+
+  animation:headerShine 7s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  position:relative;
+  z-index:2;
+}
+
+.brand-logo{
+  width:52px;
+  height:52px;
+
+  padding:3px;
+
+  overflow:hidden;
+
+  border-radius:16px;
+
+  background:#fff;
+
+  box-shadow:0 8px 22px rgba(53,16,15,.12);
+}
+
+.brand-logo img{
+  height:100%;
+  object-fit:cover;
+  border-radius:13px;
+}
+
+.brand strong{
+  display:block;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:18px;
+  letter-spacing:2.8px;
+}
+
+.brand small{
+  display:block;
+
+  margin-top:3px;
+
+  color:#8a786d;
+
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  position:relative;
+  z-index:2;
+}
+
+.language-select,
+.back-btn{
+  min-height:42px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.52);
+  color:var(--brown);
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.language-select{
+  padding:0 10px;
+  outline:0;
+}
+
+.back-btn{
+  padding:0 15px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  transition:.2s;
+}
+
+.back-btn i{
+  color:var(--gold);
+}
+
+.back-btn:hover{
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.page-head{
+  padding:52px 0 30px;
+}
+
+.eyebrow{
+  margin-bottom:9px;
+
+  color:#8c796d;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1.9px;
+  text-transform:uppercase;
+}
+
+.page-head-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.page-head h1{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(40px,5vw,64px);
+  line-height:1;
+  letter-spacing:-2px;
+}
+
+.page-head p{
+  max-width:570px;
+
+  margin-top:13px;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.75;
+}
+
+.item-count-pill{
+  min-width:110px;
+
+  padding:11px 15px;
+
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+
+  background:rgba(255,255,255,.47);
+  color:var(--brown);
+
+  font-size:12px;
+  font-weight:900;
+  text-align:center;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.cart-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(320px,.72fr);
+  gap:24px;
+
+  align-items:start;
+
+  padding-bottom:65px;
+}
+
+.panel{
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:26px;
+
+  background:rgba(247,242,234,.64);
+
+  box-shadow:0 18px 50px rgba(52,34,26,.07);
+}
+
+.cart-panel{
+  padding:18px;
+}
+
+.panel-head{
+  padding:5px 4px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.panel-head h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:23px;
+}
+
+.clear-btn{
+  border:0;
+
+  background:none;
+  color:var(--red);
+
+  font-size:12px;
+  font-weight:900;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+/* =========================================================
+   CART ROWS
+========================================================= */
+
+.cart-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.cart-row{
+  padding:12px;
+
+  border:1px solid var(--line);
+  border-radius:20px;
+
+  background:rgba(255,255,255,.50);
+
+  display:grid;
+  grid-template-columns:132px minmax(0,1fr) auto;
+  gap:16px;
+
+  align-items:center;
+
+  transition:.2s ease;
+}
+
+.cart-row:hover{
+  transform:translateY(-2px);
+
+  background:rgba(255,255,255,.66);
+
+  box-shadow:0 12px 28px rgba(52,34,26,.07);
+}
+
+.cart-photo{
+  height:112px;
+
+  overflow:hidden;
+
+  border:0;
+  border-radius:15px;
+
+  background:#d5cabc;
+
+  cursor:pointer;
+}
+
+.cart-photo img{
+  height:100%;
+  object-fit:cover;
+}
+
+.cart-info{
+  min-width:0;
+}
+
+.cart-category{
+  margin-bottom:6px;
+
+  color:#8a796e;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.cart-title{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:17px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.cart-meta{
+  margin-top:10px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.cart-price{
+  color:var(--brown);
+
+  font-size:18px;
+  font-weight:900;
+}
+
+.view-link{
+  color:#806e63;
+
+  font-size:10px;
+  font-weight:900;
+
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+
+.view-link i{
+  color:var(--gold);
+}
+
+.row-actions{
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.remove-btn{
+  width:36px;
+  height:36px;
+
+  border:0;
+  border-radius:11px;
+
+  background:rgba(168,67,61,.08);
+  color:var(--red);
+
+  transition:.2s;
+}
+
+.remove-btn:hover{
+  background:var(--red);
+  color:#fff;
+}
+
+.qty{
+  padding:4px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.56);
+
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.qty button{
+  width:32px;
+  height:32px;
+
+  border:0;
+  border-radius:9px;
+
+  background:transparent;
+  color:var(--brown);
+
+  font-size:15px;
+  font-weight:900;
+
+  transition:.2s;
+}
+
+.qty button:hover{
+  background:#fff;
+}
+
+.qty strong{
+  min-width:30px;
+
+  text-align:center;
+
+  font-size:13px;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-panel{
+  position:sticky;
+  top:108px;
+
+  padding:22px;
+}
+
+.summary-title{
+  margin-bottom:20px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:23px;
+}
+
+.summary-line{
+  padding:10px 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  color:#74665e;
+
+  font-size:13px;
+}
+
+.summary-line strong{
+  color:var(--text);
+}
+
+.summary-total{
+  margin-top:9px;
+  padding-top:18px;
+
+  border-top:1px solid var(--line);
+
+  color:var(--brown);
+
+  font-size:18px;
+  font-weight:900;
+}
+
+.summary-total strong{
+  color:var(--brown);
+  font-size:25px;
+}
+
+.checkout-btn{
+  width:100%;
+  height:52px;
+
+  margin-top:18px;
+
+  border:0;
+  border-radius:16px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:13px;
+  font-weight:900;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  box-shadow:0 13px 28px rgba(53,16,15,.17);
+
+  transition:.2s;
+}
+
+.checkout-btn i{
+  color:#f0d1a0;
+}
+
+.checkout-btn:hover{
+  background:var(--brown2);
+  transform:translateY(-2px);
+}
+
+.continue-link{
+  width:100%;
+  min-height:46px;
+
+  margin-top:9px;
+
+  border:1px solid var(--line);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.38);
+  color:var(--brown);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.continue-link i{
+  color:var(--gold);
+}
+
+.secure-note{
+  margin-top:16px;
+  padding:13px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.35);
+  color:#776961;
+
+  font-size:10px;
+  line-height:1.65;
+
+  display:flex;
+  gap:9px;
+}
+
+.secure-note i{
+  margin-top:2px;
+  color:var(--green);
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state{
+  min-height:430px;
+
+  margin-bottom:65px;
+  padding:40px 20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.empty-icon{
+  width:88px;
+  height:88px;
+
+  margin-bottom:18px;
+
+  border-radius:28px;
+
+  background:rgba(53,16,15,.08);
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:30px;
+
+  transform:rotate(-5deg);
+}
+
+.empty-state h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:29px;
+}
+
+.empty-state p{
+  max-width:430px;
+
+  margin:9px auto 20px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.7;
+}
+
+.shop-now{
+  min-height:48px;
+
+  padding:0 20px;
+
+  border-radius:15px;
+
+  background:var(--brown);
+  color:#fff;
+
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.shop-now i{
+  color:#f0d1a0;
+}
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+.checkout-overlay{
+  position:fixed;
+  inset:0;
+  z-index:300;
+
+  padding:18px;
+
+  display:grid;
+  place-items:center;
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transition:.25s;
+}
+
+.checkout-overlay.show{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.checkout-backdrop{
+  position:absolute;
+  inset:0;
+
+  background:rgba(39,24,18,.58);
+  backdrop-filter:blur(12px);
+}
+
+.checkout-card{
+  width:min(600px,100%);
+  max-height:92dvh;
+
+  overflow:auto;
+
+  position:relative;
+  z-index:1;
+
+  padding:24px;
+
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:28px;
+
+  background:#ebe2d4;
+
+  box-shadow:0 34px 100px rgba(31,18,13,.32);
+
+  transform:translateY(18px) scale(.98);
+
+  transition:.25s;
+}
+
+.checkout-overlay.show .checkout-card{
+  transform:none;
+}
+
+.checkout-top{
+  margin-bottom:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.checkout-top small{
+  display:block;
+
+  margin-bottom:3px;
+
+  color:#8e7a6d;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+}
+
+.checkout-top h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:24px;
+}
+
+.close-btn{
+  width:42px;
+  height:42px;
+
+  border:0;
+  border-radius:13px;
+
+  background:rgba(255,255,255,.52);
+  color:var(--brown);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  color:#5f5048;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.control{
+  width:100%;
+  min-height:48px;
+
+  padding:0 13px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.56);
+  color:var(--text);
+
+  outline:0;
+
+  font-size:13px;
+}
+
+.control:focus{
+  border-color:rgba(53,16,15,.42);
+
+  box-shadow:0 0 0 4px rgba(53,16,15,.06);
+}
+
+textarea.control{
+  min-height:86px;
+  padding-top:12px;
+  resize:vertical;
+}
+
+.checkout-total-box{
+  margin-top:17px;
+  padding:15px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.46);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  color:var(--brown);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.place-order{
+  width:100%;
+  height:52px;
+
+  margin-top:13px;
+
+  border:0;
+  border-radius:16px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:13px;
+  font-weight:900;
+}
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.success-screen{
+  min-height:430px;
+
+  margin-bottom:65px;
+  padding:45px 20px;
+
+  text-align:center;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.success-icon{
+  width:90px;
+  height:90px;
+
+  margin-bottom:18px;
+
+  border-radius:50%;
+
+  background:rgba(85,115,78,.13);
+  color:var(--green);
+
+  display:grid;
+  place-items:center;
+
+  font-size:34px;
+
+  animation:successPop .45s cubic-bezier(.2,1.6,.4,1);
+}
+
+.success-screen h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:30px;
+}
+
+.success-screen p{
+  max-width:440px;
+
+  margin:10px auto;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.7;
+}
+
+.order-code{
+  margin:10px 0 18px;
+  padding:10px 14px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.48);
+  color:var(--brown);
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.success-actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.success-actions a{
+  min-height:45px;
+
+  padding:0 16px;
+
+  border-radius:14px;
+
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.success-actions a:first-child{
+  background:var(--brown);
+  color:#fff;
+}
+
+.success-actions a:last-child{
+  background:rgba(255,255,255,.48);
+  color:var(--brown);
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  top:22px;
+  z-index:500;
+
+  max-width:calc(100% - 28px);
+
+  padding:12px 16px;
+
+  border-radius:14px;
+
+  background:var(--brown);
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+
+  box-shadow:0 14px 35px rgba(53,16,15,.25);
+
+  transform:translate(-50%,-18px);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.25s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+
+  opacity:1;
+  visibility:visible;
+}
+
+/* =========================================================
+   RTL
+========================================================= */
+
+html[dir="rtl"] body{
+  direction:rtl;
+}
+
+html[dir="rtl"] .back-btn i,
+html[dir="rtl"] .continue-link i{
+  transform:rotate(180deg);
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes successPop{
+  from{
+    transform:scale(.5);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@keyframes headerShine{
+  0%,74%,100%{
+    left:-18%;
+    opacity:0;
+  }
+  80%{
+    opacity:.75;
+  }
+  93%{
+    left:112%;
+    opacity:0;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+  body{
+    padding:14px;
+  }
+
+  .shell{
+    min-height:calc(100vh - 28px);
+    border-radius:26px;
+  }
+
+  .container{
+    width:min(100% - 30px,1110px);
+  }
+
+  .cart-layout{
+    grid-template-columns:1fr;
+  }
+
+  .summary-panel{
+    position:static;
+  }
+
+  .page-head{
+    padding-top:38px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+  body{
+    padding:0;
+    background:#b9ae9a;
+  }
+
+  .shell{
+    min-height:100vh;
+
+    border:0;
+    border-radius:0;
+  }
+
+  .container{
+    width:calc(100% - 24px);
+  }
+
+  .header-wrap{
+    padding:8px 0;
+  }
+
+  .header{
+    min-height:62px;
+
+    padding:7px;
+
+    border-radius:18px;
+  }
+
+  .brand-logo{
+    width:44px;
+    height:44px;
+
+    border-radius:13px;
+  }
+
+  .brand strong{
+    font-size:14px;
+    letter-spacing:2px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .language-select{
+    width:82px;
+    min-height:38px;
+
+    font-size:10px;
+  }
+
+  .back-btn{
+    width:40px;
+    min-height:40px;
+
+    padding:0;
+
+    justify-content:center;
+
+    font-size:0;
+  }
+
+  .back-btn i{
+    font-size:12px;
+  }
+
+  .page-head{
+    padding:32px 0 22px;
+  }
+
+  .page-head-row{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .page-head h1{
+    font-size:42px;
+  }
+
+  .page-head p{
+    font-size:13px;
+  }
+
+  .item-count-pill{
+    min-width:0;
+    padding:9px 12px;
+  }
+
+  .cart-layout{
+    gap:14px;
+    padding-bottom:30px;
+  }
+
+  .cart-panel{
+    padding:10px;
+  }
+
+  .panel{
+    border-radius:21px;
+  }
+
+  .panel-head{
+    padding:5px 3px 13px;
+  }
+
+  .panel-head h2{
+    font-size:19px;
+  }
+
+  .cart-row{
+    grid-template-columns:92px minmax(0,1fr);
+    gap:10px;
+
+    padding:9px;
+
+    border-radius:16px;
+  }
+
+  .cart-photo{
+    height:92px;
+    border-radius:12px;
+  }
+
+  .cart-title{
+    font-size:14px;
+  }
+
+  .cart-price{
+    font-size:15px;
+  }
+
+  .cart-meta{
+    gap:8px;
+  }
+
+  .row-actions{
+    grid-column:1/-1;
+
+    height:auto;
+
+    flex-direction:row-reverse;
+    align-items:center;
+    justify-content:space-between;
+
+    padding-top:8px;
+
+    border-top:1px solid var(--line);
+  }
+
+  .qty button{
+    width:30px;
+    height:30px;
+  }
+
+  .remove-btn{
+    width:34px;
+    height:34px;
+  }
+
+  .summary-panel{
+    padding:18px;
+  }
+
+  .summary-title{
+    font-size:20px;
+  }
+
+  .summary-total strong{
+    font-size:23px;
+  }
+
+  .checkout-card{
+    padding:18px;
+
+    border-radius:21px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .checkout-top h2{
+    font-size:20px;
+  }
+}
+
+@media(max-width:380px){
+
+  .brand strong{
+    font-size:12px;
+  }
+
+  .language-select{
+    width:70px;
+  }
+
+  .page-head h1{
+    font-size:36px;
+  }
+
+  .cart-row{
+    grid-template-columns:82px 1fr;
+  }
+
+  .cart-photo{
+    height:82px;
+  }
+
+  .cart-title{
+    font-size:12px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+
+    <div class="container">
+
+      <header class="header">
+
+        <a class="brand" href="index.html">
+
+          <span class="brand-logo">
+            <img
+              src="lux_line_billiards_emblem.png"
+              alt="LUX LINE"
+              onerror="this.src='https://placehold.co/120x120/35100F/FFFFFF?text=LL'"
+            >
+          </span>
+
+          <span>
+            <strong>LUX LINE</strong>
+            <small>PREMIUM BILLIARDS</small>
+          </span>
+
+        </a>
+
+        <div class="header-actions">
+
+          <select
+            class="language-select"
+            id="languageSelect"
+            aria-label="Language"
+          >
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="badini">Badinî</option>
+            <option value="sorani">سۆرانی</option>
+          </select>
+
+          <a
+            href="index.html#shop"
+            class="back-btn"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+            <span data-local="backShop">
+              Back to Shop
+            </span>
+          </a>
+
+        </div>
+
+      </header>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <section class="page-head">
+
+      <div class="eyebrow">
+        LUX LINE · PREMIUM BILLIARDS
+      </div>
+
+      <div class="page-head-row">
+
+        <div>
+
+          <h1 data-local="yourCart">
+            Your Cart
+          </h1>
+
+          <p data-local="cartDesc">
+            Review your equipment, adjust quantities and complete your order securely.
+          </p>
+
+        </div>
+
+        <div
+          class="item-count-pill"
+          id="itemCountPill"
+        >
+          0 items
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CART CONTENT -->
+    <section
+      class="cart-layout"
+      id="cartArea"
+    >
+
+      <div class="panel cart-panel">
+
+        <div class="panel-head">
+
+          <h2 data-local="selectedItems">
+            Selected items
+          </h2>
+
+          <button
+            class="clear-btn"
+            id="clearCartBtn"
+            type="button"
+          >
+            <i class="fa-regular fa-trash-can"></i>
+
+            <span data-local="clearCart">
+              Clear cart
+            </span>
+          </button>
+
+        </div>
+
+        <div
+          class="cart-list"
+          id="cartList"
+        ></div>
+
+      </div>
+
+      <aside class="panel summary-panel">
+
+        <h2
+          class="summary-title"
+          data-local="summary"
+        >
+          Order summary
+        </h2>
+
+        <div class="summary-line">
+          <span data-local="subtotal">
+            Subtotal
+          </span>
+
+          <strong id="subtotal">
+            $0
+          </strong>
+        </div>
+
+        <div class="summary-line">
+          <span data-local="delivery">
+            Delivery
+          </span>
+
+          <strong data-local="free">
+            Free
+          </strong>
+        </div>
+
+        <div class="summary-line summary-total">
+          <span data-local="total">
+            Total
+          </span>
+
+          <strong id="total">
+            $0
+          </strong>
+        </div>
+
+        <button
+          class="checkout-btn"
+          id="checkoutBtn"
+          type="button"
+        >
+          <i class="fa-solid fa-lock"></i>
+
+          <span data-local="checkout">
+            Checkout
+          </span>
+        </button>
+
+        <a
+          class="continue-link"
+          href="index.html#shop"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+
+          <span data-local="continueShopping">
+            Continue shopping
+          </span>
+        </a>
+
+        <div class="secure-note">
+          <i class="fa-solid fa-shield-halved"></i>
+
+          <span data-local="secureNote">
+            Your cart is stored safely on this device until you place the order.
+          </span>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- EMPTY CART -->
+    <section
+      class="panel empty-state is-hidden"
+      id="emptyState"
+    >
+
+      <div class="empty-icon">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+
+      <h2 data-local="emptyTitle">
+        Your cart is empty
+      </h2>
+
+      <p data-local="emptyText">
+        Explore the LUX LINE collection and add premium billiards equipment to your cart.
+      </p>
+
+      <a
+        href="index.html#shop"
+        class="shop-now"
+      >
+        <i class="fa-solid fa-store"></i>
+
+        <span data-local="shopNow">
+          Shop now
+        </span>
+      </a>
+
+    </section>
+
+    <!-- SUCCESS -->
+    <section
+      class="panel success-screen is-hidden"
+      id="successScreen"
+    >
+
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <h2 data-local="successTitle">
+        Order placed successfully
+      </h2>
+
+      <p data-local="successText">
+        Your order has been saved. You can continue shopping or return to the home page.
+      </p>
+
+      <div
+        class="order-code"
+        id="orderCode"
+      >
+        ORD-000
+      </div>
+
+      <div class="success-actions">
+
+        <a href="index.html#shop">
+          <i class="fa-solid fa-store"></i>
+
+          <span data-local="continueShopping">
+            Continue shopping
+          </span>
+        </a>
+
+        <a href="index.html">
+          <i class="fa-solid fa-house"></i>
+
+          <span data-local="home">
+            Home
+          </span>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div
+  class="checkout-overlay"
+  id="checkoutOverlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="checkout-backdrop"
+    data-close-checkout
+  ></div>
+
+  <div class="checkout-card">
+
+    <div class="checkout-top">
+
+      <div>
+        <small>LUX LINE</small>
+
+        <h2 data-local="checkout">
+          Checkout
+        </h2>
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeCheckout"
+        type="button"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <form id="checkoutForm">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label data-local="fullName">
+            Full name
+          </label>
+
+          <input
+            class="control"
+            id="customerName"
+            required
+            data-local-placeholder="fullNamePh"
+            placeholder="Enter your full name"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label data-local="phone">
+            Phone number
+          </label>
+
+          <input
+            class="control"
+            id="customerPhone"
+            type="tel"
+            required
+            placeholder="0750 000 0000"
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label data-local="city">
+            City
+          </label>
+
+          <select
+            class="control"
+            id="customerCity"
+            required
+          >
+
+            <option
+              value=""
+              data-local="selectCity"
+            >
+              Select city
+            </option>
+
+            <option value="Duhok">
+              Duhok
+            </option>
+
+            <option value="Erbil">
+              Erbil
+            </option>
+
+            <option value="Sulaymaniyah">
+              Sulaymaniyah
+            </option>
+
+            <option value="Zakho">
+              Zakho
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group full">
+
+          <label data-local="address">
+            Delivery address
+          </label>
+
+          <textarea
+            class="control"
+            id="customerAddress"
+            required
+            data-local-placeholder="addressPh"
+            placeholder="Enter delivery address"
+          ></textarea>
+
+        </div>
+
+        <div class="form-group full">
+
+          <label data-local="note">
+            Order note
+          </label>
+
+          <textarea
+            class="control"
+            id="customerNote"
+            data-local-placeholder="notePh"
+            placeholder="Optional note..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+      <div class="checkout-total-box">
+
+        <span data-local="orderTotal">
+          Order total
+        </span>
+
+        <strong id="checkoutTotal">
+          $0
+        </strong>
+
+      </div>
+
+      <button
+        class="place-order"
+        type="submit"
+        data-local="placeOrder"
+      >
+        Place order
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script src="translation.js"></script>
+
+<script>
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+const products=[
+  {
+    id:1,
+    category:"tables",
+    nameKey:"product1",
+    price:1950,
+    rating:4.9,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75pfj4ov00MrgKH_DWVb10L26cmgRg1YmoVXJ1rTZBw&s=10"
+  },
+  {
+    id:2,
+    category:"tables",
+    nameKey:"product2",
+    price:1250,
+    rating:4.8,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eVp7l13CR1UL8fVHglUC1oIpxmwTuHtBBeCZ8oAtTQ&s=10"
+  },
+  {
+    id:3,
+    category:"cues",
+    nameKey:"product3",
+    price:180,
+    rating:4.9,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgamjqh5WR-kiDKXntIStABWz4xd_RPtBThB7lrEMdw&s=10"
+  },
+  {
+    id:4,
+    category:"balls",
+    nameKey:"product4",
+    price:95,
+    rating:4.8,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpwBcOGq01d4wLjysgkBCmtw9Oef1IPtdJPYboNvyxQ&s"
+  },
+  {
+    id:5,
+    category:"accessories",
+    nameKey:"product5",
+    price:35,
+    rating:4.7,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMUWD6EX49gpZfJ9P1ber0SYYdoiXGLqqq39YJSfdcSQ&s"
+  },
+  {
+    id:6,
+    category:"cues",
+    nameKey:"product6",
+    price:260,
+    rating:5,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeEN7f-007rn_XzrVIZlgV41I5cYh5hH9rWxRgJcwU9Q&s"
+  },
+  {
+    id:7,
+    category:"accessories",
+    nameKey:"product7",
+    price:80,
+    rating:4.6,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRbleOw_pwy_WUFVFpN_aAsa2ejWP1HP9Td_fwIf8xGQ&s=10"
+  },
+  {
+    id:8,
+    category:"accessories",
+    nameKey:"product8",
+    price:120,
+    rating:4.9,
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhmxLUIeDveWApFi4CIK7JdIMcBHDMbsdE-vvxm6gtA&s"
+  }
+];
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $=id=>document.getElementById(id);
+
+let cart=JSON.parse(
+  localStorage.getItem("pool_cart")
+)||[];
+
+const money=value=>{
+  return `$${Number(value).toLocaleString()}`;
+};
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+const labels={
+
+  en:{
+    backShop:"Back to Shop",
+    yourCart:"Your Cart",
+    cartDesc:"Review your equipment, adjust quantities and complete your order securely.",
+    selectedItems:"Selected items",
+    clearCart:"Clear cart",
+    summary:"Order summary",
+    subtotal:"Subtotal",
+    delivery:"Delivery",
+    free:"Free",
+    total:"Total",
+    checkout:"Checkout",
+    continueShopping:"Continue shopping",
+    secureNote:"Your cart is stored safely on this device until you place the order.",
+    emptyTitle:"Your cart is empty",
+    emptyText:"Explore the LUX LINE collection and add premium billiards equipment to your cart.",
+    shopNow:"Shop now",
+    successTitle:"Order placed successfully",
+    successText:"Your order has been saved. You can continue shopping or return to the home page.",
+    home:"Home",
+    fullName:"Full name",
+    fullNamePh:"Enter your full name",
+    phone:"Phone number",
+    city:"City",
+    selectCity:"Select city",
+    address:"Delivery address",
+    addressPh:"Enter delivery address",
+    note:"Order note",
+    notePh:"Optional note...",
+    orderTotal:"Order total",
+    placeOrder:"Place order",
+    items:"items",
+    item:"item",
+    removed:"Item removed",
+    cleared:"Cart cleared",
+    view:"View"
+  },
+
+  ar:{
+    backShop:"العودة للمتجر",
+    yourCart:"سلة التسوق",
+    cartDesc:"راجع المنتجات وعدّل الكميات وأكمل طلبك بسهولة.",
+    selectedItems:"المنتجات المختارة",
+    clearCart:"إفراغ السلة",
+    summary:"ملخص الطلب",
+    subtotal:"المجموع الفرعي",
+    delivery:"التوصيل",
+    free:"مجاني",
+    total:"الإجمالي",
+    checkout:"إتمام الطلب",
+    continueShopping:"متابعة التسوق",
+    secureNote:"يتم حفظ سلتك على هذا الجهاز حتى إتمام الطلب.",
+    emptyTitle:"سلة التسوق فارغة",
+    emptyText:"استكشف مجموعة LUX LINE وأضف معدات البلياردو إلى سلتك.",
+    shopNow:"تسوق الآن",
+    successTitle:"تم إرسال الطلب بنجاح",
+    successText:"تم حفظ طلبك ويمكنك متابعة التسوق أو العودة للرئيسية.",
+    home:"الرئيسية",
+    fullName:"الاسم الكامل",
+    fullNamePh:"أدخل اسمك الكامل",
+    phone:"رقم الهاتف",
+    city:"المدينة",
+    selectCity:"اختر المدينة",
+    address:"عنوان التوصيل",
+    addressPh:"أدخل عنوان التوصيل",
+    note:"ملاحظة",
+    notePh:"ملاحظة اختيارية...",
+    orderTotal:"إجمالي الطلب",
+    placeOrder:"إرسال الطلب",
+    items:"منتجات",
+    item:"منتج",
+    removed:"تم حذف المنتج",
+    cleared:"تم إفراغ السلة",
+    view:"عرض"
+  },
+
+  badini:{
+    backShop:"زڤرین بۆ فرۆشگەهێ",
+    yourCart:"سەبەتا تە",
+    cartDesc:"بەرهەمێن خو ببینە، ژمارەیان بگوهۆڕە و داواکارییا خو تەمام بکە.",
+    selectedItems:"بەرهەمێن هەلبژارتی",
+    clearCart:"سەبەتێ ڤالا بکە",
+    summary:"پوختەیا داواکاریێ",
+    subtotal:"کۆی لاوەکی",
+    delivery:"گەهاندن",
+    free:"بێ بەرامبەر",
+    total:"کۆی گشتی",
+    checkout:"تەمامکرنا کڕینێ",
+    continueShopping:"بەردەوامبە د کڕینێ",
+    secureNote:"سەبەتا تە ل سەر ڤی ئامێری دهێتە پاراستن هەتا داواکاریێ تەمام دکەی.",
+    emptyTitle:"سەبەتا تە ڤالایە",
+    emptyText:"کۆمەلا LUX LINE ببینە و ئامێرێن بیلیاردێ زێدە بکە.",
+    shopNow:"نوکە بکڕە",
+    successTitle:"داواکاری ب سەرکەفتی هات تۆمارکرن",
+    successText:"داواکارییا تە هات پاراستن. دشێی بەردەوام بی د کڕینێ یان بزڤڕی بۆ سەرەکی.",
+    home:"سەرەکی",
+    fullName:"ناڤێ تەمام",
+    fullNamePh:"ناڤێ خو بنڤیسە",
+    phone:"ژمارا تەلەفۆنێ",
+    city:"باژێر",
+    selectCity:"باژێر هەلبژێرە",
+    address:"ناڤونیشان",
+    addressPh:"ناڤونیشانا گەهاندنێ بنڤیسە",
+    note:"تێبینی",
+    notePh:"تێبینی ئارەزوومەندانە...",
+    orderTotal:"کۆی داواکاریێ",
+    placeOrder:"داواکاریێ تۆمار بکە",
+    items:"بەرهەم",
+    item:"بەرهەم",
+    removed:"بەرهەم هات ژێبرن",
+    cleared:"سەبەت هات ڤالاکرن",
+    view:"بینە"
+  },
+
+  sorani:{
+    backShop:"گەڕانەوە بۆ فرۆشگا",
+    yourCart:"سەبەتەکەت",
+    cartDesc:"بەرهەمەکانت ببینە، ژمارەیان بگۆڕە و داواکارییەکەت تەواو بکە.",
+    selectedItems:"بەرهەمە هەڵبژێردراوەکان",
+    clearCart:"بەتاڵکردنەوەی سەبەت",
+    summary:"پوختەی داواکاری",
+    subtotal:"کۆی لاوەکی",
+    delivery:"گەیاندن",
+    free:"بەخۆڕایی",
+    total:"کۆی گشتی",
+    checkout:"تەواوکردنی کڕین",
+    continueShopping:"بەردەوامبوون لە کڕین",
+    secureNote:"سەبەتەکەت لەم ئامێرە هەڵدەگیرێت تا داواکارییەکەت تەواو دەکەیت.",
+    emptyTitle:"سەبەتەکەت بەتاڵە",
+    emptyText:"کۆمەڵەی LUX LINE ببینە و کەلوپەلی بیلیارد زیاد بکە.",
+    shopNow:"ئێستا بکڕە",
+    successTitle:"داواکارییەکە سەرکەوتووانە تۆمارکرا",
+    successText:"داواکارییەکەت هەڵگیرا. دەتوانیت بەردەوام بیت لە کڕین یان بگەڕێیتەوە بۆ سەرەکی.",
+    home:"سەرەکی",
+    fullName:"ناوی تەواو",
+    fullNamePh:"ناوی تەواوت بنووسە",
+    phone:"ژمارەی مۆبایل",
+    city:"شار",
+    selectCity:"شار هەڵبژێرە",
+    address:"ناونیشانی گەیاندن",
+    addressPh:"ناونیشانت بنووسە",
+    note:"تێبینی",
+    notePh:"تێبینی ئارەزوومەندانە...",
+    orderTotal:"کۆی داواکاری",
+    placeOrder:"تۆمارکردنی داواکاری",
+    items:"بەرهەم",
+    item:"بەرهەم",
+    removed:"بەرهەم سڕایەوە",
+    cleared:"سەبەت بەتاڵکرایەوە",
+    view:"بینین"
+  }
+
+};
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function lang(){
+  return window.currentLanguage
+    ||localStorage.getItem("pool_language")
+    ||"en";
+}
+
+function l(key){
+  return labels[lang()]?.[key]
+    ||labels.en[key]
+    ||key;
+}
+
+function tr(key){
+
+  if(typeof getTranslation==="function"){
+    return getTranslation(key);
+  }
+
+  return key;
+}
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function total(){
+
+  return cart.reduce(
+    (sum,item)=>{
+
+      const product=products.find(
+        product=>product.id===item.id
+      );
+
+      return sum+(
+        product
+          ?product.price*item.quantity
+          :0
+      );
+
+    },
+    0
+  );
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function save(){
+
+  localStorage.setItem(
+    "pool_cart",
+    JSON.stringify(cart)
+  );
+
+  render();
+}
+
+/* =========================================================
+   CART ACTIONS
+========================================================= */
+
+function changeQty(id,delta){
+
+  const item=cart.find(
+    item=>item.id===id
+  );
+
+  if(!item)return;
+
+  item.quantity+=delta;
+
+  if(item.quantity<=0){
+    cart=cart.filter(
+      item=>item.id!==id
+    );
+  }
+
+  save();
+}
+
+function removeItem(id){
+
+  cart=cart.filter(
+    item=>item.id!==id
+  );
+
+  save();
+
+  toast(
+    l("removed")
+  );
+}
+
+function clearCart(){
+
+  if(!cart.length)return;
+
+  cart=[];
+
+  save();
+
+  toast(
+    l("cleared")
+  );
+}
+
+function viewItem(id){
+  location.href=`itemdetails.html?id=${id}`;
+}
+
+/* =========================================================
+   SCREEN STATE
+   IMPORTANT:
+   exactly ONE of these is visible:
+   - cartArea
+   - emptyState
+   - successScreen
+========================================================= */
+
+function setScreenState(state){
+
+  const cartArea=$("cartArea");
+  const emptyState=$("emptyState");
+  const successScreen=$("successScreen");
+
+  cartArea.classList.add("is-hidden");
+  emptyState.classList.add("is-hidden");
+  successScreen.classList.add("is-hidden");
+
+  if(state==="cart"){
+    cartArea.classList.remove("is-hidden");
+  }
+
+  if(state==="empty"){
+    emptyState.classList.remove("is-hidden");
+  }
+
+  if(state==="success"){
+    successScreen.classList.remove("is-hidden");
+  }
+}
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+  const count=cart.reduce(
+    (sum,item)=>sum+item.quantity,
+    0
+  );
+
+  $("itemCountPill").textContent=
+    `${count} ${count===1?l("item"):l("items")}`;
+
+  const cartTotal=total();
+
+  $("subtotal").textContent=
+    money(cartTotal);
+
+  $("total").textContent=
+    money(cartTotal);
+
+  $("checkoutTotal").textContent=
+    money(cartTotal);
+
+  /* FIX: do not show empty card under cart items */
+  if(cart.length===0){
+
+    setScreenState("empty");
+
+    $("cartList").innerHTML="";
+
+    return;
+  }
+
+  setScreenState("cart");
+
+  $("cartList").innerHTML=
+    cart.map(item=>{
+
+      const product=products.find(
+        product=>product.id===item.id
+      );
+
+      if(!product)return"";
+
+      return`
+        <article class="cart-row">
+
+          <button
+            class="cart-photo"
+            type="button"
+            onclick="viewItem(${product.id})"
+            aria-label="${l("view")}"
+          >
+            <img
+              src="${product.image}"
+              alt="${tr(product.nameKey)}"
+              draggable="false"
+            >
+          </button>
+
+          <div class="cart-info">
+
+            <div class="cart-category">
+              ${tr(product.category)}
+            </div>
+
+            <div class="cart-title">
+              ${tr(product.nameKey)}
+            </div>
+
+            <div class="cart-meta">
+
+              <strong class="cart-price">
+                ${money(product.price)}
+              </strong>
+
+              <a
+                class="view-link"
+                href="itemdetails.html?id=${product.id}"
+              >
+                <i class="fa-regular fa-eye"></i>
+                ${l("view")}
+              </a>
+
+            </div>
+
+          </div>
+
+          <div class="row-actions">
+
+            <button
+              class="remove-btn"
+              type="button"
+              onclick="removeItem(${product.id})"
+              aria-label="Remove"
+            >
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+
+            <div class="qty">
+
+              <button
+                type="button"
+                onclick="changeQty(${product.id},-1)"
+              >
+                −
+              </button>
+
+              <strong>
+                ${item.quantity}
+              </strong>
+
+              <button
+                type="button"
+                onclick="changeQty(${product.id},1)"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
+}
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+function updateLabels(){
+
+  document
+    .querySelectorAll("[data-local]")
+    .forEach(element=>{
+
+      element.textContent=
+        l(element.dataset.local);
+
+    });
+
+  document
+    .querySelectorAll("[data-local-placeholder]")
+    .forEach(element=>{
+
+      element.placeholder=
+        l(element.dataset.localPlaceholder);
+
+    });
+
+  document.documentElement.dir=
+    ["ar","badini","sorani"].includes(lang())
+      ?"rtl"
+      :"ltr";
+
+  $("languageSelect").value=
+    lang();
+
+  render();
+}
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function openCheckout(){
+
+  if(!cart.length)return;
+
+  $("checkoutOverlay").classList.add("show");
+
+  $("checkoutOverlay").setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow=
+    "hidden";
+}
+
+function closeCheckout(){
+
+  $("checkoutOverlay").classList.remove("show");
+
+  $("checkoutOverlay").setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow=
+    "";
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function toast(message){
+
+  $("toast").textContent=
+    message;
+
+  $("toast").classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    toastTimer
+  );
+
+  toastTimer=setTimeout(()=>{
+
+    $("toast").classList.remove(
+      "show"
+    );
+
+  },2200);
+}
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+$("clearCartBtn").onclick=
+  clearCart;
+
+$("checkoutBtn").onclick=
+  openCheckout;
+
+$("closeCheckout").onclick=
+  closeCheckout;
+
+document
+  .querySelectorAll("[data-close-checkout]")
+  .forEach(element=>{
+
+    element.onclick=
+      closeCheckout;
+
+  });
+
+$("languageSelect").onchange=
+  event=>{
+
+    if(typeof setLanguage==="function"){
+
+      setLanguage(
+        event.target.value
+      );
+
+    }else{
+
+      localStorage.setItem(
+        "pool_language",
+        event.target.value
+      );
+
+      window.currentLanguage=
+        event.target.value;
+    }
+
+    updateLabels();
+  };
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+      closeCheckout();
+    }
+
+  }
+);
+
+/* =========================================================
+   PLACE ORDER
+========================================================= */
+
+$("checkoutForm").onsubmit=
+  event=>{
+
+    event.preventDefault();
+
+    if(!cart.length)return;
+
+    const orderId=
+      "ORD-"+Date.now();
+
+    const orders=
+      JSON.parse(
+        localStorage.getItem("pool_orders")
+      )||[];
+
+    orders.push({
+
+      id:orderId,
+
+      customer:{
+        name:$("customerName").value,
+        phone:$("customerPhone").value,
+        city:$("customerCity").value,
+        address:$("customerAddress").value,
+        note:$("customerNote").value
+      },
+
+      items:cart.map(
+        item=>({...item})
+      ),
+
+      total:total(),
+
+      createdAt:new Date().toISOString()
+
+    });
+
+    localStorage.setItem(
+      "pool_orders",
+      JSON.stringify(orders)
+    );
+
+    cart=[];
+
+    localStorage.setItem(
+      "pool_cart",
+      "[]"
+    );
+
+    closeCheckout();
+
+    $("itemCountPill").textContent=
+      `0 ${l("items")}`;
+
+    $("orderCode").textContent=
+      orderId;
+
+    $("checkoutForm").reset();
+
+    /* FIX: success only, never empty under it */
+    setScreenState(
+      "success"
+    );
+  };
+
+/* =========================================================
+   PAGE PROTECTION
+========================================================= */
+
+/* Disable right-click */
+document.addEventListener(
+  "contextmenu",
+  event=>event.preventDefault()
+);
+
+/* Disable image/content dragging */
+document.addEventListener(
+  "dragstart",
+  event=>event.preventDefault()
+);
+
+/* Disable Ctrl/Cmd + mouse wheel zoom */
+document.addEventListener(
+  "wheel",
+  event=>{
+
+    if(event.ctrlKey || event.metaKey){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+/* Disable Ctrl/Cmd +, -, 0 and common copy/select */
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    const tag=
+      document.activeElement?.tagName;
+
+    const formActive=
+      ["INPUT","TEXTAREA","SELECT"].includes(tag);
+
+    const zoomKey=
+      ["+","-","=","0"].includes(event.key);
+
+    if(
+      (event.ctrlKey || event.metaKey)
+      && zoomKey
+    ){
+      event.preventDefault();
+    }
+
+    if(
+      !formActive
+      &&
+      (event.ctrlKey || event.metaKey)
+      &&
+      ["a","c","x"].includes(
+        event.key.toLowerCase()
+      )
+    ){
+      event.preventDefault();
+    }
+
+  }
+);
+
+/* Disable pinch zoom */
+document.addEventListener(
+  "touchmove",
+  event=>{
+
+    if(event.touches.length>1){
+      event.preventDefault();
+    }
+
+  },
+  {passive:false}
+);
+
+/* Safari gesture zoom */
+[
+  "gesturestart",
+  "gesturechange",
+  "gestureend"
+].forEach(eventName=>{
+
+  document.addEventListener(
+    eventName,
+    event=>event.preventDefault()
+  );
+
+});
+
+/* Disable double-tap zoom */
+let lastTouchEnd=0;
+
+document.addEventListener(
+  "touchend",
+  event=>{
+
+    const now=Date.now();
+
+    if(now-lastTouchEnd<=300){
+      event.preventDefault();
+    }
+
+    lastTouchEnd=now;
+
+  },
+  {passive:false}
+);
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+if(
+  typeof initializeLanguage==="function"
+){
+  initializeLanguage();
+}
+
+updateLabels();
+</script>
+
+</body>
+</html>
