@@ -127,7 +127,7 @@ img{
   min-height:calc(100vh - 56px);
 
   margin:auto;
-  overflow:hidden;
+  overflow:clip;
 
   border:1px solid rgba(255,255,255,.35);
   border-radius:34px;
@@ -148,174 +148,870 @@ img{
 }
 
 /* =========================================================
-   HEADER
+   LUX LINE — INDEX STYLE HEADER
 ========================================================= */
 
-.header-wrap{
+.lux-header{
+  position:-webkit-sticky;
   position:sticky;
-  top:0;
-  z-index:80;
 
-  padding:14px 0;
+  top:0;
+  z-index:1000;
+
+  padding:8px 0 7px;
+
+  pointer-events:none;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(232,223,210,.97),
-      rgba(232,223,210,.74),
-      transparent
+      rgba(232,223,210,.96),
+      rgba(232,223,210,.82),
+      rgba(232,223,210,0)
     );
 
-  backdrop-filter:blur(16px);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
-.header{
-  min-height:72px;
-
-  padding:9px 11px 9px 12px;
-
-  border:1px solid rgba(255,255,255,.58);
-  border-radius:22px;
-
-  background:rgba(244,238,228,.82);
-  backdrop-filter:blur(22px);
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-
-  box-shadow:0 12px 35px rgba(53,35,27,.09);
-
+.header-stage{
   position:relative;
-  overflow:hidden;
+  z-index:1001;
 }
 
-.header::after{
+.header-modern{
+  position:relative;
+
+  min-height:76px;
+
+  padding:9px 10px 9px 12px;
+
+  border:1px solid rgba(255,255,255,.56);
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247,241,231,.90),
+      rgba(225,216,201,.82)
+    );
+
+  backdrop-filter:blur(24px) saturate(1.24);
+  -webkit-backdrop-filter:blur(24px) saturate(1.24);
+
+  box-shadow:
+    0 18px 55px rgba(52,33,24,.15),
+    inset 0 1px 0 rgba(255,255,255,.62);
+
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:20px;
+
+  overflow:hidden;
+
+  pointer-events:auto;
+
+  isolation:isolate;
+
+  animation:
+    luxHeaderIn .75s cubic-bezier(.22,1,.36,1) both;
+
+  transition:
+    background .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease,
+    border-color .3s ease;
+}
+
+.lux-header.scrolled .header-modern{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247,241,231,.97),
+      rgba(226,216,200,.95)
+    );
+
+  border-color:rgba(255,255,255,.76);
+
+  box-shadow:
+    0 22px 60px rgba(52,33,24,.20),
+    inset 0 1px 0 rgba(255,255,255,.76);
+
+  transform:translateY(2px);
+}
+
+.header-modern::before{
   content:"";
 
   position:absolute;
-  top:-45%;
-  left:-18%;
 
-  width:90px;
-  height:190%;
+  width:180px;
+  height:180px;
 
-  transform:rotate(18deg);
+  right:-55px;
+  top:-80px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(173,134,79,.20),
+      transparent 68%
+    );
+
+  pointer-events:none;
+
+  z-index:-1;
+}
+
+.header-modern::after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,255,255,.52),
+      rgba(140,98,53,.34),
       transparent
     );
 
-  animation:headerShine 7s ease-in-out infinite;
-
-  pointer-events:none;
+  opacity:.72;
 }
 
-.brand{
+.header-shine{
+  position:absolute;
+
+  top:-70%;
+  left:-35%;
+
+  width:25%;
+  height:240%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.58),
+      transparent
+    );
+
+  transform:rotate(18deg);
+
+  filter:blur(2px);
+
+  pointer-events:none;
+
+  animation:
+    headerShine 7s ease-in-out 1.5s infinite;
+}
+
+.lux-brand{
+  min-width:max-content;
+
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
+
+  color:var(--brown);
 
   position:relative;
   z-index:2;
 }
 
-.brand-logo{
-  width:52px;
-  height:52px;
+.lux-brand-logo{
+  position:relative;
 
-  padding:3px;
+  width:53px;
+  height:53px;
+  flex:0 0 53px;
+
+  padding:4px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.76),
+      rgba(214,200,180,.62)
+    );
+
+  box-shadow:
+    0 9px 24px rgba(53,16,15,.12),
+    inset 0 0 0 1px rgba(84,56,42,.08);
 
   overflow:hidden;
 
-  border-radius:16px;
-
-  background:#fff;
-
-  box-shadow:0 8px 22px rgba(53,16,15,.12);
+  animation:
+    logoFloat 4.5s ease-in-out infinite;
 }
 
-.brand-logo img{
+.lux-brand-logo img{
+  width:100%;
   height:100%;
-  object-fit:cover;
+
   border-radius:13px;
+
+  object-fit:cover;
+  object-position:center 40%;
+
+  filter:saturate(.88) contrast(.98);
 }
 
-.brand strong{
-  display:block;
+.logo-ring{
+  position:absolute;
+  inset:-2px;
 
-  color:var(--brown);
+  border:1px solid rgba(157,116,67,.18);
+  border-radius:19px;
 
+  animation:
+    logoRing 3s ease-in-out infinite;
+}
+
+.lux-brand-copy{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.lux-brand-copy strong{
   font-family:"Manrope",sans-serif;
+
   font-size:18px;
-  letter-spacing:2.8px;
+  line-height:1;
+
+  font-weight:800;
+
+  letter-spacing:3.1px;
+
+  white-space:nowrap;
 }
 
-.brand small{
-  display:block;
-
-  margin-top:3px;
-
-  color:#8a786d;
+.lux-brand-copy small{
+  color:#85766b;
 
   font-size:8px;
   font-weight:800;
-  letter-spacing:1.5px;
+
+  letter-spacing:2.15px;
+
+  white-space:nowrap;
 }
 
-.header-actions{
+.desktop-nav{
+  justify-self:center;
+
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:5px;
+
+  padding:5px;
+
+  border:1px solid rgba(73,47,35,.07);
+  border-radius:17px;
+
+  background:rgba(255,255,255,.27);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38);
+}
+
+.desktop-nav .nav-link{
+  position:relative;
+
+  min-width:70px;
+  min-height:38px;
+
+  padding:0 13px;
+
+  border-radius:12px;
+
+  color:#75675e;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+
+  font-size:12px;
+  font-weight:800;
+
+  transition:
+    color .22s ease,
+    background .22s ease,
+    transform .22s ease;
+}
+
+.desktop-nav .nav-link::before{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  bottom:5px;
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
+
+  background:var(--brown);
+
+  transform:translate(-50%,6px) scale(0);
+
+  opacity:0;
+
+  transition:.25s ease;
+}
+
+.desktop-nav .nav-link:hover{
+  color:var(--brown);
+
+  background:rgba(255,255,255,.48);
+
+  transform:translateY(-1px);
+}
+
+.desktop-nav .nav-link.active{
+  color:#fff;
+
+  background:var(--brown);
+
+  box-shadow:
+    0 8px 18px rgba(53,16,15,.16);
+}
+
+.desktop-nav .nav-link.active::before{
+  background:#d8b98b;
+
+  transform:translate(-50%,0) scale(1);
+
+  opacity:1;
+}
+
+.header-modern .header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
 
   position:relative;
   z-index:2;
 }
 
-.language-select,
-.header-link{
-  min-height:48px;
+.language-control{
+  height:44px;
 
-  border:1px solid var(--line);
+  padding:0 9px 0 12px;
+
+  border:1px solid rgba(72,44,34,.09);
   border-radius:14px;
 
-  background:rgba(255,255,255,.54);
-  color:var(--brown);
+  background:rgba(255,255,255,.40);
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  transition:.2s ease;
+}
+
+.language-control:hover{
+  background:rgba(255,255,255,.62);
+
+  transform:translateY(-1px);
+}
+
+.language-control i{
+  color:#7f6c60;
 
   font-size:12px;
-  font-weight:900;
 }
 
-.language-select{
-  min-width:116px;
-  padding:0 13px;
+.header-modern .language-select{
+  width:auto;
+  min-width:0;
+  height:40px;
 
-  outline:0;
+  padding:0 2px;
+
+  border:0;
+
+  background:transparent;
+  color:var(--brown);
+
+  font-size:11px;
+  font-weight:800;
+
+  outline:none;
 }
 
-.header-link{
-  padding:0 15px;
+.modern-cart{
+  height:46px;
 
-  display:inline-flex;
+  padding:0 15px 0 8px;
+
+  border:0;
+  border-radius:15px;
+
+  background:var(--brown);
+  color:#fff;
+
+  display:flex;
   align-items:center;
-  justify-content:center;
   gap:8px;
 
-  transition:.2s;
+  position:relative;
+
+  box-shadow:
+    0 10px 22px rgba(53,16,15,.16);
+
+  overflow:visible;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
 }
 
-.header-link i{
-  color:var(--gold);
+.modern-cart:hover{
+  transform:translateY(-2px);
+
+  background:#481716;
+
+  box-shadow:
+    0 14px 28px rgba(53,16,15,.23);
 }
 
-.header-link:hover{
+.cart-icon-wrap{
+  width:32px;
+  height:32px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.12);
+
+  display:grid;
+  place-items:center;
+}
+
+.cart-icon-wrap i{
+  color:#f4d6a7;
+}
+
+.modern-cart .cart-label{
+  font-size:11px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+.modern-cart .cart-count{
+  position:absolute;
+
+  top:-6px;
+  right:-5px;
+
+  min-width:20px;
+  height:20px;
+
+  padding:0 5px;
+
+  border:2px solid #e9dfd0;
+  border-radius:999px;
+
   background:#fff;
-  transform:translateY(-1px);
+  color:var(--brown);
+
+  display:grid;
+  place-items:center;
+
+  font-size:9px;
+  font-weight:900;
+
+  box-shadow:
+    0 5px 12px rgba(53,16,15,.12);
+
+  animation:
+    cartPulse 2.7s ease-in-out infinite;
+}
+
+.header-menu-btn{
+  width:44px;
+  height:44px;
+
+  padding:0;
+
+  border:1px solid rgba(72,44,34,.09);
+  border-radius:14px;
+
+  background:rgba(255,255,255,.46);
+
+  display:none;
+  place-items:center;
+  align-content:center;
+  gap:4px;
+
+  position:relative;
+  z-index:3;
+}
+
+.header-menu-btn span{
+  display:block;
+
+  width:18px;
+  height:2px;
+
+  border-radius:10px;
+
+  background:var(--brown);
+
+  transition:
+    transform .25s ease,
+    opacity .2s ease;
+}
+
+.header-menu-btn.open span:nth-child(1){
+  transform:translateY(6px) rotate(45deg);
+}
+
+.header-menu-btn.open span:nth-child(2){
+  opacity:0;
+}
+
+.header-menu-btn.open span:nth-child(3){
+  transform:translateY(-6px) rotate(-45deg);
+}
+
+.mobile-header-menu{
+  position:absolute;
+
+  top:calc(100% + 8px);
+
+  left:0;
+  right:0;
+
+  z-index:5;
+
+  padding:10px;
+
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:20px;
+
+  background:rgba(241,233,221,.96);
+
+  backdrop-filter:blur(22px);
+
+  box-shadow:
+    0 22px 55px rgba(50,31,23,.18);
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-8px) scale(.985);
+  transform-origin:top;
+
+  pointer-events:none;
+
+  transition:
+    .25s cubic-bezier(.22,1,.36,1);
+}
+
+.mobile-header-menu.open{
+  opacity:1;
+  visibility:visible;
+
+  transform:none;
+
+  pointer-events:auto;
+}
+
+.mobile-header-menu a{
+  min-height:62px;
+
+  padding:9px 7px;
+
+  border-radius:14px;
+
+  color:#74655c;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+
+  font-size:10px;
+  font-weight:800;
+
+  transition:.2s ease;
+}
+
+.mobile-header-menu a:hover,
+.mobile-header-menu a.active{
+  background:var(--brown);
+  color:#fff;
+}
+
+.mobile-header-menu i{
+  font-size:15px;
+}
+
+/* Same Shop icon color as Index/Profile/Cart */
+.mobile-header-menu a[data-mobile-section="shop"] i{
+  color:#c5893d !important;
+  opacity:1 !important;
+}
+
+.mobile-header-menu a[data-mobile-section="shop"]:hover i,
+.mobile-header-menu a[data-mobile-section="shop"].active i{
+  color:#ffe6b8 !important;
+}
+
+@keyframes luxHeaderIn{
+  from{
+    opacity:0;
+    transform:translateY(-18px) scale(.985);
+    filter:blur(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+    filter:blur(0);
+  }
+}
+
+@keyframes logoFloat{
+  0%,100%{
+    transform:translateY(0) rotate(0);
+  }
+
+  50%{
+    transform:translateY(-2px) rotate(.8deg);
+  }
+}
+
+@keyframes logoRing{
+  0%,100%{
+    opacity:.55;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:.15;
+    transform:scale(1.08);
+  }
+}
+
+@keyframes cartPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+}
+
+@media(max-width:1060px){
+
+  .header-modern{
+    grid-template-columns:auto 1fr auto;
+    gap:12px;
+  }
+
+  .desktop-nav{
+    gap:3px;
+  }
+
+  .desktop-nav .nav-link{
+    min-width:62px;
+
+    padding:0 9px;
+
+    font-size:11px;
+  }
+
+  .lux-brand-copy strong{
+    font-size:16px;
+    letter-spacing:2.5px;
+  }
+
+  .lux-brand-copy small{
+    font-size:7px;
+    letter-spacing:1.7px;
+  }
+}
+
+@media(max-width:880px){
+
+  .header-modern{
+    grid-template-columns:auto 1fr auto auto;
+  }
+
+  .desktop-nav{
+    display:none;
+  }
+
+  .header-modern .header-actions{
+    justify-self:end;
+  }
+
+  .header-menu-btn{
+    display:grid;
+  }
+}
+
+@media(max-width:700px){
+
+  .lux-header{
+    top:0;
+
+    padding:6px 0 5px;
+  }
+
+  .header-modern{
+    min-height:64px;
+
+    padding:7px 8px 7px 9px;
+
+    border-radius:18px;
+
+    gap:7px;
+  }
+
+  .lux-brand{
+    gap:8px;
+  }
+
+  .lux-brand-logo{
+    width:43px;
+    height:43px;
+    flex-basis:43px;
+
+    border-radius:13px;
+  }
+
+  .lux-brand-logo img{
+    border-radius:10px;
+  }
+
+  .lux-brand-copy strong{
+    font-size:14px;
+    letter-spacing:2px;
+  }
+
+  .lux-brand-copy small{
+    font-size:6px;
+    letter-spacing:1.35px;
+  }
+
+  .language-control{
+    height:39px;
+
+    padding:0 7px;
+
+    border-radius:12px;
+  }
+
+  .language-control i{
+    display:none;
+  }
+
+  .header-modern .language-select{
+    width:78px;
+    height:36px;
+
+    font-size:9px;
+  }
+
+  .modern-cart{
+    width:40px;
+    height:40px;
+
+    padding:0;
+
+    border-radius:12px;
+
+    justify-content:center;
+  }
+
+  .modern-cart .cart-icon-wrap{
+    width:100%;
+    height:100%;
+
+    background:transparent;
+  }
+
+  .modern-cart .cart-label{
+    display:none;
+  }
+
+  .modern-cart .cart-icon-wrap i{
+    color:#f4d6a7 !important;
+
+    font-size:15px;
+  }
+
+  .header-menu-btn{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+  }
+
+  .mobile-header-menu{
+    grid-template-columns:repeat(4,1fr);
+
+    border-radius:17px;
+  }
+}
+
+@media(max-width:430px){
+
+  .lux-brand-copy small{
+    display:none;
+  }
+
+  .lux-brand-copy strong{
+    font-size:13px;
+    letter-spacing:1.6px;
+  }
+
+  .header-modern .language-select{
+    width:64px;
+
+    font-size:8px;
+  }
+
+  .mobile-header-menu a{
+    min-height:57px;
+
+    font-size:9px;
+  }
+}
+
+html[dir="rtl"] .modern-cart{
+  padding:0 8px 0 15px;
+}
+
+html[dir="rtl"] .modern-cart .cart-count{
+  right:auto;
+  left:-5px;
 }
 
 /* =========================================================
@@ -1305,57 +2001,6 @@ html[dir="rtl"] .header-link i{
     width:calc(100% - 24px);
   }
 
-  .header-wrap{
-    padding:8px 0;
-  }
-
-  .header{
-    min-height:62px;
-
-    padding:7px;
-
-    border-radius:18px;
-  }
-
-  .brand-logo{
-    width:44px;
-    height:44px;
-
-    border-radius:13px;
-  }
-
-  .brand strong{
-    font-size:14px;
-    letter-spacing:2px;
-  }
-
-  .brand small{
-    display:none;
-  }
-
-  .language-select{
-    width:92px;
-    min-width:92px;
-    min-height:46px;
-
-    padding:0 9px;
-
-    font-size:10px;
-  }
-
-  .header-link{
-    width:40px;
-    min-height:40px;
-
-    padding:0;
-
-    font-size:0;
-  }
-
-  .header-link i{
-    font-size:12px;
-  }
-
   .page-hero{
     padding:28px 0 21px;
   }
@@ -1474,15 +2119,6 @@ html[dir="rtl"] .header-link i{
 
 @media(max-width:390px){
 
-  .brand strong{
-    font-size:12px;
-  }
-
-  .language-select{
-    width:80px;
-    min-width:80px;
-  }
-
   .hero-copy h1{
     font-size:34px;
   }
@@ -1530,63 +2166,198 @@ html[dir="rtl"] .header-link i{
 <div class="shell">
 
   <!-- HEADER -->
-  <div class="header-wrap">
+  <header
+    id="siteHeader"
+    class="lux-header"
+  >
 
-    <div class="container">
+    <div class="container header-stage">
 
-      <header class="header">
+      <div class="header-modern">
 
         <a
-          class="brand"
-          href="index.html"
+          href="index.html#home"
+          class="lux-brand"
+          aria-label="LUX LINE home"
         >
 
-          <span class="brand-logo">
+          <span class="lux-brand-logo">
+
             <img
               src="lux_line_billiards_emblem.png"
-              alt="LUX LINE"
+              alt="LUX LINE logo"
               onerror="this.src='https://placehold.co/120x120/35100F/FFFFFF?text=LL'"
             >
+
+            <span class="logo-ring"></span>
+
           </span>
 
-          <span>
+          <span class="lux-brand-copy">
             <strong>LUX LINE</strong>
             <small>PREMIUM BILLIARDS</small>
           </span>
 
         </a>
 
-        <div class="header-actions">
-
-          <select
-            class="language-select"
-            id="languageSelect"
-            aria-label="Language"
-          >
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="badini">Badinî</option>
-            <option value="sorani">سۆرانی</option>
-          </select>
+        <nav
+          class="desktop-nav"
+          aria-label="Primary navigation"
+        >
 
           <a
-            href="index.html"
-            class="header-link"
+            class="nav-link"
+            href="index.html#home"
           >
-            <i class="fa-solid fa-arrow-left"></i>
-
+            <i class="fa-solid fa-house"></i>
             <span data-local="home">
               Home
             </span>
           </a>
 
+          <a
+            class="nav-link"
+            href="index.html#shop"
+          >
+            <i class="fa-solid fa-store"></i>
+            <span data-local="shop">
+              Shop
+            </span>
+          </a>
+
+          <a
+            class="nav-link active"
+            href="orders.html"
+          >
+            <i class="fa-solid fa-receipt"></i>
+            <span data-local="ordersNav">
+              Orders
+            </span>
+          </a>
+
+          <a
+            class="nav-link"
+            href="profile.html"
+          >
+            <i class="fa-regular fa-user"></i>
+            <span data-local="profile">
+              Profile
+            </span>
+          </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+          <div class="language-control">
+
+            <i class="fa-solid fa-globe"></i>
+
+            <select
+              class="language-select"
+              id="languageSelect"
+              aria-label="Language"
+            >
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+              <option value="badini">Badinî</option>
+              <option value="sorani">سۆرانی</option>
+            </select>
+
+          </div>
+
+          <a
+            class="modern-cart"
+            id="headerCartButton"
+            href="cart.html"
+            aria-label="Open cart"
+          >
+
+            <span class="cart-icon-wrap">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </span>
+
+            <span
+              class="cart-label"
+              data-local="cart"
+            >
+              Cart
+            </span>
+
+            <span
+              class="cart-count"
+              id="headerCartCount"
+            >
+              0
+            </span>
+
+          </a>
+
         </div>
 
-      </header>
+        <button
+          class="header-menu-btn"
+          id="menuToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <span
+          class="header-shine"
+          aria-hidden="true"
+        ></span>
+
+      </div>
+
+      <div
+        class="mobile-header-menu"
+        id="mobileMenu"
+      >
+
+        <a href="index.html#home">
+          <i class="fa-solid fa-house"></i>
+          <span data-local="home">
+            Home
+          </span>
+        </a>
+
+        <a
+          href="index.html#shop"
+          data-mobile-section="shop"
+        >
+          <i class="fa-solid fa-store"></i>
+          <span data-local="shop">
+            Shop
+          </span>
+        </a>
+
+        <a
+          class="active"
+          href="orders.html"
+        >
+          <i class="fa-solid fa-receipt"></i>
+          <span data-local="ordersNav">
+            Orders
+          </span>
+        </a>
+
+        <a href="profile.html">
+          <i class="fa-regular fa-user"></i>
+          <span data-local="profile">
+            Profile
+          </span>
+        </a>
+
+      </div>
 
     </div>
 
-  </div>
+  </header>
 
   <!-- MAIN -->
   <main class="container">
@@ -1739,6 +2510,101 @@ html[dir="rtl"] .header-link i{
 <script>
 const $=id=>document.getElementById(id);
 
+
+const siteHeader=$("siteHeader");
+const menuToggle=$("menuToggle");
+const mobileMenu=$("mobileMenu");
+
+function closeHeaderMenu(){
+
+  if(!menuToggle||!mobileMenu){
+    return;
+  }
+
+  menuToggle.classList.remove(
+    "open"
+  );
+
+  mobileMenu.classList.remove(
+    "open"
+  );
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+}
+
+menuToggle?.addEventListener(
+  "click",
+  ()=>{
+
+    const open=
+      !mobileMenu.classList.contains(
+        "open"
+      );
+
+    menuToggle.classList.toggle(
+      "open",
+      open
+    );
+
+    mobileMenu.classList.toggle(
+      "open",
+      open
+    );
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+  }
+);
+
+window.addEventListener(
+  "scroll",
+  ()=>{
+
+    siteHeader?.classList.toggle(
+      "scrolled",
+      window.scrollY>24
+    );
+
+  },
+  {passive:true}
+);
+
+document
+  .querySelectorAll(
+    ".mobile-header-menu a"
+  )
+  .forEach(link=>{
+
+    link.addEventListener(
+      "click",
+      closeHeaderMenu
+    );
+
+  });
+
+function updateHeaderCartCount(){
+
+  const cart=
+    JSON.parse(
+      localStorage.getItem("pool_cart")
+    )||[];
+
+  const count=
+    cart.reduce(
+      (sum,item)=>sum+Number(item.quantity||0),
+      0
+    );
+
+  $("headerCartCount").textContent=
+    count;
+}
+
+
 /* =========================================================
    PRODUCT CATALOG
 ========================================================= */
@@ -1801,6 +2667,10 @@ const productCatalog=[
 const labels={
 
   en:{
+    shop:"Shop",
+    ordersNav:"Orders",
+    profile:"Profile",
+    cart:"Cart",
     home:"Home",
     title:"Track Your Orders",
     subtitle:"Follow every order from the moment it is received until it reaches your home.",
@@ -1843,6 +2713,10 @@ const labels={
   },
 
   ar:{
+    shop:"المتجر",
+    ordersNav:"الطلبات",
+    profile:"الحساب",
+    cart:"السلة",
     home:"الرئيسية",
     title:"تتبع طلباتك",
     subtitle:"تابع كل طلب من لحظة استلامه حتى وصوله إلى منزلك.",
@@ -1885,6 +2759,10 @@ const labels={
   },
 
   badini:{
+    shop:"فرۆشگەهـ",
+    ordersNav:"داواکاری",
+    profile:"پروفایل",
+    cart:"سەبەتە",
     home:"سەرەکی",
     title:"داواکاریێن خو ب تەعقیب بکە",
     subtitle:"داواکارییا خو ژ دەما وەرگرتنێ هەتا گەهشتنا ماڵێ ب تەعقیب بکە.",
@@ -1927,6 +2805,10 @@ const labels={
   },
 
   sorani:{
+    shop:"فرۆشگا",
+    ordersNav:"داواکارییەکان",
+    profile:"پڕۆفایل",
+    cart:"سەبەتە",
     home:"سەرەکی",
     title:"داواکارییەکانت بەدواداچوون بکە",
     subtitle:"هەر داواکارییەک لە کاتی وەرگرتنەوە تا گەیشتنە ماڵ بەدواداچوون بکە.",
@@ -2612,6 +3494,7 @@ function updateLabels(){
   $("languageSelect").value=
     lang();
 
+  updateHeaderCartCount();
   renderOrders();
 }
 
@@ -2659,6 +3542,7 @@ document.addEventListener(
   event=>{
 
     if(event.key==="Escape"){
+      closeHeaderMenu();
       closeOrderModal();
     }
 
@@ -2675,6 +3559,10 @@ window.addEventListener(
 
     if(event.key==="pool_orders"){
       renderOrders();
+    }
+
+    if(event.key==="pool_cart"){
+      updateHeaderCartCount();
     }
 
   }
