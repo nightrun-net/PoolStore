@@ -3085,6 +3085,96 @@ img{
   }
 }
 
+
+/* =========================================================
+   SUPABASE PRODUCT CONTENT
+========================================================= */
+
+.product-db-description{
+  margin-top:9px;
+  min-height:34px;
+
+  color:#796b62;
+
+  font-size:10px;
+  line-height:1.6;
+
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+
+  overflow:hidden;
+}
+
+.products-state{
+  grid-column:1/-1;
+
+  min-height:230px;
+
+  padding:40px 20px;
+
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:24px;
+
+  background:rgba(250,245,235,.58);
+
+  color:#776a62;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.products-state i{
+  margin-bottom:13px;
+
+  color:var(--brown);
+
+  font-size:27px;
+}
+
+.products-state h3{
+  color:var(--brown);
+
+  font-size:16px;
+}
+
+.products-state p{
+  max-width:430px;
+
+  margin-top:7px;
+
+  color:#7d6f66;
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+.products-loading-icon{
+  animation:productsSpin .85s linear infinite;
+}
+
+@keyframes productsSpin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@media(max-width:700px){
+  .product-db-description{
+    min-height:30px;
+    font-size:9px;
+  }
+
+  .products-state{
+    min-height:190px;
+    padding:30px 15px;
+  }
+}
+
 </style>
 </head>
 
@@ -3508,212 +3598,649 @@ img{
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseClient.js"></script>
 <script src="translation.js"></script>
 
 <script>
-const products=[
-  {
-    id:1,
-    category:"tables",
-    nameKey:"product1",
-    price:1950,
-    rating:4.9,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75pfj4ov00MrgKH_DWVb10L26cmgRg1YmoVXJ1rTZBw&s=10"
-  },
-  {
-    id:2,
-    category:"tables",
-    nameKey:"product2",
-    price:1250,
-    rating:4.8,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eVp7l13CR1UL8fVHglUC1oIpxmwTuHtBBeCZ8oAtTQ&s=10"
-  },
-  {
-    id:3,
-    category:"cues",
-    nameKey:"product3",
-    price:180,
-    rating:4.9,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgamjqh5WR-kiDKXntIStABWz4xd_RPtBThB7lrEMdw&s=10"
-  },
-  {
-    id:4,
-    category:"balls",
-    nameKey:"product4",
-    price:95,
-    rating:4.8,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpwBcOGq01d4wLjysgkBCmtw9Oef1IPtdJPYboNvyxQ&s"
-  },
-  {
-    id:5,
-    category:"accessories",
-    nameKey:"product5",
-    price:35,
-    rating:4.7,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMUWD6EX49gpZfJ9P1ber0SYYdoiXGLqqq39YJSfdcSQ&s"
-  },
-  {
-    id:6,
-    category:"cues",
-    nameKey:"product6",
-    price:260,
-    rating:5,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeEN7f-007rn_XzrVIZlgV41I5cYh5hH9rWxRgJcwU9Q&s"
-  },
-  {
-    id:7,
-    category:"accessories",
-    nameKey:"product7",
-    price:80,
-    rating:4.6,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRbleOw_pwy_WUFVFpN_aAsa2ejWP1HP9Td_fwIf8xGQ&s=10"
-  },
-  {
-    id:8,
-    category:"accessories",
-    nameKey:"product8",
-    price:120,
-    rating:4.9,
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhmxLUIeDveWApFi4CIK7JdIMcBHDMbsdE-vvxm6gtA&s"
-  }
-];
+/* =========================================================
+   LUX LINE CUSTOMER SHOP
+   REAL PRODUCTS FROM SUPABASE
+========================================================= */
+
+let products=[];
+let productsLoaded=false;
+let productsLoadError="";
 
 const $=id=>document.getElementById(id);
 
 let selectedCategory="all";
-let favorites=JSON.parse(localStorage.getItem("pool_favorites"))||[];
-let cart=JSON.parse(localStorage.getItem("pool_cart"))||[];
+
+let favorites=
+  (JSON.parse(
+    localStorage.getItem("pool_favorites")
+  )||[])
+  .map(Number)
+  .filter(Number.isFinite);
+
+let cart=
+  (JSON.parse(
+    localStorage.getItem("pool_cart")
+  )||[])
+  .map(item=>({
+    ...item,
+    id:Number(item.id),
+    quantity:Number(item.quantity||1)
+  }))
+  .filter(item=>Number.isFinite(item.id));
+
 
 const grid=$("productsGrid");
 const search=$("searchInput");
 const language=$("languageSelect");
 
+
+/* =========================================================
+   TRANSLATION HELPERS
+========================================================= */
+
 const t=key=>{
-  if(typeof getTranslation==="function"){
+
+  if(
+    typeof getTranslation==="function"
+  ){
     return getTranslation(key);
   }
 
-  return translations[currentLanguage]?.[key]
-    ||translations.en?.[key]
+  return translations?.[currentLanguage]?.[key]
+    ||translations?.en?.[key]
     ||key;
 };
 
-const money=value=>`$${Number(value).toLocaleString()}`;
 
 const pageLabels={
-  en:{view:"View",home:"Home",favorites:"Favorites",orders:"Orders",profile:"Profile",inStock:"In stock",price:"Price",favoritesEmpty:"No favorite products yet",ordersSoon:"Orders page is coming next",profileSoon:"Profile page is coming next"},
-  ar:{view:"عرض",home:"الرئيسية",favorites:"المفضلة",orders:"الطلبات",profile:"الحساب",inStock:"متوفر",price:"السعر",favoritesEmpty:"لا توجد منتجات مفضلة بعد",ordersSoon:"صفحة الطلبات ستكون الخطوة التالية",profileSoon:"صفحة الحساب ستكون الخطوة التالية"},
-  badini:{view:"بینین",home:"سەرەکی",favorites:"دڵخواز",orders:"داواکاری",profile:"پروفایل",inStock:"بەردەستە",price:"بها",favoritesEmpty:"هێشتا چ بەرهەمێ دڵخواز نینە",ordersSoon:"پەڕا داواکاریان دێ گەها پاشی",profileSoon:"پەڕا پروفایلێ دێ گەها پاشی"},
-  sorani:{view:"بینین",home:"سەرەکی",favorites:"دڵخوازەکان",orders:"داواکارییەکان",profile:"پڕۆفایل",inStock:"بەردەستە",price:"نرخ",favoritesEmpty:"هێشتا هیچ بەرهەمێکی دڵخواز نییە",ordersSoon:"پەڕەی داواکارییەکان دواتر زیاد دەکرێت",profileSoon:"پەڕەی پڕۆفایل دواتر زیاد دەکرێت"}
-};
 
-const uiText=key=>pageLabels[currentLanguage]?.[key]||pageLabels.en[key]||key;
+  en:{
+    view:"View",
+    home:"Home",
+    favorites:"Favorites",
+    orders:"Orders",
+    profile:"Profile",
+    price:"Price",
+    favoritesEmpty:"No favorite products yet",
+    loadingProducts:"Loading products...",
+    loadError:"Unable to load products from the store database.",
+    noProducts:"No products found"
+  },
 
+  ar:{
+    view:"عرض",
+    home:"الرئيسية",
+    favorites:"المفضلة",
+    orders:"الطلبات",
+    profile:"الحساب",
+    price:"السعر",
+    favoritesEmpty:"لا توجد منتجات مفضلة بعد",
+    loadingProducts:"جاري تحميل المنتجات...",
+    loadError:"تعذر تحميل المنتجات من قاعدة بيانات المتجر.",
+    noProducts:"لا توجد منتجات"
+  },
 
-function viewItem(id){
-  window.location.href=`itemdetails.html?id=${id}`;
-}
+  badini:{
+    view:"بینین",
+    home:"سەرەکی",
+    favorites:"دڵخواز",
+    orders:"داواکاری",
+    profile:"پروفایل",
+    price:"بها",
+    favoritesEmpty:"هێشتا چ بەرهەمێ دڵخواز نینە",
+    loadingProducts:"بەرهەم دهێنە بارکرن...",
+    loadError:"بەرهەم ژ داتابەیسا فرۆشگەهێ نەهاتنە بارکرن.",
+    noProducts:"هیچ بەرهەمەک نەهات دیتن"
+  },
 
-function isFavorite(id){
-  return favorites.includes(id);
-}
-
-function toggleFavorite(id,event){
-  if(event) event.stopPropagation();
-
-  if(isFavorite(id)){
-    favorites=favorites.filter(itemId=>itemId!==id);
-  }else{
-    favorites.push(id);
+  sorani:{
+    view:"بینین",
+    home:"سەرەکی",
+    favorites:"دڵخوازەکان",
+    orders:"داواکارییەکان",
+    profile:"پڕۆفایل",
+    price:"نرخ",
+    favoritesEmpty:"هێشتا هیچ بەرهەمێکی دڵخواز نییە",
+    loadingProducts:"بەرهەمەکان بار دەکرێن...",
+    loadError:"نەتوانرا بەرهەمەکان لە بنکەدراوەی فرۆشگا بار بکرێن.",
+    noProducts:"هیچ بەرهەمێک نەدۆزرایەوە"
   }
 
-  localStorage.setItem("pool_favorites",JSON.stringify(favorites));
+};
+
+
+const uiText=key=>
+  pageLabels[currentLanguage]?.[key]
+  ||pageLabels.en[key]
+  ||key;
+
+
+const money=value=>
+  `$${Number(value||0).toLocaleString()}`;
+
+
+/* =========================================================
+   SAFE OUTPUT
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   LOCALIZED PRODUCT DATA
+========================================================= */
+
+function languageSuffix(){
+
+  if(currentLanguage==="ar"){
+    return "ar";
+  }
+
+  if(currentLanguage==="badini"){
+    return "badini";
+  }
+
+  if(currentLanguage==="sorani"){
+    return "sorani";
+  }
+
+  return "en";
+}
+
+
+function productName(product){
+
+  const suffix=
+    languageSuffix();
+
+  return product[`name_${suffix}`]
+    ||product.name_en
+    ||product.name
+    ||"LUX LINE Product";
+}
+
+
+function productCategory(product){
+
+  const suffix=
+    languageSuffix();
+
+  return product[`category_${suffix}`]
+    ||product.category_en
+    ||product.category_code
+    ||"";
+}
+
+
+function productDescription(product){
+
+  const suffix=
+    languageSuffix();
+
+  return product[`description_${suffix}`]
+    ||product.description_en
+    ||product.description
+    ||"";
+}
+
+
+/* =========================================================
+   PRODUCT IMAGES
+========================================================= */
+
+function normalizedImages(product){
+
+  const images=
+    Array.isArray(product.product_images)
+      ?[...product.product_images]
+      :[];
+
+
+  images.sort((a,b)=>
+    Number(a.sort_order||0)
+    -
+    Number(b.sort_order||0)
+  );
+
+
+  return images;
+}
+
+
+function primaryImage(product){
+
+  const images=
+    normalizedImages(product);
+
+
+  const primary=
+    images.find(
+      image=>image.is_primary
+    );
+
+
+  return primary?.image_url
+    ||images[0]?.image_url
+    ||product.image_url
+    ||"https://placehold.co/900x700/E0D6C8/35100F?text=LUX+LINE";
+}
+
+
+/* =========================================================
+   FETCH REAL PRODUCTS FROM SUPABASE
+========================================================= */
+
+async function loadProducts(){
+
+  productsLoaded=false;
+  productsLoadError="";
+
+  renderProducts();
+
+
+  try{
+
+    if(
+      !window.sb
+      ||
+      !window.sb.from
+    ){
+
+      throw new Error(
+        "Supabase client is not configured. Check supabaseClient.js."
+      );
+    }
+
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("products")
+      .select(`
+        *,
+        product_images (
+          id,
+          image_url,
+          sort_order,
+          is_primary
+        )
+      `)
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    products=
+      (data||[])
+      .map(row=>({
+
+        ...row,
+
+        id:
+          Number(row.id),
+
+        price:
+          Number(row.price||0),
+
+        category:
+          row.category_code||"",
+
+        image:
+          primaryImage(row)
+
+      }))
+      .filter(
+        product=>
+          Number.isFinite(product.id)
+      );
+
+
+    productsLoaded=true;
+
+    renderProducts();
+
+  }catch(error){
+
+    console.error(
+      "Supabase products error:",
+      error
+    );
+
+
+    products=[];
+
+    productsLoaded=true;
+
+    productsLoadError=
+      error?.message
+      ||"Unable to load products.";
+
+    renderProducts();
+
+  }
+
+}
+
+
+/* =========================================================
+   VIEW PRODUCT
+========================================================= */
+
+function viewItem(id){
+
+  const product=
+    products.find(
+      item=>
+        Number(item.id)===
+        Number(id)
+    );
+
+
+  if(product){
+
+    sessionStorage.setItem(
+      "luxline_selected_product",
+      JSON.stringify(product)
+    );
+
+  }
+
+
+  window.location.href=
+    `itemdetails.html?id=${encodeURIComponent(id)}`;
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function isFavorite(id){
+
+  return favorites.includes(
+    Number(id)
+  );
+}
+
+
+function toggleFavorite(
+  id,
+  event
+){
+
+  if(event){
+    event.stopPropagation();
+  }
+
+
+  const productId=
+    Number(id);
+
+
+  if(isFavorite(productId)){
+
+    favorites=
+      favorites.filter(
+        itemId=>
+          itemId!==productId
+      );
+
+  }else{
+
+    favorites.push(
+      productId
+    );
+
+  }
+
+
+  localStorage.setItem(
+    "pool_favorites",
+    JSON.stringify(favorites)
+  );
+
+
   updateFavoriteCount();
+
   renderProducts();
 }
 
 
 function updateFavoriteCount(){
-  const badge=$("favoriteFilterCount");
-  if(badge) badge.textContent=favorites.length;
+
+  const badge=
+    $("favoriteFilterCount");
+
+
+  if(badge){
+
+    badge.textContent=
+      favorites.length;
+
+  }
+
 }
 
+
+/* =========================================================
+   LOCAL HEADER LABELS
+========================================================= */
 
 function updateLocalLabels(){
-  document.querySelectorAll("[data-local-i18n]").forEach(el=>{
-    el.textContent=uiText(el.dataset.localI18n);
-  });
+
+  document
+    .querySelectorAll(
+      "[data-local-i18n]"
+    )
+    .forEach(el=>{
+
+      el.textContent=
+        uiText(
+          el.dataset.localI18n
+        );
+
+    });
+
 }
 
+
+/* =========================================================
+   CART TOTAL
+========================================================= */
 
 function total(){
 
-  return cart.reduce((sum,item)=>{
+  return cart.reduce(
+    (sum,item)=>{
 
-    const product=
-      products.find(
-        product=>product.id===item.id
-      );
+      const product=
+        products.find(
+          product=>
+            Number(product.id)===
+            Number(item.id)
+        );
 
-    return sum+
-      (
+
+      const price=
         product
-          ? product.price*item.quantity
-          : 0
-      );
+          ?Number(product.price||0)
+          :Number(item.price||0);
 
-  },0);
+
+      return sum+
+        price*
+        Number(item.quantity||0);
+
+    },
+    0
+  );
+
 }
 
 
+/* =========================================================
+   PRODUCTS GRID
+========================================================= */
+
 function renderProducts(){
 
+  if(!grid){
+    return;
+  }
+
+
+  if(!productsLoaded){
+
+    grid.innerHTML=`
+
+      <div class="products-state">
+
+        <i class="fa-solid fa-spinner products-loading-icon"></i>
+
+        <h3>
+          ${escapeHtml(uiText("loadingProducts"))}
+        </h3>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  if(productsLoadError){
+
+    grid.innerHTML=`
+
+      <div class="products-state">
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+        <h3>
+          ${escapeHtml(uiText("loadError"))}
+        </h3>
+
+        <p>
+          ${escapeHtml(productsLoadError)}
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
   const query=
-    search.value
-      .trim()
-      .toLowerCase();
+    search
+      ?search.value
+        .trim()
+        .toLowerCase()
+      :"";
+
 
   const list=
     products.filter(product=>{
 
+      const productId=
+        Number(product.id);
+
+
       const categoryMatch=
-        selectedCategory==="all" ||
-        (selectedCategory==="favorites" && isFavorite(product.id)) ||
-        product.category===selectedCategory;
+        selectedCategory==="all"
+        ||
+        (
+          selectedCategory==="favorites"
+          &&
+          isFavorite(productId)
+        )
+        ||
+        product.category_code===
+          selectedCategory;
+
+
+      const searchableText=[
+        productName(product),
+        productCategory(product),
+        productDescription(product),
+        product.category_code
+      ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
 
       const searchMatch=
-        t(product.nameKey)
-          .toLowerCase()
-          .includes(query);
+        !query
+        ||
+        searchableText.includes(
+          query
+        );
 
-      return categoryMatch && searchMatch;
+
+      return categoryMatch
+        &&
+        searchMatch;
+
     });
 
 
   if(!list.length){
 
     grid.innerHTML=`
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:70px;
-        color:#776a62
-      ">
 
-        <i
-          class="fa-solid fa-magnifying-glass"
-          style="
-            font-size:28px;
-            color:#35100f;
-            margin-bottom:13px
-          "
-        ></i>
+      <div class="products-state">
+
+        <i class="fa-solid ${
+          selectedCategory==="favorites"
+            ?"fa-heart"
+            :"fa-magnifying-glass"
+        }"></i>
 
         <h3>
-          ${selectedCategory==="favorites" ? uiText("favoritesEmpty") : t("noProducts")}
+          ${
+            selectedCategory==="favorites"
+              ?escapeHtml(uiText("favoritesEmpty"))
+              :escapeHtml(
+                  t("noProducts")!=="noProducts"
+                    ?t("noProducts")
+                    :uiText("noProducts")
+                )
+          }
         </h3>
 
       </div>
+
     `;
 
     return;
@@ -3721,100 +4248,228 @@ function renderProducts(){
 
 
   grid.innerHTML=
-    list.map(product=>`
+    list
+    .map(product=>{
 
-      <article class="product">
+      const id=
+        Number(product.id);
 
-        <div class="product-image-wrap">
-          <img
-            src="${product.image}"
-            alt="${t(product.nameKey)}"
-            loading="lazy"
-          >
 
-          <span class="card-category-badge">
-            ${t(product.category)}
-          </span>
+      const name=
+        productName(product);
 
-          <button
-            class="card-favorite ${isFavorite(product.id) ? "active" : ""}"
-            type="button"
-            onclick="toggleFavorite(${product.id},event)"
-            aria-label="Favorite"
-          >
-            <i class="${isFavorite(product.id) ? "fa-solid" : "fa-regular"} fa-heart"></i>
-          </button>
-        </div>
 
-        <div class="product-card">
+      const category=
+        productCategory(product);
 
-          <div class="product-name">
-            ${t(product.nameKey)}
-          </div>
 
-          <div class="product-meta-row">
-            <div class="rating">
-              <i class="fa-solid fa-star"></i>
-              <span>${product.rating}</span>
-            </div>
+      const description=
+        productDescription(product);
 
-            <span class="stock-text">
-              ${uiText("inStock")}
+
+      const image=
+        product.image
+        ||primaryImage(product);
+
+
+      return`
+
+        <article
+          class="product"
+          data-product-id="${id}"
+        >
+
+          <div class="product-image-wrap">
+
+            <img
+              src="${escapeHtml(image)}"
+              alt="${escapeHtml(name)}"
+              loading="lazy"
+              draggable="false"
+              onerror="this.src='https://placehold.co/900x700/E0D6C8/35100F?text=LUX+LINE'"
+            >
+
+
+            <span class="card-category-badge">
+              ${escapeHtml(category)}
             </span>
+
+
+            <button
+              class="card-favorite ${
+                isFavorite(id)
+                  ?"active"
+                  :""
+              }"
+              type="button"
+              onclick="toggleFavorite(${id},event)"
+              aria-label="Favorite"
+            >
+
+              <i
+                class="${
+                  isFavorite(id)
+                    ?"fa-solid"
+                    :"fa-regular"
+                } fa-heart"
+              ></i>
+
+            </button>
+
           </div>
 
-          <div class="product-bottom">
-            <div class="price-block">
-              <small>${uiText("price")}</small>
-              <div class="product-price">${money(product.price)}</div>
+
+          <div class="product-card">
+
+            <div class="product-name">
+              ${escapeHtml(name)}
             </div>
 
-            <div class="product-actions">
-              <button
-                class="view-btn"
-                onclick="viewItem(${product.id})"
-                type="button"
-              >
-                <i class="fa-regular fa-eye"></i>
-                <span>${uiText("view")}</span>
-              </button>
 
-              <button
-                class="add-btn"
-                onclick="addToCart(${product.id})"
-                title="${t("addToCart")}"
-                type="button"
-              >
-                <i class="fa-solid fa-bag-shopping"></i>
-              </button>
+            ${
+              description
+                ?`
+                  <p class="product-db-description">
+                    ${escapeHtml(description)}
+                  </p>
+                `
+                :""
+            }
+
+
+            <div class="product-bottom">
+
+              <div class="price-block">
+
+                <small>
+                  ${escapeHtml(uiText("price"))}
+                </small>
+
+                <div class="product-price">
+                  ${money(product.price)}
+                </div>
+
+              </div>
+
+
+              <div class="product-actions">
+
+                <button
+                  class="view-btn"
+                  onclick="viewItem(${id})"
+                  type="button"
+                >
+
+                  <i class="fa-regular fa-eye"></i>
+
+                  <span>
+                    ${escapeHtml(uiText("view"))}
+                  </span>
+
+                </button>
+
+
+                <button
+                  class="add-btn"
+                  onclick="addToCart(${id})"
+                  title="${escapeHtml(t("addToCart"))}"
+                  type="button"
+                >
+
+                  <i class="fa-solid fa-bag-shopping"></i>
+
+                </button>
+
+              </div>
+
             </div>
+
           </div>
 
-        </div>
+        </article>
 
-      </article>
+      `;
 
-    `).join("");
+    })
+    .join("");
+
 }
 
 
+/* =========================================================
+   CART
+========================================================= */
+
 function addToCart(id){
+
+  const productId=
+    Number(id);
+
+
+  const product=
+    products.find(
+      item=>
+        Number(item.id)===
+        productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
 
   const item=
     cart.find(
-      item=>item.id===id
+      item=>
+        Number(item.id)===
+        productId
     );
 
+
   if(item){
-    item.quantity++;
+
+    item.quantity=
+      Number(item.quantity||0)+1;
+
+    item.name=
+      productName(product);
+
+    item.price=
+      Number(product.price||0);
+
+    item.image=
+      product.image;
+
   }else{
+
     cart.push({
-      id,
-      quantity:1
+
+      id:
+        productId,
+
+      quantity:
+        1,
+
+      name:
+        productName(product),
+
+      price:
+        Number(product.price||0),
+
+      image:
+        product.image,
+
+      category_code:
+        product.category_code||""
+
     });
+
   }
 
+
   saveCart();
+
 
   showToast(
     t("addedToCart")
@@ -3823,166 +4478,504 @@ function addToCart(id){
 
 
 function updateCartCount(){
-  const count=cart.reduce((sum,item)=>sum+item.quantity,0);
-  const badge=$("cartCount");
-  if(badge) badge.textContent=count;
+
+  const count=
+    cart.reduce(
+      (sum,item)=>
+        sum+
+        Number(item.quantity||0),
+      0
+    );
+
+
+  const badge=
+    $("cartCount");
+
+
+  if(badge){
+
+    badge.textContent=
+      count;
+
+  }
+
 }
 
+
 function saveCart(){
-  localStorage.setItem("pool_cart",JSON.stringify(cart));
+
+  localStorage.setItem(
+    "pool_cart",
+    JSON.stringify(cart)
+  );
+
+
   updateCartCount();
 }
 
+
+/* =========================================================
+   TOAST
+========================================================= */
+
 let toastTimer;
+
 
 function showToast(message){
 
-  $("toastText").textContent=
+  const toastText=
+    $("toastText");
+
+
+  const toast=
+    $("toast");
+
+
+  if(
+    !toastText
+    ||
+    !toast
+  ){
+    return;
+  }
+
+
+  toastText.textContent=
     message;
 
-  $("toast")
-    .classList.add("show");
 
-  clearTimeout(toastTimer);
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
 
   toastTimer=
     setTimeout(()=>{
 
-      $("toast")
-        .classList.remove("show");
+      toast.classList.remove(
+        "show"
+      );
 
     },2400);
 }
 
 
+/* =========================================================
+   CATEGORY FILTERS
+========================================================= */
+
 document
-  .querySelectorAll(".category-btn")
+  .querySelectorAll(
+    ".category-btn"
+  )
   .forEach(button=>{
 
     button.onclick=()=>{
 
       document
-        .querySelectorAll(".category-btn")
+        .querySelectorAll(
+          ".category-btn"
+        )
         .forEach(btn=>
-          btn.classList.remove("active")
+          btn.classList.remove(
+            "active"
+          )
         );
 
-      button.classList.add("active");
+
+      button.classList.add(
+        "active"
+      );
+
 
       selectedCategory=
         button.dataset.category;
 
+
       renderProducts();
+
     };
 
   });
 
 
-search.oninput=
-  renderProducts;
+if(search){
+
+  search.oninput=
+    renderProducts;
+
+}
 
 
-language.onchange=e=>{
-  setLanguage(
-    e.target.value
+if(language){
+
+  language.onchange=
+    event=>{
+
+      setLanguage(
+        event.target.value
+      );
+
+    };
+
+}
+
+
+/* =========================================================
+   LUX LINE ANIMATED HEADER
+========================================================= */
+
+const siteHeader=
+  document.getElementById(
+    "siteHeader"
   );
-};
 
 
+const menuToggle=
+  document.getElementById(
+    "menuToggle"
+  );
 
-/* LUX LINE animated header */
-const siteHeader=document.getElementById("siteHeader");
-const menuToggle=document.getElementById("menuToggle");
-const mobileMenu=document.getElementById("mobileMenu");
+
+const mobileMenu=
+  document.getElementById(
+    "mobileMenu"
+  );
+
 
 function closeHeaderMenu(){
-  if(!menuToggle||!mobileMenu)return;
-  menuToggle.classList.remove("open");
-  mobileMenu.classList.remove("open");
-  menuToggle.setAttribute("aria-expanded","false");
+
+  if(
+    !menuToggle
+    ||
+    !mobileMenu
+  ){
+    return;
+  }
+
+
+  menuToggle.classList.remove(
+    "open"
+  );
+
+
+  mobileMenu.classList.remove(
+    "open"
+  );
+
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    "false"
+  );
 }
+
 
 function setHeaderActive(section){
-  document.querySelectorAll(".desktop-nav .nav-link[data-section]").forEach(link=>{
-    link.classList.toggle("active",link.dataset.section===section);
-  });
-  document.querySelectorAll(".mobile-header-menu a[data-mobile-section]").forEach(link=>{
-    link.classList.toggle("active",link.dataset.mobileSection===section);
-  });
+
+  document
+    .querySelectorAll(
+      ".desktop-nav .nav-link[data-section]"
+    )
+    .forEach(link=>{
+
+      link.classList.toggle(
+        "active",
+        link.dataset.section===
+          section
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      ".mobile-header-menu a[data-mobile-section]"
+    )
+    .forEach(link=>{
+
+      link.classList.toggle(
+        "active",
+        link.dataset.mobileSection===
+          section
+      );
+
+    });
+
 }
 
-menuToggle?.addEventListener("click",()=>{
-  const open=!mobileMenu.classList.contains("open");
-  menuToggle.classList.toggle("open",open);
-  mobileMenu.classList.toggle("open",open);
-  menuToggle.setAttribute("aria-expanded",String(open));
-});
 
-window.addEventListener("scroll",()=>{
-  siteHeader?.classList.toggle("scrolled",window.scrollY>24);
-},{passive:true});
+menuToggle?.addEventListener(
+  "click",
+  ()=>{
 
-document.querySelectorAll(".desktop-nav a[href^='#'],.mobile-header-menu a[href^='#']").forEach(link=>{
-  link.addEventListener("click",()=>{
-    if(link.getAttribute("href")!=="#") closeHeaderMenu();
+    const open=
+      !mobileMenu.classList.contains(
+        "open"
+      );
+
+
+    menuToggle.classList.toggle(
+      "open",
+      open
+    );
+
+
+    mobileMenu.classList.toggle(
+      "open",
+      open
+    );
+
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+  }
+);
+
+
+window.addEventListener(
+  "scroll",
+  ()=>{
+
+    siteHeader?.classList.toggle(
+      "scrolled",
+      window.scrollY>24
+    );
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+document
+  .querySelectorAll(
+    ".desktop-nav a[href^='#'],.mobile-header-menu a[href^='#']"
+  )
+  .forEach(link=>{
+
+    link.addEventListener(
+      "click",
+      ()=>{
+
+        if(
+          link.getAttribute(
+            "href"
+          )!=="#"
+        ){
+          closeHeaderMenu();
+        }
+
+      }
+    );
+
   });
-});
 
-const headerSections=["home","shop"]
-  .map(id=>document.getElementById(id))
-  .filter(Boolean);
 
-if("IntersectionObserver" in window){
-  const sectionObserver=new IntersectionObserver(entries=>{
-    const visible=entries
-      .filter(entry=>entry.isIntersecting)
-      .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+const headerSections=[
+  "home",
+  "shop"
+]
+.map(
+  id=>
+    document.getElementById(id)
+)
+.filter(Boolean);
 
-    if(!visible)return;
-    setHeaderActive(visible.target.id);
-  },{rootMargin:"-25% 0px -55% 0px",threshold:[0,.1,.25,.5]});
 
-  headerSections.forEach(section=>sectionObserver.observe(section));
+if(
+  "IntersectionObserver"
+  in window
+){
+
+  const sectionObserver=
+    new IntersectionObserver(
+      entries=>{
+
+        const visible=
+          entries
+          .filter(
+            entry=>
+              entry.isIntersecting
+          )
+          .sort(
+            (a,b)=>
+              b.intersectionRatio
+              -
+              a.intersectionRatio
+          )[0];
+
+
+        if(!visible){
+          return;
+        }
+
+
+        setHeaderActive(
+          visible.target.id
+        );
+
+      },
+      {
+        rootMargin:
+          "-25% 0px -55% 0px",
+
+        threshold:[
+          0,
+          .1,
+          .25,
+          .5
+        ]
+      }
+    );
+
+
+  headerSections.forEach(
+    section=>
+      sectionObserver.observe(
+        section
+      )
+  );
+
 }
+
+
+/* =========================================================
+   LANGUAGE REFRESH
+========================================================= */
 
 window.refreshDynamicContent=()=>{
 
-  language.value=
-    currentLanguage;
+  if(language){
+
+    language.value=
+      currentLanguage;
+
+  }
+
 
   updateLocalLabels();
+
   updateFavoriteCount();
+
   renderProducts();
+
   updateCartCount();
+
 };
 
 
+/* =========================================================
+   START
+========================================================= */
+
 initializeLanguage();
-document.title="LUX LINE | Premium Billiards";
+
+document.title=
+  "LUX LINE | Premium Billiards";
+
+
 updateLocalLabels();
+
 updateFavoriteCount();
-renderProducts();
+
 updateCartCount();
 
-/* Prevent Ctrl/Cmd +/-/0, Ctrl/Cmd+wheel and gesture zoom. */
+loadProducts();
+
+
+/* =========================================================
+   PAGE PROTECTION
+========================================================= */
+
 (function protectPageZoom(){
-  document.addEventListener("keydown",function(event){
-    if((event.ctrlKey||event.metaKey) && ["+","=","-","0"].includes(event.key)){
-      event.preventDefault();
-    }
-  },{passive:false});
 
-  document.addEventListener("wheel",function(event){
-    if(event.ctrlKey||event.metaKey){
-      event.preventDefault();
-    }
-  },{passive:false});
+  document.addEventListener(
+    "keydown",
+    function(event){
 
-  ["gesturestart","gesturechange","gestureend"].forEach(function(type){
-    document.addEventListener(type,function(event){
-      event.preventDefault();
-    },{passive:false});
-  });
+      if(
+        (
+          event.ctrlKey
+          ||
+          event.metaKey
+        )
+        &&
+        [
+          "+",
+          "=",
+          "-",
+          "0"
+        ]
+        .includes(
+          event.key
+        )
+      ){
+
+        event.preventDefault();
+
+      }
+
+    },
+    {
+      passive:false
+    }
+  );
+
+
+  document.addEventListener(
+    "wheel",
+    function(event){
+
+      if(
+        event.ctrlKey
+        ||
+        event.metaKey
+      ){
+
+        event.preventDefault();
+
+      }
+
+    },
+    {
+      passive:false
+    }
+  );
+
+
+  [
+    "gesturestart",
+    "gesturechange",
+    "gestureend"
+  ]
+  .forEach(
+    function(type){
+
+      document.addEventListener(
+        type,
+        function(event){
+
+          event.preventDefault();
+
+        },
+        {
+          passive:false
+        }
+      );
+
+    }
+  );
+
 })();
 
 </script>
