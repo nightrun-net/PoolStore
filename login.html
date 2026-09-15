@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+>
+
+<title>LUX LINE | Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --brown:#35100f;
+  --brown2:#4c1916;
+  --gold:#b18445;
+
+  --text:#291a17;
+  --muted:#7c6d64;
+
+  --line:rgba(62,38,30,.11);
+
+  --green:#55734e;
+  --red:#a8433d;
+}
+
+html{
+  touch-action:manipulation;
+}
+
+body{
+  min-height:100vh;
+
+  padding:28px;
+
+  font-family:"DM Sans",Arial,sans-serif;
+
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(238,203,148,.50),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 90% 8%,
+      rgba(81,63,52,.30),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #aaa08e,
+      #d7cbbb 48%,
+      #958879
+    );
+
+  display:grid;
+  place-items:center;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.auth-shell{
+  width:min(1080px,100%);
+  min-height:650px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.40);
+  border-radius:35px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(241,234,224,.97),
+      rgba(216,205,188,.96)
+    );
+
+  box-shadow:
+    0 38px 120px rgba(46,31,24,.30);
+
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+}
+
+.brand-side{
+  min-height:650px;
+
+  padding:58px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255,255,255,.12),
+      transparent 25%
+    ),
+    linear-gradient(
+      145deg,
+      #35100f,
+      #693429
+    );
+
+  color:#fff;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.brand-side::before,
+.brand-side::after{
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  pointer-events:none;
+}
+
+.brand-side::before{
+  width:420px;
+  height:420px;
+
+  right:-170px;
+  top:-120px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 0 0 38px rgba(255,255,255,.025),
+    0 0 0 76px rgba(255,255,255,.018);
+}
+
+.brand-side::after{
+  width:220px;
+  height:220px;
+
+  left:-90px;
+  bottom:-80px;
+
+  background:rgba(177,132,69,.12);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+
+  position:relative;
+  z-index:2;
+}
+
+.brand-logo{
+  width:62px;
+  height:62px;
+
+  padding:4px;
+
+  border-radius:19px;
+
+  background:rgba(255,255,255,.94);
+
+  overflow:hidden;
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.18);
+}
+
+.brand-logo img{
+  width:100%;
+  height:100%;
+
+  border-radius:15px;
+
+  object-fit:cover;
+}
+
+.brand-copy strong{
+  display:block;
+
+  font-family:"Manrope",sans-serif;
+
+  font-size:22px;
+  font-weight:800;
+
+  letter-spacing:3.4px;
+}
+
+.brand-copy small{
+  display:block;
+
+  margin-top:4px;
+
+  color:#dbc39e;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:2.2px;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+}
+
+.hero-copy small{
+  color:#e1c399;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1.8px;
+}
+
+.hero-copy h1{
+  max-width:470px;
+
+  margin-top:10px;
+
+  font-family:"Manrope",sans-serif;
+
+  font-size:clamp(39px,5vw,58px);
+  line-height:1.02;
+
+  letter-spacing:-2px;
+}
+
+.hero-copy p{
+  max-width:460px;
+
+  margin-top:15px;
+
+  color:rgba(255,255,255,.68);
+
+  font-size:13px;
+  line-height:1.8;
+}
+
+.brand-footer{
+  position:relative;
+  z-index:2;
+
+  color:rgba(255,255,255,.55);
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.form-side{
+  padding:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.auth-card{
+  width:min(430px,100%);
+}
+
+.top-row{
+  margin-bottom:24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.back-home{
+  min-height:42px;
+
+  padding:0 13px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.46);
+  color:var(--brown);
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.language-select{
+  height:42px;
+
+  padding:0 10px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:rgba(255,255,255,.46);
+  color:var(--brown);
+
+  outline:0;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.auth-card > small{
+  color:#8a796f;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1.5px;
+}
+
+.auth-card h2{
+  margin-top:6px;
+
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+
+  font-size:35px;
+  line-height:1.08;
+}
+
+.auth-card > p{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.7;
+}
+
+.tabs{
+  margin:22px 0 18px;
+
+  padding:5px;
+
+  border:1px solid var(--line);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.35);
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+}
+
+.tab-btn{
+  min-height:42px;
+
+  border:0;
+  border-radius:11px;
+
+  background:transparent;
+  color:#7c6d64;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.tab-btn.active{
+  background:var(--brown);
+  color:#fff;
+
+  box-shadow:
+    0 9px 20px rgba(53,16,15,.14);
+}
+
+.auth-form{
+  display:none;
+}
+
+.auth-form.active{
+  display:block;
+}
+
+.group{
+  margin-bottom:12px;
+}
+
+.group label{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#5f5048;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.input-wrap{
+  min-height:50px;
+
+  padding:0 13px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  background:rgba(255,255,255,.55);
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  transition:.2s ease;
+}
+
+.input-wrap:focus-within{
+  border-color:rgba(53,16,15,.35);
+
+  box-shadow:
+    0 0 0 4px rgba(53,16,15,.05);
+}
+
+.input-wrap i{
+  width:18px;
+
+  color:var(--gold);
+
+  text-align:center;
+}
+
+.input-wrap input,
+.input-wrap select,
+.input-wrap textarea{
+  width:100%;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+  color:var(--text);
+
+  font-size:12px;
+}
+
+.input-wrap input,
+.input-wrap select{
+  height:48px;
+}
+
+.input-wrap select{
+  cursor:pointer;
+}
+
+.input-wrap.textarea-wrap{
+  min-height:92px;
+  align-items:flex-start;
+  padding-top:10px;
+}
+
+.input-wrap textarea{
+  min-height:72px;
+  padding:4px 0 10px;
+  resize:vertical;
+}
+
+.password-toggle{
+  width:34px;
+  height:34px;
+
+  flex:0 0 34px;
+
+  border:0;
+  border-radius:10px;
+
+  background:transparent;
+  color:#85756b;
+}
+
+.submit-btn{
+  width:100%;
+  height:52px;
+
+  margin-top:6px;
+
+  border:0;
+  border-radius:15px;
+
+  background:var(--brown);
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  font-size:11px;
+  font-weight:900;
+
+  box-shadow:
+    0 14px 28px rgba(53,16,15,.17);
+}
+
+.submit-btn:hover{
+  background:var(--brown2);
+}
+
+.submit-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.message{
+  display:none;
+
+  margin-top:13px;
+
+  padding:12px;
+
+  border-radius:13px;
+
+  font-size:10px;
+  font-weight:900;
+  line-height:1.6;
+}
+
+.message.show{
+  display:block;
+}
+
+.message.success{
+  background:rgba(85,115,78,.10);
+  color:var(--green);
+}
+
+.message.error{
+  background:rgba(168,67,61,.10);
+  color:var(--red);
+}
+
+.login-note{
+  margin-top:17px;
+
+  color:#7e7066;
+
+  text-align:center;
+
+  font-size:9px;
+  line-height:1.65;
+}
+
+html[dir="rtl"] body{
+  direction:rtl;
+}
+
+html[dir="rtl"] .back-home i{
+  transform:rotate(180deg);
+}
+
+@media(max-width:850px){
+  body{
+    padding:15px;
+  }
+
+  .auth-shell{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+
+  .brand-side{
+    min-height:300px;
+    padding:34px;
+  }
+
+  .brand-footer{
+    display:none;
+  }
+
+  .form-side{
+    padding:32px 22px 38px;
+  }
+}
+
+@media(max-width:520px){
+  body{
+    padding:0;
+    background:#b9ae9a;
+  }
+
+  .auth-shell{
+    min-height:100vh;
+
+    border:0;
+    border-radius:0;
+  }
+
+  .brand-side{
+    min-height:250px;
+
+    padding:25px 20px;
+  }
+
+  .brand-logo{
+    width:50px;
+    height:50px;
+  }
+
+  .brand-copy strong{
+    font-size:17px;
+  }
+
+  .brand-copy small{
+    font-size:6px;
+  }
+
+  .hero-copy h1{
+    font-size:34px;
+  }
+
+  .hero-copy p{
+    font-size:11px;
+  }
+
+  .form-side{
+    padding:26px 17px 40px;
+  }
+
+  .auth-card h2{
+    font-size:30px;
+  }
+
+  .back-home span{
+    display:none;
+  }
+
+  .back-home{
+    width:42px;
+    padding:0;
+    justify-content:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-shell">
+
+  <section class="brand-side">
+
+    <a
+      href="index.html"
+      class="brand"
+      aria-label="LUX LINE"
+    >
+
+      <span class="brand-logo">
+
+        <img
+          src="lux_line_billiards_emblem.png"
+          alt="LUX LINE"
+          onerror="this.src='https://placehold.co/120x120/35100F/FFFFFF?text=LL'"
+        >
+
+      </span>
+
+      <span class="brand-copy">
+        <strong>LUX LINE</strong>
+        <small>PREMIUM BILLIARDS</small>
+      </span>
+
+    </a>
+
+
+    <div class="hero-copy">
+
+      <small>
+        LUX LINE · CUSTOMER ACCOUNT
+      </small>
+
+      <h1 id="heroTitle">
+        Your billiards experience, connected.
+      </h1>
+
+      <p id="heroText">
+        Login to place orders and keep your LUX LINE shopping experience connected to your account.
+      </p>
+
+    </div>
+
+
+    <div class="brand-footer">
+      Premium billiards equipment · LUX LINE
+    </div>
+
+  </section>
+
+
+  <section class="form-side">
+
+    <div class="auth-card">
+
+      <div class="top-row">
+
+        <a
+          href="index.html"
+          class="back-home"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+
+          <span id="homeText">
+            Home
+          </span>
+        </a>
+
+
+        <select
+          class="language-select"
+          id="languageSelect"
+          aria-label="Language"
+        >
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="badini">Badinî</option>
+          <option value="sorani">سۆرانی</option>
+        </select>
+
+      </div>
+
+
+      <small id="eyebrow">
+        CUSTOMER ACCOUNT
+      </small>
+
+      <h2 id="pageTitle">
+        Welcome back
+      </h2>
+
+      <p id="pageSubtitle">
+        Login to continue to LUX LINE.
+      </p>
+
+
+      <div class="tabs">
+
+        <button
+          class="tab-btn active"
+          id="loginTab"
+          type="button"
+        >
+          Login
+        </button>
+
+        <button
+          class="tab-btn"
+          id="registerTab"
+          type="button"
+        >
+          Register
+        </button>
+
+      </div>
+
+
+      <!-- LOGIN -->
+      <form
+        class="auth-form active"
+        id="loginForm"
+      >
+
+        <div class="group">
+
+          <label
+            for="loginEmail"
+            id="loginEmailLabel"
+          >
+            Email
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <input
+              id="loginEmail"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="loginPassword"
+            id="loginPasswordLabel"
+          >
+            Password
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+              id="loginPassword"
+              type="password"
+              autocomplete="current-password"
+              required
+              placeholder="••••••••"
+            >
+
+            <button
+              class="password-toggle"
+              type="button"
+              data-toggle-password="loginPassword"
+              aria-label="Show password"
+            >
+              <i class="fa-regular fa-eye"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="submit-btn"
+          id="loginBtn"
+          type="submit"
+        >
+          <i class="fa-solid fa-right-to-bracket"></i>
+
+          <span id="loginBtnText">
+            Login
+          </span>
+        </button>
+
+      </form>
+
+
+      <!-- REGISTER -->
+      <form
+        class="auth-form"
+        id="registerForm"
+      >
+
+        <div class="group">
+
+          <label
+            for="registerName"
+            id="registerNameLabel"
+          >
+            Full name
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-regular fa-user"></i>
+
+            <input
+              id="registerName"
+              type="text"
+              autocomplete="name"
+              required
+              placeholder="Your full name"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerPhone"
+            id="registerPhoneLabel"
+          >
+            Phone
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-phone"></i>
+
+            <input
+              id="registerPhone"
+              type="tel"
+              autocomplete="tel"
+              required
+              placeholder="0750 000 0000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerCity"
+            id="registerCityLabel"
+          >
+            City
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-city"></i>
+
+            <select
+              id="registerCity"
+              required
+            >
+              <option value="">
+                Select city
+              </option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerCityPlace"
+            id="registerCityPlaceLabel"
+          >
+            City Place / District
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-map-pin"></i>
+
+            <select
+              id="registerCityPlace"
+              required
+              disabled
+            >
+              <option value="">
+                Select district
+              </option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerLocation"
+            id="registerLocationLabel"
+          >
+            Location
+          </label>
+
+          <div class="input-wrap textarea-wrap">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <textarea
+              id="registerLocation"
+              required
+              placeholder="Street, building, nearby place..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerEmail"
+            id="registerEmailLabel"
+          >
+            Email
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <input
+              id="registerEmail"
+              type="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="registerPassword"
+            id="registerPasswordLabel"
+          >
+            Password
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+              id="registerPassword"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+              placeholder="At least 6 characters"
+            >
+
+            <button
+              class="password-toggle"
+              type="button"
+              data-toggle-password="registerPassword"
+              aria-label="Show password"
+            >
+              <i class="fa-regular fa-eye"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="group">
+
+          <label
+            for="confirmPassword"
+            id="confirmPasswordLabel"
+          >
+            Confirm password
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+              placeholder="Repeat password"
+            >
+
+            <button
+              class="password-toggle"
+              type="button"
+              data-toggle-password="confirmPassword"
+              aria-label="Show password"
+            >
+              <i class="fa-regular fa-eye"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="submit-btn"
+          id="registerBtn"
+          type="submit"
+        >
+          <i class="fa-solid fa-user-plus"></i>
+
+          <span id="registerBtnText">
+            Create account
+          </span>
+        </button>
+
+      </form>
+
+
+      <div
+        class="message"
+        id="message"
+      ></div>
+
+
+      <p
+        class="login-note"
+        id="loginNote"
+      >
+        Your password is handled securely by Supabase Authentication.
+      </p>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseClient.js"></script>
+
+<script>
+const $=id=>
+  document.getElementById(id);
+
+
+const text={
+
+  en:{
+    home:"Home",
+    heroTitle:"Your billiards experience, connected.",
+    heroText:"Login to place orders and keep your LUX LINE shopping experience connected to your account.",
+    eyebrow:"CUSTOMER ACCOUNT",
+    welcome:"Welcome back",
+    loginSub:"Login to continue to LUX LINE.",
+    registerTitle:"Create your account",
+    registerSub:"Register once, then login to continue.",
+    login:"Login",
+    register:"Register",
+    email:"Email",
+    password:"Password",
+    fullName:"Full name",
+    phone:"Phone",
+    city:"City",
+    selectCity:"Select city",
+    selectDistrict:"Select district",
+    cityPlace:"District",
+    cityPlacePh:"District, area or neighborhood",
+    location:"Location",
+    locationPh:"Street, building, nearby place...",
+    confirm:"Confirm password",
+    create:"Create account",
+    logging:"Logging in...",
+    creating:"Creating account...",
+    passwordMismatch:"Passwords do not match.",
+    registered:"Account created successfully. Please login with your new account.",
+    registeredConfirm:"Account created. If email confirmation is enabled, confirm your email first, then login.",
+    loginFailed:"Unable to login.",
+    registerFailed:"Unable to create account.",
+    note:"Your password is handled securely by Supabase Authentication."
+  },
+
+  ar:{
+    home:"الرئيسية",
+    heroTitle:"تجربة بلياردو متصلة بحسابك.",
+    heroText:"سجل الدخول لإرسال الطلبات وربط تجربة التسوق في LUX LINE بحسابك.",
+    eyebrow:"حساب العميل",
+    welcome:"مرحباً بعودتك",
+    loginSub:"سجل الدخول للمتابعة إلى LUX LINE.",
+    registerTitle:"إنشاء حساب",
+    registerSub:"أنشئ حساباً ثم سجل الدخول للمتابعة.",
+    login:"تسجيل الدخول",
+    register:"إنشاء حساب",
+    email:"البريد الإلكتروني",
+    password:"كلمة المرور",
+    fullName:"الاسم الكامل",
+    phone:"رقم الهاتف",
+    city:"المدينة",
+    selectCity:"اختر المدينة",
+    selectDistrict:"اختر المنطقة",
+    cityPlace:"المنطقة",
+    cityPlacePh:"اكتب المنطقة أو الحي",
+    location:"الموقع",
+    locationPh:"الشارع، المبنى، أو أقرب موقع معروف...",
+    confirm:"تأكيد كلمة المرور",
+    create:"إنشاء الحساب",
+    logging:"جاري تسجيل الدخول...",
+    creating:"جاري إنشاء الحساب...",
+    passwordMismatch:"كلمتا المرور غير متطابقتين.",
+    registered:"تم إنشاء الحساب بنجاح. سجل الدخول باستخدام حسابك الجديد.",
+    registeredConfirm:"تم إنشاء الحساب. إذا كان تأكيد البريد الإلكتروني مفعلاً، أكد بريدك أولاً ثم سجل الدخول.",
+    loginFailed:"تعذر تسجيل الدخول.",
+    registerFailed:"تعذر إنشاء الحساب.",
+    note:"يتم التعامل مع كلمة المرور بأمان بواسطة Supabase Authentication."
+  },
+
+  badini:{
+    home:"سەرەکی",
+    heroTitle:"ئەزموونا بیلیاردێ یا گرێدای ب هەژمارا تە.",
+    heroText:"بچو ژوور دا بشێی داواکارییان تۆمار بکەی و کڕینا LUX LINE ب هەژمارا خو گرێ بدەی.",
+    eyebrow:"هەژمارا کڕیاری",
+    welcome:"ب خێر هاتی",
+    loginSub:"بچو ژوور دا بەردەوام بی ل LUX LINE.",
+    registerTitle:"هەژمارەکێ چێبکە",
+    registerSub:"هەژمارەکێ چێبکە، پاشی بچو ژوور.",
+    login:"چوونەژوور",
+    register:"تۆمارکرن",
+    email:"ئیمەیڵ",
+    password:"وشەیا نهێنی",
+    fullName:"ناڤێ تەمام",
+    phone:"ژمارا تەلەفۆنێ",
+    city:"باژێر",
+    selectCity:"باژێر هەلبژێرە",
+    selectDistrict:"ناوچە هەلبژێرە",
+    cityPlace:"ناوچە",
+    cityPlacePh:"ناوچە، گەڕەک یان جهێ خو بنڤیسە",
+    location:"لوکەیشن",
+    locationPh:"شەقام، ئاڤاهی یان نیشانا نزیک بنڤیسە...",
+    confirm:"دووبارەکرنا وشەیا نهێنی",
+    create:"هەژمار چێبکە",
+    logging:"دهێیتە ژوور...",
+    creating:"هەژمار دهێتە چێکرن...",
+    passwordMismatch:"وشەیێن نهێنی وەک ئێک نینن.",
+    registered:"هەژمار ب سەرکەفتی هات چێکرن. نوکە ب هەژمارا نوی بچو ژوور.",
+    registeredConfirm:"هەژمار هات چێکرن. ئەگەر پشتڕاستکرنا ئیمەیڵێ چالاک بیت، ئیمەیلا خو پشتڕاست بکە پاشی بچو ژوور.",
+    loginFailed:"چوونەژوور سەرنەکەفت.",
+    registerFailed:"هەژمار نەهات چێکرن.",
+    note:"وشەیا نهێنی یا تە ب پاراستی ژ لایێ Supabase Authentication دهێتە بەڕێڤەبرن."
+  },
+
+  sorani:{
+    home:"سەرەکی",
+    heroTitle:"ئەزموونی بیلیاردی پەیوەست بە هەژمارەکەت.",
+    heroText:"بچۆ ژوورەوە بۆ تۆمارکردنی داواکاری و پەیوەستکردنی کڕینی LUX LINE بە هەژمارەکەت.",
+    eyebrow:"هەژماری کڕیار",
+    welcome:"بەخێربێیتەوە",
+    loginSub:"بچۆ ژوورەوە بۆ بەردەوامبوون لە LUX LINE.",
+    registerTitle:"هەژمارێک دروست بکە",
+    registerSub:"هەژمارێک دروست بکە، پاشان بچۆ ژوورەوە.",
+    login:"چوونەژوورەوە",
+    register:"تۆمارکردن",
+    email:"ئیمەیڵ",
+    password:"وشەی نهێنی",
+    fullName:"ناوی تەواو",
+    phone:"ژمارەی مۆبایل",
+    city:"شار",
+    selectCity:"شار هەڵبژێرە",
+    selectDistrict:"ناوچە هەڵبژێرە",
+    cityPlace:"ناوچە",
+    cityPlacePh:"ناوچە، گەڕەک یان شوێنەکەت بنووسە",
+    location:"شوێن",
+    locationPh:"شەقام، بینا یان نزیکترین نیشانە بنووسە...",
+    confirm:"دووبارەکردنەوەی وشەی نهێنی",
+    create:"دروستکردنی هەژمار",
+    logging:"چوونەژوورەوە...",
+    creating:"هەژمار دروست دەکرێت...",
+    passwordMismatch:"وشە نهێنییەکان یەکسان نین.",
+    registered:"هەژمارەکە سەرکەوتووانە دروستکرا. ئێستا بە هەژمارە نوێکەت بچۆ ژوورەوە.",
+    registeredConfirm:"هەژمارەکە دروستکرا. ئەگەر پشتڕاستکردنەوەی ئیمەیڵ چالاکە، سەرەتا ئیمەیڵەکەت پشتڕاست بکە و پاشان بچۆ ژوورەوە.",
+    loginFailed:"نەتوانرا بچیتە ژوورەوە.",
+    registerFailed:"نەتوانرا هەژمارەکە دروست بکرێت.",
+    note:"وشەی نهێنییەکەت بە پارێزراوی لەلایەن Supabase Authentication بەڕێوەدەبرێت."
+  }
+
+};
+
+
+let language=
+  localStorage.getItem(
+    "pool_language"
+  )||"en";
+
+
+let mode=
+  "login";
+
+
+function tr(key){
+
+  return text[language]?.[key]
+    ||text.en[key]
+    ||key;
+}
+
+
+function applyLanguage(){
+
+  document.documentElement.lang=
+    language==="ar"
+      ?"ar"
+      :language;
+
+
+  document.documentElement.dir=
+    [
+      "ar",
+      "badini",
+      "sorani"
+    ]
+    .includes(language)
+      ?"rtl"
+      :"ltr";
+
+
+  $("languageSelect").value=
+    language;
+
+
+  $("homeText").textContent=
+    tr("home");
+
+  $("heroTitle").textContent=
+    tr("heroTitle");
+
+  $("heroText").textContent=
+    tr("heroText");
+
+  $("eyebrow").textContent=
+    tr("eyebrow");
+
+  $("loginTab").textContent=
+    tr("login");
+
+  $("registerTab").textContent=
+    tr("register");
+
+  $("loginEmailLabel").textContent=
+    tr("email");
+
+  $("loginPasswordLabel").textContent=
+    tr("password");
+
+  $("registerNameLabel").textContent=
+    tr("fullName");
+
+  $("registerPhoneLabel").textContent=
+    tr("phone");
+
+  $("registerCityLabel").textContent=
+    tr("city");
+
+  $("registerCityPlaceLabel").textContent=
+    tr("cityPlace");
+
+
+  renderCityOptions();
+
+
+  renderDistrictOptions();
+
+  $("registerLocationLabel").textContent=
+    tr("location");
+
+  $("registerLocation").placeholder=
+    tr("locationPh");
+
+  $("registerEmailLabel").textContent=
+    tr("email");
+
+  $("registerPasswordLabel").textContent=
+    tr("password");
+
+  $("confirmPasswordLabel").textContent=
+    tr("confirm");
+
+  $("loginBtnText").textContent=
+    tr("login");
+
+  $("registerBtnText").textContent=
+    tr("create");
+
+  $("loginNote").textContent=
+    tr("note");
+
+
+  updateHeading();
+}
+
+
+function updateHeading(){
+
+  if(mode==="login"){
+
+    $("pageTitle").textContent=
+      tr("welcome");
+
+    $("pageSubtitle").textContent=
+      tr("loginSub");
+
+  }else{
+
+    $("pageTitle").textContent=
+      tr("registerTitle");
+
+    $("pageSubtitle").textContent=
+      tr("registerSub");
+
+  }
+}
+
+
+function setMode(nextMode){
+
+  mode=
+    nextMode;
+
+
+  $("loginTab").classList.toggle(
+    "active",
+    mode==="login"
+  );
+
+  $("registerTab").classList.toggle(
+    "active",
+    mode==="register"
+  );
+
+  $("loginForm").classList.toggle(
+    "active",
+    mode==="login"
+  );
+
+  $("registerForm").classList.toggle(
+    "active",
+    mode==="register"
+  );
+
+
+  clearMessage();
+
+  updateHeading();
+}
+
+
+function showMessage(
+  message,
+  type
+){
+
+  $("message").textContent=
+    message;
+
+  $("message").className=
+    `message show ${type}`;
+}
+
+
+function clearMessage(){
+
+  $("message").textContent=
+    "";
+
+  $("message").className=
+    "message";
+}
+
+
+
+/* =========================================================
+   CITIES + DISTRICTS FROM SUPABASE
+========================================================= */
+
+let registrationCities=[];
+
+let registrationDistricts=[];
+
+
+function localizedName(row){
+
+  if(language==="ar"){
+    return row.name_ar
+      ||row.name_en
+      ||"";
+  }
+
+
+  if(language==="badini"){
+    return row.name_badini
+      ||row.name_en
+      ||"";
+  }
+
+
+  if(language==="sorani"){
+    return row.name_sorani
+      ||row.name_en
+      ||"";
+  }
+
+
+  return row.name_en
+    ||"";
+}
+
+
+function renderCityOptions(){
+
+  const select=
+    $("registerCity");
+
+
+  if(!select){
+    return;
+  }
+
+
+  const selected=
+    select.value;
+
+
+  select.innerHTML=`
+
+    <option value="">
+      ${tr("selectCity")}
+    </option>
+
+    ${
+      registrationCities
+      .map(city=>`
+
+        <option value="${city.id}">
+          ${localizedName(city)}
+        </option>
+
+      `)
+      .join("")
+    }
+
+  `;
+
+
+  if(
+    registrationCities.some(
+      city=>
+        String(city.id)===
+        String(selected)
+    )
+  ){
+    select.value=
+      selected;
+  }
+}
+
+
+function renderDistrictOptions(){
+
+  const select=
+    $("registerCityPlace");
+
+
+  if(!select){
+    return;
+  }
+
+
+  const selected=
+    select.value;
+
+
+  select.innerHTML=`
+
+    <option value="">
+      ${tr("selectDistrict")}
+    </option>
+
+    ${
+      registrationDistricts
+      .map(district=>`
+
+        <option value="${district.id}">
+          ${localizedName(district)}
+        </option>
+
+      `)
+      .join("")
+    }
+
+  `;
+
+
+  select.disabled=
+    !$("registerCity").value;
+
+
+  if(
+    registrationDistricts.some(
+      district=>
+        String(district.id)===
+        String(selected)
+    )
+  ){
+    select.value=
+      selected;
+  }
+}
+
+
+async function loadRegistrationCities(){
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("citys")
+      .select(
+        "id,name_en,name_ar,name_badini,name_sorani"
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "name_en",
+        {
+          ascending:true
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    registrationCities=
+      data||[];
+
+
+    renderCityOptions();
+
+
+    renderDistrictOptions();
+
+
+  }catch(error){
+
+    console.error(
+      "City load error:",
+      error
+    );
+
+
+    registrationCities=[];
+
+    renderCityOptions();
+  }
+}
+
+
+async function loadRegistrationDistricts(
+  cityId
+){
+
+  registrationDistricts=[];
+
+  renderDistrictOptions();
+
+
+  if(!cityId){
+    return;
+  }
+
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("city_districts")
+      .select(
+        "id,city_id,name_en,name_ar,name_badini,name_sorani"
+      )
+      .eq(
+        "city_id",
+        Number(cityId)
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "name_en",
+        {
+          ascending:true
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    registrationDistricts=
+      data||[];
+
+
+    renderDistrictOptions();
+
+
+  }catch(error){
+
+    console.error(
+      "District load error:",
+      error
+    );
+
+
+    registrationDistricts=[];
+
+    renderDistrictOptions();
+  }
+}
+
+
+$("registerCity").onchange=
+async event=>{
+
+  $("registerCityPlace").value=
+    "";
+
+
+  await loadRegistrationDistricts(
+    event.target.value
+  );
+};
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+$("loginTab").onclick=()=>{
+
+  setMode(
+    "login"
+  );
+
+};
+
+
+$("registerTab").onclick=()=>{
+
+  setMode(
+    "register"
+  );
+
+};
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+$("languageSelect").onchange=
+event=>{
+
+  language=
+    event.target.value;
+
+
+  localStorage.setItem(
+    "pool_language",
+    language
+  );
+
+
+  applyLanguage();
+};
+
+
+/* =========================================================
+   PASSWORD VISIBILITY
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-toggle-password]"
+  )
+  .forEach(button=>{
+
+    button.onclick=()=>{
+
+      const input=
+        $(
+          button.dataset.togglePassword
+        );
+
+
+      const hidden=
+        input.type==="password";
+
+
+      input.type=
+        hidden
+          ?"text"
+          :"password";
+
+
+      button.innerHTML=
+        hidden
+          ?'<i class="fa-regular fa-eye-slash"></i>'
+          :'<i class="fa-regular fa-eye"></i>';
+
+    };
+
+  });
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+$("loginForm").onsubmit=
+async event=>{
+
+  event.preventDefault();
+
+  clearMessage();
+
+
+  const button=
+    $("loginBtn");
+
+
+  button.disabled=
+    true;
+
+  $("loginBtnText").textContent=
+    tr("logging");
+
+
+  try{
+
+    const {
+      error
+    }=
+      await sb.auth.signInWithPassword({
+
+        email:
+          $("loginEmail")
+          .value
+          .trim(),
+
+        password:
+          $("loginPassword")
+          .value
+
+      });
+
+
+    if(error){
+      throw error;
+    }
+
+
+    location.replace(
+      "index.html"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    showMessage(
+      error?.message
+      ||tr("loginFailed"),
+      "error"
+    );
+
+
+  }finally{
+
+    button.disabled=
+      false;
+
+    $("loginBtnText").textContent=
+      tr("login");
+
+  }
+
+};
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+$("registerForm").onsubmit=
+async event=>{
+
+  event.preventDefault();
+
+  clearMessage();
+
+
+  const password=
+    $("registerPassword").value;
+
+
+  const confirm=
+    $("confirmPassword").value;
+
+
+  if(
+    password!==confirm
+  ){
+
+    showMessage(
+      tr("passwordMismatch"),
+      "error"
+    );
+
+    return;
+  }
+
+
+  const button=
+    $("registerBtn");
+
+
+  button.disabled=
+    true;
+
+  $("registerBtnText").textContent=
+    tr("creating");
+
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb.auth.signUp({
+
+        email:
+          $("registerEmail")
+          .value
+          .trim(),
+
+        password,
+
+        options:{
+          data:{
+            full_name:
+              $("registerName")
+              .value
+              .trim(),
+
+            phone:
+              $("registerPhone")
+              .value
+              .trim(),
+
+            city_id:
+              $("registerCity")
+              .value,
+
+            district_id:
+              $("registerCityPlace")
+              .value,
+
+            city:
+              registrationCities
+              .find(
+                city=>
+                  String(city.id)===
+                  String(
+                    $("registerCity").value
+                  )
+              )?.name_en
+              ||"",
+
+            city_place:
+              registrationDistricts
+              .find(
+                district=>
+                  String(district.id)===
+                  String(
+                    $("registerCityPlace").value
+                  )
+              )?.name_en
+              ||"",
+
+            location:
+              $("registerLocation")
+              .value
+              .trim()
+          }
+        }
+
+      });
+
+
+    if(error){
+      throw error;
+    }
+
+
+    /*
+      The user specifically wants registration to return
+      to the login form, not automatically stay logged in.
+    */
+    if(
+      data?.session
+      &&
+      data?.user
+    ){
+
+      const {
+        error:profileError
+      }=
+        await sb
+        .from("profiles")
+        .update({
+
+          full_name:
+            $("registerName")
+            .value
+            .trim(),
+
+          phone:
+            $("registerPhone")
+            .value
+            .trim(),
+
+          city_id:
+            Number(
+              $("registerCity").value
+            ),
+
+          district_id:
+            Number(
+              $("registerCityPlace").value
+            ),
+
+          city:
+            registrationCities
+            .find(
+              city=>
+                String(city.id)===
+                String(
+                  $("registerCity").value
+                )
+            )?.name_en
+            ||null,
+
+          city_place:
+            registrationDistricts
+            .find(
+              district=>
+                String(district.id)===
+                String(
+                  $("registerCityPlace").value
+                )
+            )?.name_en
+            ||null,
+
+          location:
+            $("registerLocation")
+            .value
+            .trim()
+
+        })
+        .eq(
+          "id",
+          data.user.id
+        );
+
+
+      if(profileError){
+
+        console.error(
+          "Profile sync error:",
+          profileError
+        );
+
+      }
+
+
+      await sb.auth.signOut();
+
+    }
+
+
+    $("loginEmail").value=
+      $("registerEmail")
+      .value
+      .trim();
+
+
+    $("registerForm").reset();
+
+
+    setMode(
+      "login"
+    );
+
+
+    showMessage(
+      data?.user?.identities?.length===0
+        ?tr("registerFailed")
+        :(
+            data?.session
+              ?tr("registered")
+              :tr("registeredConfirm")
+          ),
+      data?.user?.identities?.length===0
+        ?"error"
+        :"success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    showMessage(
+      error?.message
+      ||tr("registerFailed"),
+      "error"
+    );
+
+
+  }finally{
+
+    button.disabled=
+      false;
+
+    $("registerBtnText").textContent=
+      tr("create");
+
+  }
+
+};
+
+
+/* =========================================================
+   ALREADY LOGGED IN
+========================================================= */
+
+async function checkExistingSession(){
+
+  try{
+
+    const {
+      data:{
+        session
+      }
+    }=
+      await sb.auth.getSession();
+
+
+    if(
+      session?.user
+    ){
+
+      location.replace(
+        "index.html"
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+applyLanguage();
+
+loadRegistrationCities();
+
+checkExistingSession();
+
+</script>
+
+</body>
+</html>
