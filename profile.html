@@ -1869,6 +1869,736 @@ html[dir="rtl"] .header-link i{
   }
 }
 
+
+/* =========================================================
+   CANCELLED ORDERS
+========================================================= */
+
+.cancelled-orders-card{
+  margin-top:12px;
+}
+
+.cancelled-orders-icon{
+  background:var(--red);
+  color:#fff;
+}
+
+.cancelled-orders-count{
+  background:rgba(168,67,61,.10);
+  color:var(--red);
+}
+
+.cancelled-order-status{
+  color:var(--red)!important;
+}
+
+.cancelled-reason-box{
+  margin-top:14px;
+  padding:13px;
+
+  border:1px solid rgba(168,67,61,.15);
+  border-radius:14px;
+
+  background:rgba(168,67,61,.06);
+}
+
+.cancelled-reason-box small{
+  display:block;
+
+  margin-bottom:5px;
+
+  color:#8f625d;
+
+  font-size:8px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.cancelled-reason-box strong{
+  display:block;
+
+  color:var(--red);
+
+  font-size:11px;
+  line-height:1.6;
+
+  overflow-wrap:anywhere;
+}
+
+
+/* =========================================================
+   COMPLETED / CANCELLED HISTORY — MOBILE RESPONSIVE
+========================================================= */
+
+.completed-list-modal{
+  overflow:hidden;
+}
+
+.completed-list-modal .completed-list{
+  max-height:calc(92dvh - 92px);
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  padding-right:2px;
+
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+.completed-order-row{
+  min-width:0;
+}
+
+.completed-order-main{
+  min-width:0;
+}
+
+.completed-order-id,
+.completed-order-meta,
+.completed-order-total{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+@media(max-width:650px){
+
+  #completedOrdersModal,
+  #cancelledOrdersModal{
+    padding:0;
+
+    align-items:end;
+  }
+
+  #completedOrdersModal .modal-backdrop,
+  #cancelledOrdersModal .modal-backdrop{
+    background:rgba(39,24,18,.67);
+  }
+
+  #completedOrdersModal .completed-list-modal,
+  #cancelledOrdersModal .completed-list-modal{
+    width:100%;
+    max-width:none;
+
+    max-height:94dvh;
+    min-height:52dvh;
+
+    margin:0;
+
+    padding:0 14px 18px;
+
+    border-radius:24px 24px 0 0;
+
+    transform:translateY(35px);
+  }
+
+  #completedOrdersModal.show .completed-list-modal,
+  #cancelledOrdersModal.show .completed-list-modal{
+    transform:none;
+  }
+
+  #completedOrdersModal .modal-head,
+  #cancelledOrdersModal .modal-head{
+    position:sticky;
+    top:0;
+    z-index:6;
+
+    margin:0 -14px 12px;
+    padding:15px 14px 12px;
+
+    border-bottom:1px solid var(--line);
+
+    background:rgba(235,226,212,.97);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+
+  #completedOrdersModal .modal-head h2,
+  #cancelledOrdersModal .modal-head h2{
+    font-size:20px;
+  }
+
+  #completedOrdersModal .close-btn,
+  #cancelledOrdersModal .close-btn{
+    width:40px;
+    height:40px;
+
+    flex:0 0 40px;
+  }
+
+  #completedOrdersModal .completed-list,
+  #cancelledOrdersModal .completed-list{
+    max-height:calc(94dvh - 86px);
+
+    padding:0 0 8px;
+  }
+
+  #completedOrdersModal .completed-order-row,
+  #cancelledOrdersModal .completed-order-row{
+    width:100%;
+
+    padding:13px;
+
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:
+      "main total";
+
+    gap:10px;
+
+    border-radius:15px;
+  }
+
+  #completedOrdersModal .completed-order-main,
+  #cancelledOrdersModal .completed-order-main{
+    grid-area:main;
+  }
+
+  #completedOrdersModal .completed-order-total,
+  #cancelledOrdersModal .completed-order-total{
+    grid-area:total;
+
+    align-self:center;
+
+    max-width:110px;
+
+    font-size:14px;
+    text-align:end;
+  }
+
+  #completedOrdersModal .completed-order-id,
+  #cancelledOrdersModal .completed-order-id{
+    font-size:12px;
+    line-height:1.4;
+  }
+
+  #completedOrdersModal .completed-order-meta,
+  #cancelledOrdersModal .completed-order-meta{
+    margin-top:7px;
+
+    display:grid;
+    grid-template-columns:1fr;
+    gap:5px;
+
+    font-size:9px;
+  }
+
+  #completedOrdersModal .completed-order-meta span,
+  #cancelledOrdersModal .completed-order-meta span{
+    min-width:0;
+
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+
+  #completedOrdersModal .completed-order-arrow,
+  #cancelledOrdersModal .completed-order-arrow{
+    display:none;
+  }
+
+  #cancelledOrdersModal .cancelled-order-status{
+    width:max-content;
+    max-width:100%;
+  }
+
+  #cancelledOrdersModal .completed-empty,
+  #completedOrdersModal .completed-empty{
+    min-height:260px;
+
+    padding:25px 15px;
+  }
+}
+
+@media(max-width:390px){
+
+  #completedOrdersModal .completed-order-row,
+  #cancelledOrdersModal .completed-order-row{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "main"
+      "total";
+  }
+
+  #completedOrdersModal .completed-order-total,
+  #cancelledOrdersModal .completed-order-total{
+    max-width:none;
+
+    padding-top:8px;
+
+    border-top:1px solid var(--line);
+
+    text-align:start;
+  }
+
+  .completed-orders-card,
+  .cancelled-orders-card{
+    grid-template-columns:44px minmax(0,1fr) auto;
+
+    padding:14px 12px;
+
+    gap:10px;
+  }
+
+  .completed-orders-copy strong{
+    font-size:15px;
+  }
+
+  .completed-orders-copy span{
+    font-size:8px;
+    line-height:1.45;
+  }
+
+  .completed-orders-count{
+    min-width:30px;
+    height:30px;
+
+    font-size:9px;
+  }
+}
+
+
+/* =========================================================
+   ORDER DETAILS MODAL — MOBILE FIX
+   Keeps the details modal above the sticky header and fully
+   inside the phone viewport.
+========================================================= */
+
+/* The site header uses z-index:1000, so all profile modals
+   must sit above it. */
+.modal{
+  z-index:5000;
+}
+
+#orderModal{
+  z-index:5200;
+}
+
+#orderModal .order-modal-card{
+  box-sizing:border-box;
+  max-width:720px;
+
+  overflow-x:hidden;
+}
+
+#orderModalContent{
+  width:100%;
+  min-width:0;
+
+  overflow-x:hidden;
+}
+
+#orderModal .order-summary-box,
+#orderModal .order-customer-card,
+#orderModal .customer-detail,
+#orderModal .order-item-row,
+#orderModal .order-item-name,
+#orderModal .order-item-meta,
+#orderModal .order-item-total,
+#orderModal .cancelled-reason-box,
+#orderModal .order-grand-total{
+  min-width:0;
+}
+
+#orderModal .order-summary-box strong{
+  max-width:100%;
+
+  overflow-wrap:anywhere;
+  word-break:break-word;
+
+  white-space:normal;
+  text-overflow:clip;
+}
+
+@media(max-width:650px){
+
+  #orderModal{
+    padding:0;
+
+    align-items:end;
+    justify-items:stretch;
+  }
+
+  #orderModal .modal-backdrop{
+    background:rgba(39,24,18,.70);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+  }
+
+  #orderModal .order-modal-card{
+    width:100vw;
+    max-width:100vw;
+
+    height:auto;
+    max-height:94dvh;
+
+    margin:0;
+
+    padding:0 14px
+      calc(
+        18px
+        +
+        env(safe-area-inset-bottom)
+      );
+
+    border-left:0;
+    border-right:0;
+    border-bottom:0;
+
+    border-radius:25px 25px 0 0;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+
+    transform:translateY(40px);
+  }
+
+  #orderModal.show .order-modal-card{
+    transform:none;
+  }
+
+  #orderModal .modal-head{
+    position:sticky;
+    top:0;
+    z-index:10;
+
+    margin:0 -14px 14px;
+    padding:
+      calc(
+        14px
+        +
+        env(safe-area-inset-top)
+      )
+      14px
+      13px;
+
+    border-bottom:1px solid var(--line);
+
+    background:rgba(235,226,212,.97);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+
+  #orderModal .modal-head > div{
+    min-width:0;
+  }
+
+  #orderModal .modal-head small{
+    font-size:8px;
+  }
+
+  #orderModal .modal-head h2{
+    max-width:calc(100vw - 100px);
+
+    font-size:21px;
+    line-height:1.2;
+
+    overflow-wrap:anywhere;
+  }
+
+  #orderModal .close-btn{
+    width:40px;
+    height:40px;
+
+    flex:0 0 40px;
+  }
+
+  #orderModal .order-modal-summary{
+    grid-template-columns:1fr;
+
+    gap:8px;
+
+    margin-bottom:12px;
+  }
+
+  #orderModal .order-summary-box,
+  #orderModal .order-summary-box:last-child{
+    grid-column:auto;
+
+    width:100%;
+
+    padding:11px;
+  }
+
+  #orderModal .order-summary-box small{
+    font-size:8px;
+  }
+
+  #orderModal .order-summary-box strong{
+    font-size:11px;
+    line-height:1.5;
+
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  #orderModal .order-customer-card{
+    width:100%;
+
+    margin-bottom:12px;
+    padding:12px;
+
+    border-radius:14px;
+  }
+
+  #orderModal .order-section-title{
+    margin-bottom:9px;
+
+    font-size:14px;
+  }
+
+  #orderModal .order-customer-grid{
+    grid-template-columns:1fr;
+
+    gap:9px;
+  }
+
+  #orderModal .customer-detail{
+    width:100%;
+
+    padding:9px 0;
+
+    border-bottom:1px solid var(--line);
+  }
+
+  #orderModal .customer-detail:last-child{
+    border-bottom:0;
+  }
+
+  #orderModal .customer-detail small{
+    font-size:8px;
+  }
+
+  #orderModal .customer-detail strong{
+    width:100%;
+
+    font-size:11px;
+    line-height:1.55;
+
+    white-space:normal;
+
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  #orderModal .cancelled-reason-box{
+    width:100%;
+
+    margin-top:10px;
+    padding:11px;
+
+    border-radius:12px;
+  }
+
+  #orderModal .cancelled-reason-box small{
+    font-size:7px;
+  }
+
+  #orderModal .cancelled-reason-box strong{
+    font-size:10px;
+    line-height:1.55;
+
+    white-space:normal;
+
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  #orderModal .order-items{
+    width:100%;
+
+    gap:8px;
+  }
+
+  #orderModal .order-item-row{
+    width:100%;
+
+    padding:10px;
+
+    grid-template-columns:46px minmax(0,1fr);
+    gap:9px;
+
+    border-radius:13px;
+  }
+
+  #orderModal .order-item-image{
+    width:46px;
+    height:46px;
+
+    border-radius:10px;
+  }
+
+  #orderModal .order-item-name{
+    width:100%;
+
+    font-size:10px;
+    line-height:1.45;
+
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  #orderModal .order-item-meta{
+    width:100%;
+
+    font-size:8px;
+    line-height:1.45;
+
+    overflow-wrap:anywhere;
+  }
+
+  #orderModal .order-item-total{
+    grid-column:1/-1;
+
+    width:100%;
+
+    padding-top:8px;
+
+    border-top:1px solid var(--line);
+
+    font-size:11px;
+    text-align:end;
+  }
+
+  #orderModal .order-grand-total{
+    width:100%;
+
+    margin-top:10px;
+    padding-top:10px;
+
+    gap:8px;
+
+    font-size:11px;
+  }
+
+  #orderModal .order-grand-total span{
+    min-width:0;
+
+    overflow-wrap:anywhere;
+  }
+
+  #orderModal .order-grand-total strong{
+    flex:0 0 auto;
+
+    font-size:16px;
+    text-align:end;
+  }
+}
+
+@media(max-width:390px){
+
+  #orderModal .order-modal-card{
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  #orderModal .modal-head{
+    margin-left:-11px;
+    margin-right:-11px;
+
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  #orderModal .modal-head h2{
+    max-width:calc(100vw - 88px);
+
+    font-size:19px;
+  }
+
+  #orderModal .order-summary-box{
+    padding:10px;
+  }
+
+  #orderModal .order-customer-card{
+    padding:10px;
+  }
+
+  #orderModal .order-grand-total{
+    align-items:flex-start;
+  }
+}
+
+
+/* =========================================================
+   PROFILE ACTIONS / LOGOUT
+========================================================= */
+
+.profile-action-buttons{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.logout-profile-btn{
+  min-height:48px;
+
+  padding:0 18px;
+
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:15px;
+
+  background:rgba(168,67,61,.16);
+  color:#fff;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  font-size:12px;
+  font-weight:900;
+
+  transition:.2s;
+}
+
+.logout-profile-btn:hover{
+  background:#a8433d;
+
+  transform:translateY(-2px);
+}
+
+.logout-profile-btn i{
+  color:#ffd7d2;
+}
+
+@media(max-width:650px){
+
+  .profile-action-buttons{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .profile-action-buttons .edit-profile-btn,
+  .profile-action-buttons .logout-profile-btn{
+    width:100%;
+    min-height:47px;
+
+    padding:0 12px;
+
+    font-size:10px;
+  }
+}
+
+@media(max-width:390px){
+
+  .profile-action-buttons{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 
@@ -1991,17 +2721,35 @@ html[dir="rtl"] .header-link i{
 
         </div>
 
-        <button
-          class="edit-profile-btn"
-          id="editProfileBtn"
-          type="button"
-        >
-          <i class="fa-solid fa-pen"></i>
+        <div class="profile-action-buttons">
 
-          <span data-local="editProfile">
-            Edit Profile
-          </span>
-        </button>
+          <button
+            class="edit-profile-btn"
+            id="editProfileBtn"
+            type="button"
+          >
+            <i class="fa-solid fa-pen"></i>
+
+            <span data-local="editProfile">
+              Edit Profile
+            </span>
+          </button>
+
+
+          <button
+            class="logout-profile-btn"
+            id="logoutProfileBtn"
+            type="button"
+            hidden
+          >
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span data-local="logout">
+              Logout
+            </span>
+          </button>
+
+        </div>
 
       </div>
 
@@ -2179,15 +2927,33 @@ html[dir="rtl"] .header-link i{
           <div class="info-row">
 
             <div class="info-icon">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+
+            <div>
+              <small data-local="cityPlace">
+                City Place / District
+              </small>
+
+              <strong id="displayCityPlace">
+                Not set
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="info-row">
+
+            <div class="info-icon">
               <i class="fa-solid fa-location-dot"></i>
             </div>
 
             <div>
-              <small data-local="address">
-                Address
+              <small data-local="location">
+                Location
               </small>
 
-              <strong id="displayAddress">
+              <strong id="displayLocation">
                 Not set
               </strong>
             </div>
@@ -2230,6 +2996,49 @@ html[dir="rtl"] .header-link i{
           <span
             class="completed-orders-count"
             id="completedOrdersCount"
+          >
+            0
+          </span>
+
+          <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+      </button>
+
+
+      <!-- CANCELLED ORDERS -->
+      <button
+        class="completed-orders-card cancelled-orders-card"
+        id="cancelledOrdersBtn"
+        type="button"
+      >
+
+        <div class="completed-orders-icon cancelled-orders-icon">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+
+        <div class="completed-orders-copy">
+
+          <small data-local="orderHistory">
+            ORDER HISTORY
+          </small>
+
+          <strong data-local="cancelledOrders">
+            Cancelled Orders
+          </strong>
+
+          <span data-local="cancelledOrdersSub">
+            View only your cancelled LUX LINE orders.
+          </span>
+
+        </div>
+
+        <div class="completed-orders-end">
+
+          <span
+            class="completed-orders-count cancelled-orders-count"
+            id="cancelledOrdersCount"
           >
             0
           </span>
@@ -2286,6 +3095,51 @@ html[dir="rtl"] .header-link i{
     <div
       class="completed-list"
       id="completedOrdersList"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- CANCELLED ORDERS MODAL -->
+<div
+  class="modal"
+  id="cancelledOrdersModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal-backdrop"
+    data-close-cancelled-orders
+  ></div>
+
+  <div class="modal-card completed-list-modal">
+
+    <div class="modal-head">
+
+      <div>
+        <small>LUX LINE</small>
+
+        <h2 data-local="cancelledOrders">
+          Cancelled Orders
+        </h2>
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeCancelledOrdersModal"
+        type="button"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div
+      class="completed-list"
+      id="cancelledOrdersList"
     ></div>
 
   </div>
@@ -2407,6 +3261,7 @@ html[dir="rtl"] .header-link i{
             type="email"
             data-local-placeholder="emailPh"
             placeholder="name@example.com"
+            readonly
           >
 
         </div>
@@ -2421,24 +3276,26 @@ html[dir="rtl"] .header-link i{
             class="control"
             id="profileCity"
           >
-            <option value="" data-local="selectCity">
+            <option value="">
               Select city
             </option>
+          </select>
 
-            <option value="Duhok">
-              Duhok
-            </option>
+        </div>
 
-            <option value="Erbil">
-              Erbil
-            </option>
+        <div class="form-group">
 
-            <option value="Sulaymaniyah">
-              Sulaymaniyah
-            </option>
+          <label data-local="cityPlace">
+            District
+          </label>
 
-            <option value="Zakho">
-              Zakho
+          <select
+            class="control"
+            id="profileCityPlace"
+            disabled
+          >
+            <option value="">
+              Select district
             </option>
           </select>
 
@@ -2446,15 +3303,15 @@ html[dir="rtl"] .header-link i{
 
         <div class="form-group full">
 
-          <label data-local="address">
-            Address
+          <label data-local="location">
+            Location
           </label>
 
           <textarea
             class="control"
-            id="profileAddress"
-            data-local-placeholder="addressPh"
-            placeholder="Enter your delivery address"
+            id="profileLocation"
+            data-local-placeholder="locationPh"
+            placeholder="Street, building, nearby place..."
           ></textarea>
 
         </div>
@@ -2478,6 +3335,8 @@ html[dir="rtl"] .header-link i{
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseClient.js"></script>
 <script src="translation.js"></script>
 
 <script>
@@ -2576,6 +3435,13 @@ const labels={
     profile:"Profile",
     completedOrders:"Completed Orders",
     completedOrdersSub:"View all of your completed LUX LINE orders.",
+    cancelledOrders:"Cancelled Orders",
+    cancelledOrdersSub:"View only your cancelled LUX LINE orders.",
+    cancelled:"Cancelled",
+    cancellationReason:"Cancellation Reason",
+    cancelledAt:"Cancelled At",
+    noCancelledOrders:"No cancelled orders",
+    noCancelledOrdersSub:"Orders you cancel will appear here.",
     orderHistory:"ORDER HISTORY",
     orderDetails:"Order Details",
     orderNumber:"Order Number",
@@ -2586,25 +3452,32 @@ const labels={
     products:"Products",
     quantity:"Quantity",
     unitPrice:"Unit Price",
+    subtotal:"Subtotal",
+    cityOrderAmount:"City order amount",
     orderTotal:"Order Total",
     noCustomer:"Not provided",
     backHome:"Home",
     customerProfile:"CUSTOMER PROFILE",
     guest:"Guest Customer",
-    guestSub:"Add your information to personalize your LUX LINE experience.",
+    guestSub:"Login to view and manage your LUX LINE account.",
+    login:"Login",
     editProfile:"Edit Profile",
+    logout:"Logout",
     orders:"Orders",
     cartItems:"Cart Items",
     favorites:"Favorites",
     totalSpent:"Total Spent",
     personalInfo:"Personal Information",
-    savedOnDevice:"Saved on this device",
+    savedOnDevice:"Saved to your account",
     fullName:"Full Name",
     phone:"Phone",
     email:"Email",
     city:"City",
+    cityPlace:"City Place / District",
+    location:"Location",
     address:"Address",
     notSet:"Not set",
+    loginRequired:"Login required",
     quickActions:"Quick Actions",
     shop:"Shop",
     shopSub:"Browse all products",
@@ -2621,13 +3494,22 @@ const labels={
     phonePh:"0750 000 0000",
     emailPh:"name@example.com",
     selectCity:"Select city",
-    addressPh:"Enter your delivery address"
+    selectDistrict:"Select district",
+    cityPlacePh:"District, area or neighborhood",
+    locationPh:"Street, building, nearby place..."
   },
 
   ar:{
     profile:"الحساب",
     completedOrders:"الطلبات المكتملة",
     completedOrdersSub:"اعرض جميع طلبات LUX LINE المكتملة.",
+    cancelledOrders:"الطلبات الملغاة",
+    cancelledOrdersSub:"اعرض فقط طلبات LUX LINE التي ألغيتها.",
+    cancelled:"ملغي",
+    cancellationReason:"سبب الإلغاء",
+    cancelledAt:"وقت الإلغاء",
+    noCancelledOrders:"لا توجد طلبات ملغاة",
+    noCancelledOrdersSub:"الطلبات التي تلغيها ستظهر هنا.",
     orderHistory:"سجل الطلب",
     orderDetails:"تفاصيل الطلب",
     orderNumber:"رقم الطلب",
@@ -2638,25 +3520,32 @@ const labels={
     products:"المنتجات",
     quantity:"الكمية",
     unitPrice:"سعر الوحدة",
+    subtotal:"المجموع الفرعي",
+    cityOrderAmount:"مبلغ الطلب حسب المدينة",
     orderTotal:"إجمالي الطلب",
     noCustomer:"غير متوفر",
     backHome:"الرئيسية",
     customerProfile:"الملف الشخصي",
     guest:"عميل",
-    guestSub:"أضف معلوماتك لتخصيص تجربة LUX LINE.",
+    guestSub:"سجل الدخول لعرض وإدارة حساب LUX LINE.",
+    login:"تسجيل الدخول",
     editProfile:"تعديل الملف",
+    logout:"تسجيل الخروج",
     orders:"الطلبات",
     cartItems:"عناصر السلة",
     favorites:"المفضلة",
     totalSpent:"إجمالي المشتريات",
     personalInfo:"المعلومات الشخصية",
-    savedOnDevice:"محفوظ على هذا الجهاز",
+    savedOnDevice:"محفوظ في حسابك",
     fullName:"الاسم الكامل",
     phone:"الهاتف",
     email:"البريد الإلكتروني",
     city:"المدينة",
+    cityPlace:"المنطقة / الحي",
+    location:"الموقع",
     address:"العنوان",
     notSet:"غير محدد",
+    loginRequired:"يجب تسجيل الدخول",
     quickActions:"إجراءات سريعة",
     shop:"المتجر",
     shopSub:"تصفح جميع المنتجات",
@@ -2673,13 +3562,22 @@ const labels={
     phonePh:"0750 000 0000",
     emailPh:"name@example.com",
     selectCity:"اختر المدينة",
-    addressPh:"أدخل عنوان التوصيل"
+    selectDistrict:"اختر المنطقة",
+    cityPlacePh:"اكتب المنطقة أو الحي",
+    locationPh:"الشارع، المبنى، أو أقرب موقع معروف..."
   },
 
   badini:{
     profile:"پروفایل",
     completedOrders:"داواکاریێن تەمامبووی",
     completedOrdersSub:"هەمی داواکاریێن تە یێن تەمامبووی یێن LUX LINE ببینە.",
+    cancelledOrders:"داواکاریێن هەلوەشاندی",
+    cancelledOrdersSub:"تەنێ داواکاریێن LUX LINE یێن تە هەلوەشاندینە ببینە.",
+    cancelled:"هەلوەشیا",
+    cancellationReason:"ئەگەرا هەلوەشاندنێ",
+    cancelledAt:"دەمێ هەلوەشاندنێ",
+    noCancelledOrders:"داواکاریێن هەلوەشاندی نینن",
+    noCancelledOrdersSub:"داواکاریێن کو تو هەلوەشینی ل ڤێرێ دێ دەرکەڤن.",
     orderHistory:"مێژوویا داواکاریێ",
     orderDetails:"وردەکاریێن داواکاریێ",
     orderNumber:"ژمارا داواکاریێ",
@@ -2690,25 +3588,32 @@ const labels={
     products:"بەرهەم",
     quantity:"ژمارە",
     unitPrice:"بهایێ دانەیێ",
+    subtotal:"کۆی بەرهەمان",
+    cityOrderAmount:"بهای داواکارییا باژێری",
     orderTotal:"کۆی داواکاریێ",
     noCustomer:"نەهاتیە دانان",
     backHome:"سەرەکی",
     customerProfile:"پڕۆفایلا کڕیاری",
     guest:"کڕیار",
-    guestSub:"زانیاریێن خو زێدە بکە بۆ ئەزموونەکا باشتر یا LUX LINE.",
+    guestSub:"بچو ژوور دا زانیاریێن هەژمارا LUX LINE یا خو ببینی و بەڕێڤەببەی.",
+    login:"چوونەژوور",
     editProfile:"دەستکاریکرنا پڕۆفایلێ",
+    logout:"دەرکەفتن",
     orders:"داواکاری",
     cartItems:"بەرهەمێن سەبەتێ",
     favorites:"دڵخواز",
     totalSpent:"کۆی کڕینان",
     personalInfo:"زانیاریێن کەسی",
-    savedOnDevice:"ل سەر ڤی ئامێری پاراستیە",
+    savedOnDevice:"ل هەژمارا تە پاراستیە",
     fullName:"ناڤێ تەمام",
     phone:"تەلەفۆن",
     email:"ئیمەیل",
     city:"باژێر",
+    cityPlace:"جهێ باژێری / ناوچە",
+    location:"لوکەیشن",
     address:"ناڤونیشان",
     notSet:"نەهاتیە دانان",
+    loginRequired:"چوونەژوور پێدڤییە",
     quickActions:"کارێن بلەز",
     shop:"فرۆشگەهـ",
     shopSub:"هەمی بەرهەمان ببینە",
@@ -2725,13 +3630,22 @@ const labels={
     phonePh:"0750 000 0000",
     emailPh:"name@example.com",
     selectCity:"باژێر هەلبژێرە",
-    addressPh:"ناڤونیشانا خو بنڤیسە"
+    selectDistrict:"ناوچە هەلبژێرە",
+    cityPlacePh:"ناوچە، گەڕەک یان جهێ خو بنڤیسە",
+    locationPh:"شەقام، ئاڤاهی یان نیشانا نزیک بنڤیسە..."
   },
 
   sorani:{
     profile:"پڕۆفایل",
     completedOrders:"داواکارییە تەواوبووەکان",
     completedOrdersSub:"هەموو داواکارییە تەواوبووەکانی LUX LINE ببینە.",
+    cancelledOrders:"داواکارییە هەڵوەشاوەکان",
+    cancelledOrdersSub:"تەنها داواکارییەکانی LUX LINE کە هەڵتوەشاندوونەتەوە ببینە.",
+    cancelled:"هەڵوەشاوە",
+    cancellationReason:"هۆکاری هەڵوەشاندنەوە",
+    cancelledAt:"کاتی هەڵوەشاندنەوە",
+    noCancelledOrders:"داواکاری هەڵوەشاوە نییە",
+    noCancelledOrdersSub:"داواکارییەکانی کە هەڵدەوەشێنیتەوە لێرە دەردەکەون.",
     orderHistory:"مێژووی داواکاری",
     orderDetails:"وردەکارییەکانی داواکاری",
     orderNumber:"ژمارەی داواکاری",
@@ -2742,25 +3656,32 @@ const labels={
     products:"بەرهەمەکان",
     quantity:"ژمارە",
     unitPrice:"نرخی دانە",
+    subtotal:"کۆی بەرهەمەکان",
+    cityOrderAmount:"بڕی داواکاری بەپێی شار",
     orderTotal:"کۆی داواکاری",
     noCustomer:"دانەنراوە",
     backHome:"سەرەکی",
     customerProfile:"پڕۆفایلی کڕیار",
     guest:"کڕیار",
-    guestSub:"زانیارییەکانت زیاد بکە بۆ ئەزموونێکی باشتر لە LUX LINE.",
+    guestSub:"بچۆ ژوورەوە بۆ بینین و بەڕێوەبردنی هەژماری LUX LINE.",
+    login:"چوونەژوورەوە",
     editProfile:"دەستکاریکردنی پڕۆفایل",
+    logout:"چوونەدەرەوە",
     orders:"داواکارییەکان",
     cartItems:"بەرهەمەکانی سەبەتە",
     favorites:"دڵخوازەکان",
     totalSpent:"کۆی کڕینەکان",
     personalInfo:"زانیارییە کەسییەکان",
-    savedOnDevice:"لەسەر ئەم ئامێرە هەڵگیراوە",
+    savedOnDevice:"لە هەژمارەکەت هەڵگیراوە",
     fullName:"ناوی تەواو",
     phone:"تەلەفۆن",
     email:"ئیمەیڵ",
     city:"شار",
+    cityPlace:"ناوچە / گەڕەک",
+    location:"شوێن",
     address:"ناونیشان",
     notSet:"دانەنراوە",
+    loginRequired:"چوونەژوورەوە پێویستە",
     quickActions:"کردارە خێراکان",
     shop:"فرۆشگا",
     shopSub:"هەموو بەرهەمەکان ببینە",
@@ -2777,7 +3698,9 @@ const labels={
     phonePh:"0750 000 0000",
     emailPh:"name@example.com",
     selectCity:"شار هەڵبژێرە",
-    addressPh:"ناونیشانت بنووسە"
+    selectDistrict:"ناوچە هەڵبژێرە",
+    cityPlacePh:"ناوچە، گەڕەک یان شوێنەکەت بنووسە",
+    locationPh:"شەقام، بینا یان نزیکترین نیشانە بنووسە..."
   }
 
 };
@@ -2798,17 +3721,896 @@ function money(value){
   return `$${Number(value||0).toLocaleString()}`;
 }
 
+let currentUser=null;
+
+let currentProfile={
+  fullName:"",
+  phone:"",
+  email:"",
+  cityId:null,
+  districtId:null,
+  city:"",
+  cityPlace:"",
+  location:""
+};
+
+let profileCities=[];
+
+let profileDistricts=[];
+
+let completedOrders=[];
+
+let cancelledOrders=[];
+
+let profileOrdersChannel=null;
+
+
 function getProfile(){
-  return JSON.parse(
-    localStorage.getItem("luxline_profile")
-  )||{
-    fullName:"",
-    phone:"",
-    email:"",
-    city:"",
-    address:""
-  };
+
+  return currentProfile;
+
 }
+
+
+async function loadAccount(){
+
+  try{
+
+    const {
+      data:{
+        session
+      },
+      error:sessionError
+    }=
+      await sb.auth.getSession();
+
+
+    if(sessionError){
+      throw sessionError;
+    }
+
+
+    if(!session?.user){
+
+      currentUser=null;
+
+      completedOrders=[];
+
+      cancelledOrders=[];
+
+      stopProfileOrdersRealtime();
+
+      currentProfile={
+        fullName:"",
+        phone:"",
+        email:"",
+        cityId:null,
+        districtId:null,
+        city:"",
+        cityPlace:"",
+        location:""
+      };
+
+
+      renderProfile();
+
+      return;
+    }
+
+
+    currentUser=
+      session.user;
+
+
+    const {
+      data:row,
+      error:profileError
+    }=
+      await sb
+      .from("profiles")
+      .select(
+        "id,email,full_name,phone,city_id,district_id,city,city_place,location,role"
+      )
+      .eq(
+        "id",
+        session.user.id
+      )
+      .maybeSingle();
+
+
+    if(profileError){
+      throw profileError;
+    }
+
+
+    const metadata=
+      session.user.user_metadata||{};
+
+
+    currentProfile={
+
+      fullName:
+        row?.full_name
+        ||metadata.full_name
+        ||"",
+
+      phone:
+        row?.phone
+        ||metadata.phone
+        ||"",
+
+      email:
+        session.user.email
+        ||row?.email
+        ||"",
+
+      cityId:
+        row?.city_id
+        ||Number(metadata.city_id)
+        ||null,
+
+      districtId:
+        row?.district_id
+        ||Number(metadata.district_id)
+        ||null,
+
+      city:
+        row?.city
+        ||metadata.city
+        ||"",
+
+      cityPlace:
+        row?.city_place
+        ||metadata.city_place
+        ||"",
+
+      location:
+        row?.location
+        ||metadata.location
+        ||""
+
+    };
+
+
+    await loadProfileCities();
+
+
+    if(currentProfile.cityId){
+
+      await loadProfileDistricts(
+        currentProfile.cityId,
+        true
+      );
+
+    }
+
+
+    await loadCompletedOrders();
+
+
+    startProfileOrdersRealtime();
+
+
+    renderProfile();
+
+
+  }catch(error){
+
+    console.error(
+      "Profile load error:",
+      error
+    );
+
+
+    currentUser=null;
+
+    completedOrders=[];
+
+    cancelledOrders=[];
+
+    stopProfileOrdersRealtime();
+
+    currentProfile={
+      fullName:"",
+      phone:"",
+      email:"",
+      cityId:null,
+      districtId:null,
+      city:"",
+      cityPlace:"",
+      location:""
+    };
+
+
+    renderProfile();
+
+  }
+
+}
+
+
+
+/* =========================================================
+   PROFILE CITY + DISTRICT DROPDOWNS
+========================================================= */
+
+function locationLanguageSuffix(){
+
+  if(lang()==="ar"){
+    return "ar";
+  }
+
+  if(lang()==="badini"){
+    return "badini";
+  }
+
+  if(lang()==="sorani"){
+    return "sorani";
+  }
+
+  return "en";
+}
+
+
+function localizedLocationName(row){
+
+  if(!row){
+    return "";
+  }
+
+
+  const suffix=
+    locationLanguageSuffix();
+
+
+  return row[`name_${suffix}`]
+    ||row.name_en
+    ||"";
+}
+
+
+function currentCityDisplay(){
+
+  const row=
+    profileCities.find(
+      city=>
+        Number(city.id)===
+        Number(currentProfile.cityId)
+    );
+
+
+  return localizedLocationName(row)
+    ||currentProfile.city
+    ||"";
+}
+
+
+function currentDistrictDisplay(){
+
+  const row=
+    profileDistricts.find(
+      district=>
+        Number(district.id)===
+        Number(currentProfile.districtId)
+    );
+
+
+  return localizedLocationName(row)
+    ||currentProfile.cityPlace
+    ||"";
+}
+
+
+function renderProfileCityOptions(){
+
+  const select=
+    $("profileCity");
+
+
+  if(!select){
+    return;
+  }
+
+
+  const selected=
+    select.value
+    ||(
+      currentProfile.cityId
+        ?String(currentProfile.cityId)
+        :""
+    );
+
+
+  select.innerHTML=`
+
+    <option value="">
+      ${l("selectCity")}
+    </option>
+
+    ${
+      profileCities
+      .map(city=>`
+
+        <option value="${city.id}">
+          ${localizedLocationName(city)}
+        </option>
+
+      `)
+      .join("")
+    }
+
+  `;
+
+
+  if(
+    profileCities.some(
+      city=>
+        String(city.id)===
+        String(selected)
+    )
+  ){
+    select.value=
+      String(selected);
+  }
+}
+
+
+function renderProfileDistrictOptions(){
+
+  const select=
+    $("profileCityPlace");
+
+
+  if(!select){
+    return;
+  }
+
+
+  const selected=
+    select.value
+    ||(
+      currentProfile.districtId
+        ?String(currentProfile.districtId)
+        :""
+    );
+
+
+  select.innerHTML=`
+
+    <option value="">
+      ${l("selectDistrict")}
+    </option>
+
+    ${
+      profileDistricts
+      .map(district=>`
+
+        <option value="${district.id}">
+          ${localizedLocationName(district)}
+        </option>
+
+      `)
+      .join("")
+    }
+
+  `;
+
+
+  const citySelected=
+    Boolean(
+      $("profileCity")?.value
+    );
+
+
+  select.disabled=
+    !citySelected;
+
+
+  if(
+    profileDistricts.some(
+      district=>
+        String(district.id)===
+        String(selected)
+    )
+  ){
+    select.value=
+      String(selected);
+  }
+}
+
+
+async function loadProfileCities(){
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("citys")
+      .select(
+        "id,name_en,name_ar,name_badini,name_sorani"
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "name_en",
+        {
+          ascending:true
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    profileCities=
+      data||[];
+
+
+    if(
+      !currentProfile.cityId
+      &&
+      currentProfile.city
+    ){
+
+      const oldCity=
+        profileCities.find(
+          city=>
+            String(city.name_en||"")
+            .toLowerCase()===
+            String(currentProfile.city||"")
+            .toLowerCase()
+        );
+
+
+      if(oldCity){
+
+        currentProfile.cityId=
+          Number(oldCity.id);
+
+      }
+
+    }
+
+
+    renderProfileCityOptions();
+
+
+  }catch(error){
+
+    console.error(
+      "Profile city load error:",
+      error
+    );
+
+
+    profileCities=[];
+
+    renderProfileCityOptions();
+  }
+}
+
+
+async function loadProfileDistricts(
+  cityId,
+  preserveCurrent=true
+){
+
+  profileDistricts=[];
+
+
+  if(!preserveCurrent){
+
+    currentProfile.districtId=
+      null;
+
+    currentProfile.cityPlace=
+      "";
+  }
+
+
+  renderProfileDistrictOptions();
+
+
+  if(!cityId){
+    return;
+  }
+
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("city_districts")
+      .select(
+        "id,city_id,name_en,name_ar,name_badini,name_sorani"
+      )
+      .eq(
+        "city_id",
+        Number(cityId)
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "name_en",
+        {
+          ascending:true
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    profileDistricts=
+      data||[];
+
+
+    if(
+      preserveCurrent
+      &&
+      !currentProfile.districtId
+      &&
+      currentProfile.cityPlace
+    ){
+
+      const oldDistrict=
+        profileDistricts.find(
+          district=>
+            String(district.name_en||"")
+            .toLowerCase()===
+            String(currentProfile.cityPlace||"")
+            .toLowerCase()
+        );
+
+
+      if(oldDistrict){
+
+        currentProfile.districtId=
+          Number(oldDistrict.id);
+
+      }
+
+    }
+
+
+    renderProfileDistrictOptions();
+
+
+  }catch(error){
+
+    console.error(
+      "Profile district load error:",
+      error
+    );
+
+
+    profileDistricts=[];
+
+    renderProfileDistrictOptions();
+  }
+}
+
+
+$("profileCity").onchange=
+async event=>{
+
+  const cityId=
+    event.target.value;
+
+
+  $("profileCityPlace").value=
+    "";
+
+
+  currentProfile.districtId=
+    null;
+
+
+  await loadProfileDistricts(
+    cityId,
+    false
+  );
+};
+
+
+
+
+/* =========================================================
+   COMPLETED ORDERS FROM SUPABASE
+========================================================= */
+
+function normalizeCompletedStatus(value){
+
+  const status=
+    String(value||"")
+    .toLowerCase()
+    .trim();
+
+
+  return [
+    "done",
+    "completed",
+    "delivered",
+    "complete"
+  ]
+  .includes(status);
+}
+
+
+async function loadCompletedOrders(){
+
+  if(!currentUser){
+
+    completedOrders=[];
+
+    renderProfile();
+
+    return;
+  }
+
+
+  try{
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("orders")
+      .select(`
+        id,
+        user_id,
+
+        customer_name,
+        customer_phone,
+        customer_city,
+        customer_address,
+        customer_note,
+
+        subtotal,
+        order_amount,
+        total,
+
+        status,
+        created_at,
+        cancelled_at,
+        cancellation_reason,
+
+        order_items (
+          id,
+          order_id,
+          product_id,
+          product_name,
+          product_image,
+          quantity,
+          unit_price,
+          created_at
+        )
+      `)
+      .eq(
+        "user_id",
+        currentUser.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    const mapHistoryOrder=
+    order=>({
+
+      id:
+        order.id,
+
+      customer:{
+        name:
+          order.customer_name||"",
+        phone:
+          order.customer_phone||"",
+        city:
+          order.customer_city||"",
+        address:
+          order.customer_address||"",
+        note:
+          order.customer_note||""
+      },
+
+      items:
+        (
+          Array.isArray(order.order_items)
+            ?order.order_items
+            :[]
+        )
+        .map(item=>({
+
+          id:
+            Number(item.product_id),
+
+          quantity:
+            Number(item.quantity||1),
+
+          name:
+            item.product_name
+            ||`Product #${item.product_id||""}`,
+
+          price:
+            Number(item.unit_price||0),
+
+          image:
+            item.product_image
+            ||"https://placehold.co/120x120/E9E0D2/35100F?text=Item"
+
+        })),
+
+      subtotal:
+        Number(order.subtotal||0),
+
+      orderAmount:
+        Number(order.order_amount||0),
+
+      total:
+        Number(order.total||0),
+
+      status:
+        String(order.status||"")
+        .toLowerCase()
+        .trim(),
+
+      createdAt:
+        order.created_at,
+
+      cancelledAt:
+        order.cancelled_at||null,
+
+      cancellationReason:
+        order.cancellation_reason||""
+
+    });
+
+
+    completedOrders=
+      (data||[])
+      .filter(order=>
+        normalizeCompletedStatus(
+          order.status
+        )
+      )
+      .map(
+        mapHistoryOrder
+      );
+
+
+    cancelledOrders=
+      (data||[])
+      .filter(order=>
+        [
+          "cancelled",
+          "canceled"
+        ]
+        .includes(
+          String(order.status||"")
+          .toLowerCase()
+          .trim()
+        )
+      )
+      .map(
+        mapHistoryOrder
+      );
+
+
+    renderProfile();
+
+
+    if(
+      $("completedOrdersModal")
+      .classList.contains("show")
+    ){
+
+      renderCompletedOrders();
+
+    }
+
+
+    if(
+      $("cancelledOrdersModal")
+      .classList.contains("show")
+    ){
+
+      renderCancelledOrders();
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "Completed orders load error:",
+      error
+    );
+
+  }
+
+}
+
+
+function stopProfileOrdersRealtime(){
+
+  if(
+    profileOrdersChannel
+    &&
+    window.sb
+  ){
+
+    sb.removeChannel(
+      profileOrdersChannel
+    );
+
+  }
+
+
+  profileOrdersChannel=null;
+}
+
+
+function startProfileOrdersRealtime(){
+
+  stopProfileOrdersRealtime();
+
+
+  if(
+    !currentUser
+    ||
+    !window.sb?.channel
+  ){
+    return;
+  }
+
+
+  profileOrdersChannel=
+    sb
+    .channel(
+      `luxline-profile-orders-${currentUser.id}`
+    )
+    .on(
+      "postgres_changes",
+      {
+        event:"*",
+        schema:"public",
+        table:"orders",
+        filter:`user_id=eq.${currentUser.id}`
+      },
+      async()=>{
+
+        await loadCompletedOrders();
+
+      }
+    )
+    .subscribe();
+}
+
+
 
 function getCart(){
   return JSON.parse(
@@ -2817,9 +4619,16 @@ function getCart(){
 }
 
 function getOrders(){
-  return JSON.parse(
-    localStorage.getItem("pool_orders")
-  )||[];
+
+  return completedOrders;
+
+}
+
+
+function getCancelledOrders(){
+
+  return cancelledOrders;
+
 }
 
 function getFavorites(){
@@ -2884,79 +4693,195 @@ function renderProfile(){
 
   const profile=getProfile();
   const cart=getCart();
-  const orders=getOrders();
   const favorites=getFavorites();
 
-  const hasName=
-    Boolean(profile.fullName?.trim());
+  const orders=
+    currentUser
+      ?getOrders()
+      :[];
+
+
+  const loggedIn=
+    Boolean(currentUser);
+
 
   const displayName=
-    hasName
-      ?profile.fullName.trim()
+    loggedIn
+      ?(
+          profile.fullName?.trim()
+          ||currentUser.email
+          ||l("guest")
+        )
       :l("guest");
+
 
   $("profileName").textContent=
     displayName;
 
+
   $("profileSubtitle").textContent=
-    hasName
+    loggedIn
       ?[
-          profile.city,
+          currentCityDisplay(),
+          currentDistrictDisplay(),
           profile.phone
         ]
         .filter(Boolean)
         .join(" · ")
+        ||profile.email
         ||l("guestSub")
       :l("guestSub");
 
+
   $("avatarLetters").textContent=
-    initials(profile.fullName);
+    initials(
+      loggedIn
+        ?displayName
+        :""
+    );
+
 
   $("displayName").textContent=
-    profile.fullName||l("notSet");
+    loggedIn
+      ?(
+          profile.fullName
+          ||l("notSet")
+        )
+      :l("loginRequired");
+
 
   $("displayPhone").textContent=
-    profile.phone||l("notSet");
+    loggedIn
+      ?(
+          profile.phone
+          ||l("notSet")
+        )
+      :l("loginRequired");
+
 
   $("displayEmail").textContent=
-    profile.email||l("notSet");
+    loggedIn
+      ?(
+          profile.email
+          ||currentUser?.email
+          ||l("notSet")
+        )
+      :l("loginRequired");
+
 
   $("displayCity").textContent=
-    profile.city||l("notSet");
+    loggedIn
+      ?(
+          currentCityDisplay()
+          ||l("notSet")
+        )
+      :l("loginRequired");
 
-  $("displayAddress").textContent=
-    profile.address||l("notSet");
+
+  $("displayCityPlace").textContent=
+    loggedIn
+      ?(
+          currentDistrictDisplay()
+          ||l("notSet")
+        )
+      :l("loginRequired");
+
+
+  $("displayLocation").textContent=
+    loggedIn
+      ?(
+          profile.location
+          ||l("notSet")
+        )
+      :l("loginRequired");
+
+
+  const actionButton=
+    $("editProfileBtn");
+
+
+  const actionIcon=
+    actionButton.querySelector("i");
+
+
+  const actionText=
+    actionButton.querySelector("span");
+
+
+  $("logoutProfileBtn").hidden=
+    !loggedIn;
+
+
+  if(loggedIn){
+
+    actionIcon.className=
+      "fa-solid fa-pen";
+
+
+    actionText.textContent=
+      l("editProfile");
+
+
+  }else{
+
+    actionIcon.className=
+      "fa-solid fa-right-to-bracket";
+
+
+    actionText.textContent=
+      l("login");
+
+  }
+
 
   $("ordersCount").textContent=
     orders.length;
 
+
   const cartItemCount=
     cart.reduce(
-      (sum,item)=>sum+(item.quantity||0),
+      (sum,item)=>
+        sum+
+        Number(item.quantity||0),
       0
     );
+
 
   $("profileCartCount").textContent=
     cartItemCount;
 
+
   $("headerCartCount").textContent=
     cartItemCount;
+
 
   $("favoritesCount").textContent=
     favorites.length;
 
+
   const totalSpent=
     orders.reduce(
-      (sum,order)=>sum+Number(order.total||0),
+      (sum,order)=>
+        sum+
+        Number(order.total||0),
       0
     );
+
 
   $("spentTotal").textContent=
     money(totalSpent);
 
+
   $("completedOrdersCount").textContent=
     orders.length;
+
+
+  $("cancelledOrdersCount").textContent=
+    loggedIn
+      ?getCancelledOrders().length
+      :0;
 }
+
 
 function renderCompletedOrders(){
 
@@ -2988,7 +4913,6 @@ function renderCompletedOrders(){
 
   $("completedOrdersList").innerHTML=
     [...orders]
-    .reverse()
     .map(order=>{
 
       const itemCount=
@@ -3056,7 +4980,19 @@ function renderCompletedOrders(){
     }).join("");
 }
 
-function openCompletedOrders(){
+async function openCompletedOrders(){
+
+  if(!currentUser){
+
+    location.href=
+      "login.html";
+
+    return;
+  }
+
+
+  await loadCompletedOrders();
+
 
   renderCompletedOrders();
 
@@ -3098,12 +5034,212 @@ function openOrderFromCompleted(orderId){
 }
 
 
+
+function renderCancelledOrders(){
+
+  const orders=
+    getCancelledOrders();
+
+
+  $("cancelledOrdersCount").textContent=
+    orders.length;
+
+
+  if(!orders.length){
+
+    $("cancelledOrdersList").innerHTML=`
+
+      <div class="completed-empty">
+
+        <i class="fa-solid fa-ban"></i>
+
+        <strong>
+          ${l("noCancelledOrders")}
+        </strong>
+
+        <span>
+          ${l("noCancelledOrdersSub")}
+        </span>
+
+      </div>
+
+    `;
+
+
+    return;
+  }
+
+
+  $("cancelledOrdersList").innerHTML=
+    orders
+    .map(order=>{
+
+      const itemCount=
+        Array.isArray(order.items)
+          ?order.items.reduce(
+              (sum,item)=>
+                sum+
+                Number(item.quantity||0),
+              0
+            )
+          :0;
+
+
+      const date=
+        order.cancelledAt
+          ?new Date(
+              order.cancelledAt
+            )
+            .toLocaleDateString()
+          :order.createdAt
+            ?new Date(
+                order.createdAt
+              )
+              .toLocaleDateString()
+            :"";
+
+
+      const safeId=
+        String(order.id||"")
+        .replace(/'/g,"\\'");
+
+
+      return`
+
+        <button
+          class="completed-order-row"
+          type="button"
+          onclick="openOrderFromCancelled('${safeId}')"
+        >
+
+          <div class="completed-order-main">
+
+            <div class="completed-order-id">
+              ${order.id||"ORDER"}
+            </div>
+
+            <div class="completed-order-meta">
+
+              <span>
+                <i class="fa-regular fa-calendar"></i>
+                ${date}
+              </span>
+
+
+              <span>
+                <i class="fa-solid fa-box"></i>
+                ${itemCount} ${l("orderItems")}
+              </span>
+
+
+              <span class="cancelled-order-status">
+                <i class="fa-solid fa-ban"></i>
+                ${l("cancelled")}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <strong class="completed-order-total">
+            ${money(order.total)}
+          </strong>
+
+
+          <span class="completed-order-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </span>
+
+        </button>
+
+      `;
+
+    })
+    .join("");
+}
+
+
+async function openCancelledOrders(){
+
+  if(!currentUser){
+
+    location.href=
+      "login.html";
+
+    return;
+  }
+
+
+  await loadCompletedOrders();
+
+
+  renderCancelledOrders();
+
+
+  $("cancelledOrdersModal")
+  .classList.add(
+    "show"
+  );
+
+
+  $("cancelledOrdersModal")
+  .setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  document.body.style.overflow=
+    "hidden";
+}
+
+
+function closeCancelledOrders(){
+
+  $("cancelledOrdersModal")
+  .classList.remove(
+    "show"
+  );
+
+
+  $("cancelledOrdersModal")
+  .setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.style.overflow=
+    "";
+}
+
+
+function openOrderFromCancelled(
+  orderId
+){
+
+  closeCancelledOrders();
+
+
+  openOrderModal(
+    orderId
+  );
+}
+
+
 function openOrderModal(orderId){
 
-  const orders=getOrders();
+  const orders=[
+    ...getOrders(),
+    ...getCancelledOrders()
+  ];
+
 
   const order=orders.find(
-    item=>String(item.id)===String(orderId)
+    item=>
+      String(item.id)===
+      String(orderId)
   );
 
   if(!order)return;
@@ -3127,7 +5263,9 @@ function openOrderModal(orderId){
 
           const product=
             productCatalog.find(
-              product=>product.id===Number(item.id)
+              product=>
+                product.id===
+                Number(item.id)
             );
 
           const quantity=
@@ -3144,12 +5282,16 @@ function openOrderModal(orderId){
             unitPrice*quantity;
 
           const productName=
-            product
-              ?tr(product.nameKey)
-              :`Product #${item.id}`;
+            item.name
+            ||(
+              product
+                ?tr(product.nameKey)
+                :`Product #${item.id}`
+            );
 
           const image=
-            product?.image
+            item.image
+            ||product?.image
             ||"https://placehold.co/120x120/E9E0D2/35100F?text=Item";
 
           return`
@@ -3207,7 +5349,17 @@ function openOrderModal(orderId){
 
       <div class="order-summary-box">
         <small>${l("orderStatus")}</small>
-        <strong>${l("completed")}</strong>
+        <strong>
+          ${
+            [
+              "cancelled",
+              "canceled"
+            ]
+            .includes(order.status)
+              ?l("cancelled")
+              :l("completed")
+          }
+        </strong>
       </div>
 
     </div>
@@ -3242,6 +5394,54 @@ function openOrderModal(orderId){
 
       </div>
 
+
+      ${
+        [
+          "cancelled",
+          "canceled"
+        ]
+        .includes(order.status)
+          ?`
+
+            <div class="cancelled-reason-box">
+
+              <small>
+                ${l("cancellationReason")}
+              </small>
+
+              <strong>
+                ${
+                  order.cancellationReason
+                  ||l("noCustomer")
+                }
+              </strong>
+
+            </div>
+
+            ${
+              order.cancelledAt
+                ?`
+
+                  <div class="cancelled-reason-box">
+
+                    <small>
+                      ${l("cancelledAt")}
+                    </small>
+
+                    <strong>
+                      ${new Date(order.cancelledAt).toLocaleString()}
+                    </strong>
+
+                  </div>
+
+                `
+                :""
+            }
+
+          `
+          :""
+      }
+
     </section>
 
     <section>
@@ -3252,6 +5452,16 @@ function openOrderModal(orderId){
 
       <div class="order-items">
         ${itemsHtml}
+      </div>
+
+      <div class="order-grand-total">
+        <span>${l("subtotal")}</span>
+        <strong>${money(order.subtotal||0)}</strong>
+      </div>
+
+      <div class="order-grand-total">
+        <span>${l("cityOrderAmount")}</span>
+        <strong>${money(order.orderAmount||0)}</strong>
       </div>
 
       <div class="order-grand-total">
@@ -3289,29 +5499,75 @@ function closeOrderModal(){
 }
 
 
-function fillProfileForm(){
+async function fillProfileForm(){
 
   const profile=getProfile();
+
 
   $("profileFullName").value=
     profile.fullName||"";
 
+
   $("profilePhone").value=
     profile.phone||"";
 
+
   $("profileEmail").value=
-    profile.email||"";
+    profile.email
+    ||currentUser?.email
+    ||"";
 
-  $("profileCity").value=
-    profile.city||"";
 
-  $("profileAddress").value=
-    profile.address||"";
+  await loadProfileCities();
+
+
+  if(profile.cityId){
+
+    $("profileCity").value=
+      String(profile.cityId);
+
+
+    await loadProfileDistricts(
+      profile.cityId,
+      true
+    );
+
+
+    $("profileCityPlace").value=
+      profile.districtId
+        ?String(profile.districtId)
+        :"";
+
+  }else{
+
+    $("profileCity").value=
+      "";
+
+    profileDistricts=[];
+
+    renderProfileDistrictOptions();
+
+  }
+
+
+  $("profileLocation").value=
+    profile.location||"";
+
 }
 
-function openProfileModal(){
 
-  fillProfileForm();
+async function openProfileModal(){
+
+  if(!currentUser){
+
+    location.href=
+      "login.html";
+
+    return;
+  }
+
+
+  await fillProfileForm();
 
   $("profileModal").classList.add(
     "show"
@@ -3371,8 +5627,17 @@ $("editProfileBtn").onclick=
 $("completedOrdersBtn").onclick=
   openCompletedOrders;
 
+
+$("cancelledOrdersBtn").onclick=
+  openCancelledOrders;
+
+
 $("closeCompletedOrdersModal").onclick=
   closeCompletedOrders;
+
+
+$("closeCancelledOrdersModal").onclick=
+  closeCancelledOrders;
 
 document
   .querySelectorAll("[data-close-completed-orders]")
@@ -3380,6 +5645,16 @@ document
 
     element.onclick=
       closeCompletedOrders;
+
+  });
+
+
+document
+  .querySelectorAll("[data-close-cancelled-orders]")
+  .forEach(element=>{
+
+    element.onclick=
+      closeCancelledOrders;
 
   });
 
@@ -3409,31 +5684,193 @@ document
   });
 
 $("profileForm").onsubmit=
-  event=>{
+async event=>{
 
-    event.preventDefault();
+  event.preventDefault();
 
-    const profile={
-      fullName:$("profileFullName").value.trim(),
-      phone:$("profilePhone").value.trim(),
-      email:$("profileEmail").value.trim(),
-      city:$("profileCity").value,
-      address:$("profileAddress").value.trim()
+
+  if(!currentUser){
+
+    location.href=
+      "login.html";
+
+    return;
+  }
+
+
+  const saveButton=
+    event.submitter;
+
+
+  if(saveButton){
+    saveButton.disabled=true;
+  }
+
+
+  try{
+
+    const cityId=
+      Number(
+        $("profileCity").value
+      );
+
+
+    const districtId=
+      Number(
+        $("profileCityPlace").value
+      );
+
+
+    const selectedCity=
+      profileCities.find(
+        city=>
+          Number(city.id)===
+          cityId
+      );
+
+
+    const selectedDistrict=
+      profileDistricts.find(
+        district=>
+          Number(district.id)===
+          districtId
+      );
+
+
+    if(
+      !selectedCity
+      ||
+      !selectedDistrict
+    ){
+
+      throw new Error(
+        l("selectCity")
+        +" / "
+        +l("selectDistrict")
+      );
+
+    }
+
+
+    const updates={
+
+      full_name:
+        $("profileFullName")
+        .value
+        .trim(),
+
+      phone:
+        $("profilePhone")
+        .value
+        .trim(),
+
+      city_id:
+        cityId,
+
+      district_id:
+        districtId,
+
+      city:
+        selectedCity.name_en,
+
+      city_place:
+        selectedDistrict.name_en,
+
+      location:
+        $("profileLocation")
+        .value
+        .trim(),
+
+      updated_at:
+        new Date().toISOString()
+
     };
 
-    localStorage.setItem(
-      "luxline_profile",
-      JSON.stringify(profile)
-    );
+
+    const {
+      error
+    }=
+      await sb
+      .from("profiles")
+      .update(
+        updates
+      )
+      .eq(
+        "id",
+        currentUser.id
+      );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    currentProfile={
+
+      ...currentProfile,
+
+      fullName:
+        updates.full_name,
+
+      phone:
+        updates.phone,
+
+      email:
+        currentUser.email
+        ||currentProfile.email,
+
+      cityId:
+        updates.city_id,
+
+      districtId:
+        updates.district_id,
+
+      city:
+        updates.city,
+
+      cityPlace:
+        updates.city_place,
+
+      location:
+        updates.location
+
+    };
+
 
     closeProfileModal();
 
     renderProfile();
 
+
     toast(
       l("saved")
     );
-  };
+
+
+  }catch(error){
+
+    console.error(
+      "Save profile error:",
+      error
+    );
+
+
+    toast(
+      error?.message
+      ||"Unable to save profile"
+    );
+
+
+  }finally{
+
+    if(saveButton){
+      saveButton.disabled=false;
+    }
+
+  }
+
+};
 
 $("languageSelect").onchange=
   event=>{
@@ -3456,6 +5893,11 @@ $("languageSelect").onchange=
     }
 
     renderLabels();
+
+    renderProfileCityOptions();
+
+    renderProfileDistrictOptions();
+
     renderProfile();
   };
 
@@ -3577,6 +6019,94 @@ document.addEventListener(
   {passive:false}
 );
 
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutProfileBtn").onclick=
+async()=>{
+
+  const button=
+    $("logoutProfileBtn");
+
+
+  button.disabled=
+    true;
+
+
+  try{
+
+    stopProfileOrdersRealtime();
+
+
+    const {
+      error
+    }=
+      await sb.auth.signOut();
+
+
+    if(error){
+      throw error;
+    }
+
+
+    location.replace(
+      "login.html"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Logout error:",
+      error
+    );
+
+
+    button.disabled=
+      false;
+
+
+    alert(
+      error?.message
+      ||"Unable to logout."
+    );
+
+  }
+
+};
+
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+sb.auth.onAuthStateChange(
+  (
+    event,
+    session
+  )=>{
+
+    if(
+      event==="SIGNED_IN"
+      ||
+      event==="SIGNED_OUT"
+      ||
+      event==="USER_UPDATED"
+    ){
+
+      loadAccount();
+
+    }
+
+  }
+);
+
+
+
 /* =========================================================
    START
 ========================================================= */
@@ -3587,6 +6117,7 @@ if(typeof initializeLanguage==="function"){
 
 renderLabels();
 renderProfile();
+loadAccount();
 </script>
 
 </body>
