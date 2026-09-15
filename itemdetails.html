@@ -1516,6 +1516,58 @@ html[dir="rtl"] .toast i{
     transition:none!important;
   }
 }
+
+/* =========================================================
+   SUPABASE LOADING STATE
+========================================================= */
+
+.loading-state{
+  min-height:520px;
+
+  padding:100px 20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+.loading-state i{
+  margin-bottom:18px;
+
+  color:var(--brown);
+
+  font-size:40px;
+
+  animation:itemLoadingSpin .85s linear infinite;
+}
+
+.loading-state h2{
+  color:var(--brown);
+
+  font-family:"Manrope",sans-serif;
+  font-size:30px;
+}
+
+.loading-state p{
+  max-width:480px;
+
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.7;
+}
+
+@keyframes itemLoadingSpin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
 </style>
 </head>
 
@@ -1601,135 +1653,110 @@ html[dir="rtl"] .toast i{
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseClient.js"></script>
 <script src="translation.js"></script>
 
 <script>
 /* =========================================================
-   PRODUCTS
+   LUX LINE ITEM DETAILS
+   REAL PRODUCT FROM SUPABASE
 ========================================================= */
 
-const products=[
-  {
-    id:1,
-    category:"tables",
-    nameKey:"product1",
-    price:1950,
-    rating:4.9,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75pfj4ov00MrgKH_DWVb10L26cmgRg1YmoVXJ1rTZBw&s=10",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:2,
-    category:"tables",
-    nameKey:"product2",
-    price:1250,
-    rating:4.8,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eVp7l13CR1UL8fVHglUC1oIpxmwTuHtBBeCZ8oAtTQ&s=10",
-      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:3,
-    category:"cues",
-    nameKey:"product3",
-    price:180,
-    rating:4.9,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgamjqh5WR-kiDKXntIStABWz4xd_RPtBThB7lrEMdw&s=10",
-      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:4,
-    category:"balls",
-    nameKey:"product4",
-    price:95,
-    rating:4.8,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCpwBcOGq01d4wLjysgkBCmtw9Oef1IPtdJPYboNvyxQ&s",
-      "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:5,
-    category:"accessories",
-    nameKey:"product5",
-    price:35,
-    rating:4.7,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMUWD6EX49gpZfJ9P1ber0SYYdoiXGLqqq39YJSfdcSQ&s",
-      "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:6,
-    category:"cues",
-    nameKey:"product6",
-    price:260,
-    rating:5,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeEN7f-007rn_XzrVIZlgV41I5cYh5hH9rWxRgJcwU9Q&s",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:7,
-    category:"accessories",
-    nameKey:"product7",
-    price:80,
-    rating:4.6,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRbleOw_pwy_WUFVFpN_aAsa2ejWP1HP9Td_fwIf8xGQ&s=10",
-      "https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1541278107931-e006523892df?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=1400&q=88"
-    ]
-  },
-  {
-    id:8,
-    category:"accessories",
-    nameKey:"product8",
-    price:120,
-    rating:4.9,
-    images:[
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZhmxLUIeDveWApFi4CIK7JdIMcBHDMbsdE-vvxm6gtA&s",
-      "https://images.unsplash.com/photo-1607627000458-210e8d2bdb1d?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1572269623454-1d587eda77ab?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1629877521898-a0a7ef1e3c51?auto=format&fit=crop&w=1400&q=88"
-    ]
+const $=id=>document.getElementById(id);
+
+const money=value=>
+  `$${Number(value||0).toLocaleString()}`;
+
+
+const productId=Number(
+  new URLSearchParams(
+    location.search
+  ).get("id")
+);
+
+
+let product=null;
+let loadingProduct=true;
+let productLoadError="";
+
+let quantity=1;
+let activeImageIndex=0;
+
+let cart=
+  (JSON.parse(
+    localStorage.getItem("pool_cart")
+  )||[])
+  .map(item=>({
+    ...item,
+    id:Number(item.id),
+    quantity:Number(item.quantity||1)
+  }))
+  .filter(
+    item=>
+      Number.isFinite(item.id)
+  );
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const lang=()=>{
+
+  return typeof currentLanguage!=="undefined"
+    ?currentLanguage
+    :(localStorage.getItem("pool_language")||"en");
+
+};
+
+
+const tx=key=>{
+
+  return localText[lang()]?.[key]
+    ||localText.en[key]
+    ||key;
+
+};
+
+
+const t=key=>{
+
+  if(
+    typeof getTranslation==="function"
+  ){
+    return getTranslation(key);
   }
-];
+
+
+  if(
+    typeof translations!=="undefined"
+  ){
+
+    return translations[lang()]?.[key]
+      ||translations.en?.[key]
+      ||key;
+
+  }
+
+
+  return key;
+};
+
 
 /* =========================================================
    LOCAL TEXT
 ========================================================= */
 
 const localText={
+
   en:{
     back:"Back",
     cart:"Cart",
     viewing:"Item Details",
 
-    description:
-      "Designed for players who value quality, durability and a refined playing experience. This product combines professional performance with a premium finish, making it a strong choice for home game rooms and serious players.",
-
     quality:"Premium Quality",
-    qualitySub:"Selected materials and a durable finish",
+    qualitySub:"Selected for quality and a refined finish",
 
     delivery:"Fast Delivery",
     deliverySub:"Secure delivery to your door",
@@ -1741,14 +1768,16 @@ const localText={
     add:"Add to Cart",
     added:"Product added to cart",
 
-    stock:"In Stock",
-    stockSub:"Ready to order",
-
-    rating:"Customer Rating",
     category:"Category",
 
     notFound:"Product Not Found",
-    notFoundSub:"The item you are looking for does not exist.",
+    notFoundSub:"The item you are looking for does not exist or is not available.",
+
+    loadError:"Unable to Load Product",
+    loadErrorSub:"The product could not be loaded from the store database.",
+
+    loading:"Loading Product",
+    loadingSub:"Getting the latest product information...",
 
     gallery:"Product Gallery",
     photos:"Photos",
@@ -1762,16 +1791,14 @@ const localText={
     galleryCount:"Product images"
   },
 
+
   ar:{
     back:"رجوع",
     cart:"السلة",
     viewing:"تفاصيل المنتج",
 
-    description:
-      "مصمم للاعبين الذين يهتمون بالجودة والمتانة وتجربة لعب راقية. يجمع هذا المنتج بين الأداء الاحترافي والتشطيب الفاخر، وهو مناسب لغرف الألعاب المنزلية واللاعبين الجادين.",
-
     quality:"جودة عالية",
-    qualitySub:"مواد مختارة وتشطيب متين",
+    qualitySub:"مختار بعناية للجودة والتشطيب الراقي",
 
     delivery:"توصيل سريع",
     deliverySub:"توصيل آمن حتى باب منزلك",
@@ -1783,14 +1810,16 @@ const localText={
     add:"أضف إلى السلة",
     added:"تمت إضافة المنتج إلى السلة",
 
-    stock:"متوفر",
-    stockSub:"جاهز للطلب",
-
-    rating:"تقييم العملاء",
     category:"الفئة",
 
     notFound:"المنتج غير موجود",
-    notFoundSub:"المنتج الذي تبحث عنه غير موجود.",
+    notFoundSub:"المنتج الذي تبحث عنه غير موجود أو غير متاح.",
+
+    loadError:"تعذر تحميل المنتج",
+    loadErrorSub:"تعذر تحميل بيانات المنتج من قاعدة بيانات المتجر.",
+
+    loading:"جاري تحميل المنتج",
+    loadingSub:"جاري جلب أحدث معلومات المنتج...",
 
     gallery:"صور المنتج",
     photos:"صور",
@@ -1804,16 +1833,14 @@ const localText={
     galleryCount:"صور المنتج"
   },
 
+
   badini:{
     back:"زڤرین",
     cart:"سەبەتە",
     viewing:"زانیاریێن بەرهەمی",
 
-    description:
-      "ڤی بەرهەمی بۆ یاریزانێن کوالیتی، بەردەوامی و ئەزموونەکا باش یا یاریێ دڤێن هاتیە دروستکرن. کارکردنا پروفیشناڵ و دیزاینەکا لوکس پێکڤە ددەت.",
-
     quality:"کوالیتییا بەرز",
-    qualitySub:"مەتریالێن هەلبژارتی و دروستکرنا بەردەوام",
+    qualitySub:"بۆ کوالیتی و دیزاینێ باش هاتیە هەلبژارتن",
 
     delivery:"گەهاندنا بلەز",
     deliverySub:"گەهاندنا پاراستی بۆ ماڵا تە",
@@ -1825,14 +1852,16 @@ const localText={
     add:"زێدە بکە بۆ سەبەتێ",
     added:"بەرهەم هاتە زێدەکرن بۆ سەبەتێ",
 
-    stock:"بەردەستە",
-    stockSub:"ئامادەیە بۆ داواکاریێ",
-
-    rating:"هەلسەنگاندنا کڕیاران",
     category:"کەتەگۆری",
 
     notFound:"بەرهەم نەهاتە دیتن",
-    notFoundSub:"ئەو بەرهەمێ تو لێ دگەڕهی نەهاتە دیتن.",
+    notFoundSub:"ئەو بەرهەمێ تو لێ دگەڕهی نینە یان بەردەست نینە.",
+
+    loadError:"بەرهەم نەهاتە بارکرن",
+    loadErrorSub:"زانیاریێن بەرهەمی ژ داتابەیسا فرۆشگەهێ نەهاتنە بارکرن.",
+
+    loading:"بەرهەم دهێتە بارکرن",
+    loadingSub:"نووترین زانیاریێن بەرهەمی دهێنە وەرگرتن...",
 
     gallery:"وێنێن بەرهەمی",
     photos:"وێنە",
@@ -1846,16 +1875,14 @@ const localText={
     galleryCount:"وێنێن بەرهەمی"
   },
 
+
   sorani:{
     back:"گەڕانەوە",
     cart:"سەبەتە",
     viewing:"وردەکاری بەرهەم",
 
-    description:
-      "ئەم بەرهەمە بۆ یاریزانانی خوازیاری کوالیتی، بەردەوامی و ئەزموونی یاریی باش دروست کراوە. کارایی پیشەیی و دیزاینێکی لوکس پێکەوە کۆدەکاتەوە.",
-
     quality:"کوالیتی بەرز",
-    qualitySub:"ماتریاڵی هەڵبژێردراو و دروستکردنی بەردەوام",
+    qualitySub:"بۆ کوالیتی و دیزاینی باش هەڵبژێردراوە",
 
     delivery:"گەیاندنی خێرا",
     deliverySub:"گەیاندنی پارێزراو بۆ ماڵەکەت",
@@ -1867,14 +1894,16 @@ const localText={
     add:"زیادکردن بۆ سەبەتە",
     added:"بەرهەم زیادکرا بۆ سەبەتە",
 
-    stock:"بەردەستە",
-    stockSub:"ئامادەیە بۆ داواکاری",
-
-    rating:"هەڵسەنگاندنی کڕیاران",
     category:"پۆل",
 
     notFound:"بەرهەم نەدۆزرایەوە",
-    notFoundSub:"ئەو بەرهەمەی بەدوایدا دەگەڕێیت بوونی نییە.",
+    notFoundSub:"ئەو بەرهەمەی بەدوایدا دەگەڕێیت نییە یان بەردەست نییە.",
+
+    loadError:"نەتوانرا بەرهەم بار بکرێت",
+    loadErrorSub:"نەتوانرا زانیاری بەرهەم لە بنکەدراوەی فرۆشگا بار بکرێت.",
+
+    loading:"بەرهەم بار دەکرێت",
+    loadingSub:"نوێترین زانیاری بەرهەم وەردەگیرێت...",
 
     gallery:"وێنەکانی بەرهەم",
     photos:"وێنە",
@@ -1887,69 +1916,271 @@ const localText={
 
     galleryCount:"وێنەکانی بەرهەم"
   }
+
 };
+
 
 /* =========================================================
-   HELPERS
+   PRODUCT LANGUAGE DATA
 ========================================================= */
 
-const $=id=>document.getElementById(id);
+function languageSuffix(){
 
-const money=value=>`$${Number(value).toLocaleString()}`;
-
-const lang=()=>{
-  return typeof currentLanguage!=="undefined"
-    ? currentLanguage
-    : (localStorage.getItem("pool_language")||"en");
-};
-
-const tx=key=>{
-  return localText[lang()]?.[key]
-    || localText.en[key]
-    || key;
-};
-
-const t=key=>{
-  if(typeof getTranslation==="function"){
-    return getTranslation(key);
+  if(lang()==="ar"){
+    return "ar";
   }
 
-  if(typeof translations!=="undefined"){
-    return translations[lang()]?.[key]
-      || translations.en?.[key]
-      || key;
+  if(lang()==="badini"){
+    return "badini";
   }
 
-  return key;
-};
+  if(lang()==="sorani"){
+    return "sorani";
+  }
+
+  return "en";
+}
+
+
+function productName(){
+
+  if(!product){
+    return tx("viewing");
+  }
+
+
+  const suffix=
+    languageSuffix();
+
+
+  return product[`name_${suffix}`]
+    ||product.name_en
+    ||product.name
+    ||"LUX LINE Product";
+}
+
+
+function productCategory(){
+
+  if(!product){
+    return "";
+  }
+
+
+  const suffix=
+    languageSuffix();
+
+
+  return product[`category_${suffix}`]
+    ||product.category_en
+    ||product.category_code
+    ||"";
+}
+
+
+function productDescription(){
+
+  if(!product){
+    return "";
+  }
+
+
+  const suffix=
+    languageSuffix();
+
+
+  return product[`description_${suffix}`]
+    ||product.description_en
+    ||product.description
+    ||"";
+}
+
 
 /* =========================================================
-   STATE
+   PRODUCT IMAGES
 ========================================================= */
 
-const productId=Number(
-  new URLSearchParams(location.search).get("id")
-);
+function productImages(){
 
-const product=products.find(
-  item=>item.id===productId
-);
+  if(!product){
+    return [];
+  }
 
-let quantity=1;
-let activeImageIndex=0;
 
-let cart=JSON.parse(
-  localStorage.getItem("pool_cart")
-)||[];
+  const images=
+    Array.isArray(
+      product.product_images
+    )
+      ?[...product.product_images]
+      :[];
+
+
+  images.sort(
+    (a,b)=>
+      Number(a.sort_order||0)
+      -
+      Number(b.sort_order||0)
+  );
+
+
+  const urls=
+    images
+    .map(image=>image.image_url)
+    .filter(Boolean);
+
+
+  if(
+    product.image_url
+    &&
+    !urls.includes(
+      product.image_url
+    )
+  ){
+
+    urls.unshift(
+      product.image_url
+    );
+
+  }
+
+
+  return urls.length
+    ?urls
+    :[
+        "https://placehold.co/1200x900/E0D6C8/35100F?text=LUX+LINE"
+      ];
+}
+
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+async function loadProduct(){
+
+  loadingProduct=true;
+  productLoadError="";
+
+  renderDetails();
+
+
+  if(
+    !Number.isFinite(productId)
+    ||
+    productId<=0
+  ){
+
+    product=null;
+    loadingProduct=false;
+
+    renderDetails();
+
+    return;
+  }
+
+
+  try{
+
+    if(
+      !window.sb
+      ||
+      !window.sb.from
+    ){
+
+      throw new Error(
+        "Supabase client is not configured."
+      );
+
+    }
+
+
+    const {
+      data,
+      error
+    }=
+      await sb
+      .from("products")
+      .select(`
+        *,
+        product_images (
+          id,
+          image_url,
+          sort_order,
+          is_primary
+        )
+      `)
+      .eq(
+        "id",
+        productId
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .maybeSingle();
+
+
+    if(error){
+      throw error;
+    }
+
+
+    product=
+      data
+        ?{
+            ...data,
+            id:Number(data.id),
+            price:Number(data.price||0)
+          }
+        :null;
+
+
+    activeImageIndex=0;
+
+
+  }catch(error){
+
+    console.error(
+      "Product load error:",
+      error
+    );
+
+
+    product=null;
+
+    productLoadError=
+      error?.message
+      ||"Unable to load product.";
+
+
+  }finally{
+
+    loadingProduct=false;
+
+    renderDetails();
+
+    updateCartCount();
+
+  }
+
+}
+
 
 /* =========================================================
    STATIC TEXT
 ========================================================= */
 
 function renderStaticText(){
-  $("backText").textContent=tx("back");
-  $("cartWord").textContent=tx("cart");
+
+  $("backText").textContent=
+    tx("back");
+
+
+  $("cartWord").textContent=
+    tx("cart");
+
 }
+
 
 /* =========================================================
    BREADCRUMB
@@ -1957,22 +2188,50 @@ function renderStaticText(){
 
 function renderBreadcrumb(){
 
-  const productName=product
-    ? t(product.nameKey)
-    : tx("viewing");
+  const name=
+    product
+      ?productName()
+      :tx("viewing");
+
 
   $("breadcrumb").innerHTML=`
-    <a href="index.html">${t("navHome")}</a>
+
+    <a href="index.html">
+      ${t("navHome")}
+    </a>
 
     <i class="fa-solid fa-chevron-right"></i>
 
-    <a href="index.html#shop">${t("navShop")}</a>
+    <a href="index.html#shop">
+      ${t("navShop")}
+    </a>
 
     <i class="fa-solid fa-chevron-right"></i>
 
-    <span>${productName}</span>
+    <span>
+      ${escapeHtml(name)}
+    </span>
+
   `;
+
 }
+
+
+/* =========================================================
+   SAFE OUTPUT
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
 
 /* =========================================================
    DETAILS
@@ -1981,42 +2240,157 @@ function renderBreadcrumb(){
 function renderDetails(){
 
   renderStaticText();
+
   renderBreadcrumb();
 
-  document.title=product
-    ? `${t(product.nameKey)} | LUX LINE`
-    : `${tx("notFound")} | LUX LINE`;
 
-  if(!product){
+  if(loadingProduct){
+
+    document.title=
+      `${tx("loading")} | LUX LINE`;
+
 
     $("detailsRoot").innerHTML=`
+
+      <section class="loading-state">
+
+        <i class="fa-solid fa-spinner"></i>
+
+        <h2>
+          ${escapeHtml(tx("loading"))}
+        </h2>
+
+        <p>
+          ${escapeHtml(tx("loadingSub"))}
+        </p>
+
+      </section>
+
+    `;
+
+
+    return;
+  }
+
+
+  if(productLoadError){
+
+    document.title=
+      `${tx("loadError")} | LUX LINE`;
+
+
+    $("detailsRoot").innerHTML=`
+
       <section class="not-found">
 
-        <i class="fa-solid fa-circle-exclamation"></i>
+        <i class="fa-solid fa-triangle-exclamation"></i>
 
-        <h2>${tx("notFound")}</h2>
+        <h2>
+          ${escapeHtml(tx("loadError"))}
+        </h2>
 
-        <p>${tx("notFoundSub")}</p>
+        <p>
+          ${escapeHtml(tx("loadErrorSub"))}
+        </p>
 
         <a
           class="add-main"
           href="index.html#shop"
           style="max-width:220px;margin:auto;"
         >
+
           <i class="fa-solid fa-arrow-left"></i>
-          ${tx("back")}
+
+          ${escapeHtml(tx("back"))}
+
         </a>
 
       </section>
+
     `;
+
 
     return;
   }
 
+
+  if(!product){
+
+    document.title=
+      `${tx("notFound")} | LUX LINE`;
+
+
+    $("detailsRoot").innerHTML=`
+
+      <section class="not-found">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <h2>
+          ${escapeHtml(tx("notFound"))}
+        </h2>
+
+        <p>
+          ${escapeHtml(tx("notFoundSub"))}
+        </p>
+
+        <a
+          class="add-main"
+          href="index.html#shop"
+          style="max-width:220px;margin:auto;"
+        >
+
+          <i class="fa-solid fa-arrow-left"></i>
+
+          ${escapeHtml(tx("back"))}
+
+        </a>
+
+      </section>
+
+    `;
+
+
+    return;
+  }
+
+
+  const images=
+    productImages();
+
+
+  if(
+    activeImageIndex>=
+    images.length
+  ){
+
+    activeImageIndex=0;
+
+  }
+
+
+  const name=
+    productName();
+
+
+  const category=
+    productCategory();
+
+
+  const description=
+    productDescription();
+
+
+  document.title=
+    `${name} | LUX LINE`;
+
+
   $("detailsRoot").innerHTML=`
+
     <section class="details">
 
       <div class="container details-grid">
+
 
         <!-- GALLERY -->
         <div class="gallery-card">
@@ -2025,129 +2399,183 @@ function renderDetails(){
 
             <img
               id="mainProductImage"
-              src="${product.images[activeImageIndex]}"
-              alt="${t(product.nameKey)}"
+              src="${escapeHtml(images[activeImageIndex])}"
+              alt="${escapeHtml(name)}"
               draggable="false"
+              onerror="this.src='https://placehold.co/1200x900/E0D6C8/35100F?text=LUX+LINE'"
             >
+
 
             <div class="image-badge">
-              ${tx("gallery")}
+              ${escapeHtml(tx("gallery"))}
             </div>
+
 
             <div class="image-count">
-              <span id="imageCounter">${activeImageIndex+1}</span>
+
+              <span id="imageCounter">
+                ${activeImageIndex+1}
+              </span>
+
               /
-              ${product.images.length}
+
+              ${images.length}
+
             </div>
 
-            <button
-              class="gallery-arrow prev-arrow"
-              type="button"
-              onclick="changeGallery(-1)"
-              aria-label="Previous image"
-            >
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
 
-            <button
-              class="gallery-arrow next-arrow"
-              type="button"
-              onclick="changeGallery(1)"
-              aria-label="Next image"
-            >
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
+            ${
+              images.length>1
+                ?`
 
-          </div>
+                  <button
+                    class="gallery-arrow prev-arrow"
+                    type="button"
+                    onclick="changeGallery(-1)"
+                    aria-label="Previous image"
+                  >
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
 
-          <div class="thumbs">
 
-            ${product.images.map((image,index)=>`
-              <button
-                class="thumb ${index===activeImageIndex?"active":""}"
-                type="button"
-                onclick="setGalleryImage(${index})"
-                aria-label="Product image ${index+1}"
-              >
-                <img
-                  src="${image}"
-                  alt="${t(product.nameKey)} ${index+1}"
-                  draggable="false"
-                >
-              </button>
-            `).join("")}
+                  <button
+                    class="gallery-arrow next-arrow"
+                    type="button"
+                    onclick="changeGallery(1)"
+                    aria-label="Next image"
+                  >
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+
+                `
+                :""
+            }
 
           </div>
+
+
+          ${
+            images.length>1
+              ?`
+
+                <div class="thumbs">
+
+                  ${
+                    images.map(
+                      (image,index)=>`
+
+                        <button
+                          class="thumb ${
+                            index===activeImageIndex
+                              ?"active"
+                              :""
+                          }"
+                          type="button"
+                          onclick="setGalleryImage(${index})"
+                          aria-label="Product image ${index+1}"
+                        >
+
+                          <img
+                            src="${escapeHtml(image)}"
+                            alt="${escapeHtml(name)} ${index+1}"
+                            draggable="false"
+                            onerror="this.style.opacity='.25'"
+                          >
+
+                        </button>
+
+                      `
+                    )
+                    .join("")
+                  }
+
+                </div>
+
+              `
+              :""
+          }
+
 
           <div class="gallery-meta">
 
             <div class="gallery-meta-item">
+
               <i class="fa-regular fa-images"></i>
 
               <div>
+
                 <strong>
-                  ${product.images.length} ${tx("photos")}
+                  ${images.length}
+                  ${escapeHtml(tx("photos"))}
                 </strong>
 
                 <span>
-                  ${tx("galleryCount")}
+                  ${escapeHtml(tx("galleryCount"))}
                 </span>
+
               </div>
+
             </div>
 
+
             <div class="gallery-meta-item">
+
               <i class="fa-solid fa-award"></i>
 
               <div>
-                <strong>${tx("premium")}</strong>
-                <span>${tx("premiumSub")}</span>
+
+                <strong>
+                  ${escapeHtml(tx("premium"))}
+                </strong>
+
+                <span>
+                  ${escapeHtml(tx("premiumSub"))}
+                </span>
+
               </div>
+
             </div>
 
+
             <div class="gallery-meta-item">
+
               <i class="fa-solid fa-shield-halved"></i>
 
               <div>
-                <strong>${tx("secure")}</strong>
-                <span>${tx("secureSub")}</span>
+
+                <strong>
+                  ${escapeHtml(tx("secure"))}
+                </strong>
+
+                <span>
+                  ${escapeHtml(tx("secureSub"))}
+                </span>
+
               </div>
+
             </div>
 
           </div>
 
         </div>
 
-        <!-- INFO -->
+
+        <!-- PRODUCT INFO -->
         <aside class="info-card">
 
           <div class="info-top">
 
             <span class="category">
-              ${t(product.category)}
-            </span>
-
-            <span class="stock-pill">
-              <span class="stock-dot"></span>
-              ${tx("stock")}
+              ${escapeHtml(category)}
             </span>
 
           </div>
+
 
           <h1>
-            ${t(product.nameKey)}
+            ${escapeHtml(name)}
           </h1>
 
-          <div class="rating-row">
-
-            <span class="stars">
-              ★★★★★
-            </span>
-
-            <span class="rating-number">
-              ${product.rating} / 5
-            </span>
-
-          </div>
 
           <div class="price-row">
 
@@ -2155,77 +2583,101 @@ function renderDetails(){
               ${money(product.price)}
             </div>
 
-            <div class="price-note">
-              ${tx("stockSub")}
-            </div>
-
           </div>
 
+
           <p class="description">
-            ${tx("description")}
+            ${escapeHtml(description)}
           </p>
+
 
           <div class="quick-specs">
 
+
             <div class="quick-spec">
 
               <div>
+
                 <i class="fa-solid fa-layer-group"></i>
-                <strong>${tx("category")}</strong>
+
+                <strong>
+                  ${escapeHtml(tx("category"))}
+                </strong>
+
               </div>
 
               <span>
-                ${t(product.category)}
+                ${escapeHtml(category)}
               </span>
 
             </div>
 
-            <div class="quick-spec">
-
-              <div>
-                <i class="fa-solid fa-star"></i>
-                <strong>${tx("rating")}</strong>
-              </div>
-
-              <span>
-                ${product.rating} / 5
-              </span>
-
-            </div>
 
             <div class="quick-spec">
 
               <div>
+
                 <i class="fa-solid fa-award"></i>
-                <strong>${tx("quality")}</strong>
+
+                <strong>
+                  ${escapeHtml(tx("quality"))}
+                </strong>
+
               </div>
 
               <span>
-                ${tx("qualitySub")}
+                ${escapeHtml(tx("qualitySub"))}
               </span>
 
             </div>
 
+
             <div class="quick-spec">
 
               <div>
-                <i class="fa-solid fa-box"></i>
-                <strong>${tx("stock")}</strong>
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <strong>
+                  ${escapeHtml(tx("delivery"))}
+                </strong>
+
               </div>
 
               <span>
-                ${tx("stockSub")}
+                ${escapeHtml(tx("deliverySub"))}
+              </span>
+
+            </div>
+
+
+            <div class="quick-spec">
+
+              <div>
+
+                <i class="fa-solid fa-headset"></i>
+
+                <strong>
+                  ${escapeHtml(tx("support"))}
+                </strong>
+
+              </div>
+
+              <span>
+                ${escapeHtml(tx("supportSub"))}
               </span>
 
             </div>
 
           </div>
+
 
           <div class="purchase-box">
 
             <span class="purchase-label">
-              ${tx("quantity")}
+              ${escapeHtml(tx("quantity"))}
             </span>
+
 
             <div class="purchase-row">
 
@@ -2239,9 +2691,11 @@ function renderDetails(){
                   −
                 </button>
 
+
                 <strong id="productQty">
                   ${quantity}
                 </strong>
+
 
                 <button
                   type="button"
@@ -2253,20 +2707,28 @@ function renderDetails(){
 
               </div>
 
+
               <button
                 class="add-main"
                 type="button"
                 onclick="addSelectedToCart()"
               >
+
                 <i class="fa-solid fa-bag-shopping"></i>
-                ${tx("add")}
+
+                ${escapeHtml(tx("add"))}
+
               </button>
 
             </div>
 
+
             <div class="safe-note">
+
               <i class="fa-solid fa-lock"></i>
-              ${tx("secureSub")}
+
+              ${escapeHtml(tx("secureSub"))}
+
             </div>
 
           </div>
@@ -2277,9 +2739,11 @@ function renderDetails(){
 
     </section>
 
+
     <section class="extra">
 
       <div class="container extra-grid">
+
 
         <article class="extra-card">
 
@@ -2287,11 +2751,16 @@ function renderDetails(){
             <i class="fa-solid fa-award"></i>
           </div>
 
-          <h3>${tx("quality")}</h3>
+          <h3>
+            ${escapeHtml(tx("quality"))}
+          </h3>
 
-          <p>${tx("qualitySub")}</p>
+          <p>
+            ${escapeHtml(tx("qualitySub"))}
+          </p>
 
         </article>
+
 
         <article class="extra-card">
 
@@ -2299,11 +2768,16 @@ function renderDetails(){
             <i class="fa-solid fa-truck-fast"></i>
           </div>
 
-          <h3>${tx("delivery")}</h3>
+          <h3>
+            ${escapeHtml(tx("delivery"))}
+          </h3>
 
-          <p>${tx("deliverySub")}</p>
+          <p>
+            ${escapeHtml(tx("deliverySub"))}
+          </p>
 
         </article>
+
 
         <article class="extra-card">
 
@@ -2311,17 +2785,25 @@ function renderDetails(){
             <i class="fa-solid fa-headset"></i>
           </div>
 
-          <h3>${tx("support")}</h3>
+          <h3>
+            ${escapeHtml(tx("support"))}
+          </h3>
 
-          <p>${tx("supportSub")}</p>
+          <p>
+            ${escapeHtml(tx("supportSub"))}
+          </p>
 
         </article>
+
 
       </div>
 
     </section>
+
   `;
+
 }
+
 
 /* =========================================================
    GALLERY
@@ -2329,56 +2811,120 @@ function renderDetails(){
 
 function setGalleryImage(index){
 
-  if(!product)return;
+  if(!product){
+    return;
+  }
 
-  activeImageIndex=index;
 
-  const main=$("mainProductImage");
+  const images=
+    productImages();
+
+
+  if(
+    !images.length
+  ){
+    return;
+  }
+
+
+  activeImageIndex=
+    Math.max(
+      0,
+      Math.min(
+        index,
+        images.length-1
+      )
+    );
+
+
+  const main=
+    $("mainProductImage");
+
 
   if(main){
 
-    main.style.opacity=".35";
+    main.style.opacity=
+      ".35";
+
 
     setTimeout(()=>{
 
-      main.src=product.images[activeImageIndex];
-      main.style.opacity="1";
+      main.src=
+        images[activeImageIndex];
+
+
+      main.style.opacity=
+        "1";
 
     },90);
+
   }
 
-  const counter=$("imageCounter");
+
+  const counter=
+    $("imageCounter");
+
 
   if(counter){
-    counter.textContent=activeImageIndex+1;
+
+    counter.textContent=
+      activeImageIndex+1;
+
   }
 
+
   document
-    .querySelectorAll(".thumb")
-    .forEach((thumb,index)=>{
+    .querySelectorAll(
+      ".thumb"
+    )
+    .forEach(
+      (thumb,thumbIndex)=>{
 
-      thumb.classList.toggle(
-        "active",
-        index===activeImageIndex
-      );
+        thumb.classList.toggle(
+          "active",
+          thumbIndex===
+            activeImageIndex
+        );
 
-    });
+      }
+    );
+
 }
+
 
 function changeGallery(step){
 
-  if(!product)return;
+  if(!product){
+    return;
+  }
+
+
+  const images=
+    productImages();
+
+
+  if(
+    images.length<=1
+  ){
+    return;
+  }
+
 
   activeImageIndex=
     (
       activeImageIndex
       +step
-      +product.images.length
+      +images.length
     )
-    %product.images.length;
+    %images.length;
 
-  setGalleryImage(activeImageIndex);
+
+  setGalleryImage(
+    activeImageIndex
+  );
+
 }
+
 
 /* =========================================================
    PRODUCT QUANTITY
@@ -2386,17 +2932,26 @@ function changeGallery(step){
 
 function changeProductQty(change){
 
-  quantity=Math.max(
-    1,
-    quantity+change
-  );
+  quantity=
+    Math.max(
+      1,
+      quantity+change
+    );
 
-  const quantityElement=$("productQty");
+
+  const quantityElement=
+    $("productQty");
+
 
   if(quantityElement){
-    quantityElement.textContent=quantity;
+
+    quantityElement.textContent=
+      quantity;
+
   }
+
 }
+
 
 /* =========================================================
    CART
@@ -2404,27 +2959,78 @@ function changeProductQty(change){
 
 function addSelectedToCart(){
 
-  if(!product)return;
-
-  const existingItem=cart.find(
-    item=>item.id===product.id
-  );
-
-  if(existingItem){
-    existingItem.quantity+=quantity;
-  }else{
-    cart.push({
-      id:product.id,
-      quantity
-    });
+  if(!product){
+    return;
   }
 
+
+  const existingItem=
+    cart.find(
+      item=>
+        Number(item.id)===
+        Number(product.id)
+    );
+
+
+  if(existingItem){
+
+    existingItem.quantity=
+      Number(existingItem.quantity||0)
+      +quantity;
+
+
+    existingItem.name=
+      productName();
+
+
+    existingItem.price=
+      Number(product.price||0);
+
+
+    existingItem.image=
+      productImages()[0];
+
+
+    existingItem.category_code=
+      product.category_code||"";
+
+
+  }else{
+
+    cart.push({
+
+      id:
+        Number(product.id),
+
+      quantity:
+        quantity,
+
+      name:
+        productName(),
+
+      price:
+        Number(product.price||0),
+
+      image:
+        productImages()[0],
+
+      category_code:
+        product.category_code||""
+
+    });
+
+  }
+
+
   saveCart();
+
 
   showToast(
     tx("added")
   );
+
 }
+
 
 function saveCart(){
 
@@ -2433,18 +3039,36 @@ function saveCart(){
     JSON.stringify(cart)
   );
 
+
   updateCartCount();
+
 }
+
 
 function updateCartCount(){
 
-  const totalItems=cart.reduce(
-    (sum,item)=>sum+item.quantity,
-    0
-  );
+  const totalItems=
+    cart.reduce(
+      (sum,item)=>
+        sum+
+        Number(item.quantity||0),
+      0
+    );
 
-  $("cartCount").textContent=totalItems;
+
+  const badge=
+    $("cartCount");
+
+
+  if(badge){
+
+    badge.textContent=
+      totalItems;
+
+  }
+
 }
+
 
 /* =========================================================
    TOAST
@@ -2452,155 +3076,287 @@ function updateCartCount(){
 
 let toastTimer;
 
+
 function showToast(message){
 
-  $("toastText").textContent=message;
+  const text=
+    $("toastText");
 
-  $("toast").classList.add("show");
 
-  clearTimeout(toastTimer);
+  const toast=
+    $("toast");
 
-  toastTimer=setTimeout(()=>{
 
-    $("toast").classList.remove("show");
+  if(
+    !text
+    ||
+    !toast
+  ){
+    return;
+  }
 
-  },2200);
+
+  text.textContent=
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer=
+    setTimeout(()=>{
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },2200);
+
 }
+
 
 /* =========================================================
    LANGUAGE
 ========================================================= */
 
-$("languageSelect").addEventListener(
+$("languageSelect")
+.addEventListener(
   "change",
   event=>{
 
-    if(typeof setLanguage==="function"){
-      setLanguage(event.target.value);
+    if(
+      typeof setLanguage===
+      "function"
+    ){
+
+      setLanguage(
+        event.target.value
+      );
+
     }
+
   }
 );
 
+
 window.refreshDynamicContent=()=>{
 
-  if(typeof currentLanguage!=="undefined"){
-    $("languageSelect").value=currentLanguage;
+  if(
+    typeof currentLanguage!==
+    "undefined"
+  ){
+
+    $("languageSelect").value=
+      currentLanguage;
+
   }
 
+
   renderDetails();
+
   updateCartCount();
+
 };
+
 
 /* =========================================================
    PAGE PROTECTION
 ========================================================= */
 
-/* Prevent context menu */
 document.addEventListener(
   "contextmenu",
-  event=>event.preventDefault()
+  event=>
+    event.preventDefault()
 );
 
-/* Prevent drag */
+
 document.addEventListener(
   "dragstart",
-  event=>event.preventDefault()
+  event=>
+    event.preventDefault()
 );
 
-/* Prevent browser zoom from Ctrl/Cmd + wheel */
+
 document.addEventListener(
   "wheel",
   event=>{
 
-    if(event.ctrlKey || event.metaKey){
+    if(
+      event.ctrlKey
+      ||
+      event.metaKey
+    ){
+
       event.preventDefault();
+
     }
 
   },
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
-/* Prevent Ctrl/Cmd +, -, 0 */
+
 document.addEventListener(
   "keydown",
   event=>{
 
     const zoomKey=
-      event.key==="+" ||
-      event.key==="-" ||
-      event.key==="=" ||
+      event.key==="+"
+      ||
+      event.key==="-"
+      ||
+      event.key==="="
+      ||
       event.key==="0";
 
+
     if(
-      (event.ctrlKey || event.metaKey)
-      && zoomKey
+      (
+        event.ctrlKey
+        ||
+        event.metaKey
+      )
+      &&
+      zoomKey
     ){
+
       event.preventDefault();
+
     }
 
-    /* Prevent select-all/copy on page */
+
     if(
-      (event.ctrlKey || event.metaKey)
-      && ["a","c","x"].includes(
+      (
+        event.ctrlKey
+        ||
+        event.metaKey
+      )
+      &&
+      [
+        "a",
+        "c",
+        "x"
+      ]
+      .includes(
         event.key.toLowerCase()
       )
-      && !["INPUT","TEXTAREA","SELECT"].includes(
+      &&
+      ![
+        "INPUT",
+        "TEXTAREA",
+        "SELECT"
+      ]
+      .includes(
         document.activeElement?.tagName
       )
     ){
+
       event.preventDefault();
+
     }
+
   }
 );
+
 
 document.addEventListener(
   "touchmove",
   event=>{
 
-    if(event.touches.length>1){
+    if(
+      event.touches.length>1
+    ){
+
       event.preventDefault();
+
     }
 
   },
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
 
-["gesturestart","gesturechange","gestureend"]
-.forEach(eventName=>{
+[
+  "gesturestart",
+  "gesturechange",
+  "gestureend"
+]
+.forEach(
+  eventName=>{
 
-  document.addEventListener(
-    eventName,
-    event=>event.preventDefault()
-  );
+    document.addEventListener(
+      eventName,
+      event=>
+        event.preventDefault()
+    );
 
-});
+  }
+);
 
-/* Prevent double-tap zoom */
+
 let lastTouchEnd=0;
+
 
 document.addEventListener(
   "touchend",
   event=>{
 
-    const now=Date.now();
+    const now=
+      Date.now();
 
-    if(now-lastTouchEnd<=300){
+
+    if(
+      now-lastTouchEnd<=300
+    ){
+
       event.preventDefault();
+
     }
 
-    lastTouchEnd=now;
+
+    lastTouchEnd=
+      now;
+
   },
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
 
-if(typeof initializeLanguage==="function"){
+/* =========================================================
+   START
+========================================================= */
+
+if(
+  typeof initializeLanguage===
+  "function"
+){
+
   initializeLanguage();
+
 }else{
+
   renderDetails();
+
   updateCartCount();
+
 }
+
+
+loadProduct();
+
 </script>
 
 </body>
