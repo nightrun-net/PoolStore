@@ -3175,6 +3175,26 @@ img{
   }
 }
 
+
+/* =========================================================
+   EXTENDED SHOP CATEGORIES
+========================================================= */
+
+.categories{
+  scroll-behavior:smooth;
+}
+
+@media(max-width:700px){
+
+  .categories{
+    padding-bottom:2px;
+  }
+
+  .category-btn{
+    flex:0 0 auto;
+  }
+}
+
 </style>
 </head>
 
@@ -3401,6 +3421,39 @@ img{
           Accessories
         </button>
 
+
+        <button
+          class="category-btn"
+          data-category="tip"
+          type="button"
+        >
+          <span data-local-i18n="tip">
+            Tip
+          </span>
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="chalk"
+          type="button"
+        >
+          <span data-local-i18n="chalk">
+            Chalk
+          </span>
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="cleaner"
+          type="button"
+        >
+          <span data-local-i18n="cleaner">
+            Cleaner
+          </span>
+        </button>
+
       </div>
 
 
@@ -3555,6 +3608,30 @@ img{
         <a href="#shop" data-i18n="cues">Cues</a>
         <a href="#shop" data-i18n="balls">Balls</a>
         <a href="#shop" data-i18n="accessories">Accessories</a>
+
+        <a
+          href="#shop"
+          data-footer-category="tip"
+          data-local-i18n="tip"
+        >
+          Tip
+        </a>
+
+        <a
+          href="#shop"
+          data-footer-category="chalk"
+          data-local-i18n="chalk"
+        >
+          Chalk
+        </a>
+
+        <a
+          href="#shop"
+          data-footer-category="cleaner"
+          data-local-i18n="cleaner"
+        >
+          Cleaner
+        </a>
       </div>
 
     </div>
@@ -3667,6 +3744,9 @@ const pageLabels={
     orders:"Orders",
     profile:"Profile",
     price:"Price",
+    tip:"Tip",
+    chalk:"Chalk",
+    cleaner:"Cleaner",
     favoritesEmpty:"No favorite products yet",
     loadingProducts:"Loading products...",
     loadError:"Unable to load products from the store database.",
@@ -3680,6 +3760,9 @@ const pageLabels={
     orders:"الطلبات",
     profile:"الحساب",
     price:"السعر",
+    tip:"رؤوس العصي",
+    chalk:"طباشير",
+    cleaner:"منظف",
     favoritesEmpty:"لا توجد منتجات مفضلة بعد",
     loadingProducts:"جاري تحميل المنتجات...",
     loadError:"تعذر تحميل المنتجات من قاعدة بيانات المتجر.",
@@ -3693,6 +3776,9 @@ const pageLabels={
     orders:"داواکاری",
     profile:"پروفایل",
     price:"بها",
+    tip:"سەرێ چوبێ",
+    chalk:"تەباشیر",
+    cleaner:"پاککەر",
     favoritesEmpty:"هێشتا چ بەرهەمێ دڵخواز نینە",
     loadingProducts:"بەرهەم دهێنە بارکرن...",
     loadError:"بەرهەم ژ داتابەیسا فرۆشگەهێ نەهاتنە بارکرن.",
@@ -3706,6 +3792,9 @@ const pageLabels={
     orders:"داواکارییەکان",
     profile:"پڕۆفایل",
     price:"نرخ",
+    tip:"سەری دار",
+    chalk:"تەباشیر",
+    cleaner:"پاککەرەوە",
     favoritesEmpty:"هێشتا هیچ بەرهەمێکی دڵخواز نییە",
     loadingProducts:"بەرهەمەکان بار دەکرێن...",
     loadError:"نەتوانرا بەرهەمەکان لە بنکەدراوەی فرۆشگا بار بکرێن.",
@@ -4600,6 +4689,66 @@ document
       renderProducts();
 
     };
+
+  });
+
+
+
+/* =========================================================
+   FOOTER CATEGORY LINKS
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-footer-category]"
+  )
+  .forEach(link=>{
+
+    link.addEventListener(
+      "click",
+      ()=>{
+
+        const category=
+          link.dataset.footerCategory;
+
+
+        const button=
+          document.querySelector(
+            `.category-btn[data-category="${category}"]`
+          );
+
+
+        if(!button){
+          return;
+        }
+
+
+        document
+          .querySelectorAll(
+            ".category-btn"
+          )
+          .forEach(item=>{
+
+            item.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        selectedCategory=
+          category;
+
+
+        renderProducts();
+
+      }
+    );
 
   });
 
